@@ -123,35 +123,35 @@
 
   /* ─── FORM ELEMENTS ─── */
   .form-label {
-    font-size: 13px; font-weight: 600; color: var(--gray-600);
-    letter-spacing: 0.3px; margin-bottom: 8px; display: block;
+    font-size: 13px; font-weight: 700; color: var(--gray-800);
+    letter-spacing: 0.2px; margin-bottom: 10px; display: block;
   }
   .form-group { display: flex; flex-direction: column; }
 
   input[type=text], input[type=tel], input[type=number],
   textarea, select {
-    background: var(--gray-50);
-    border: 1.5px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 14px 16px;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 16px 18px;
     font-family: 'DM Sans', sans-serif;
     font-size: 15px; color: var(--gray-800);
     width: 100%; outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-appearance: none; appearance: none;
   }
+  input::placeholder, textarea::placeholder { color: #94a3b8; }
   input:focus, textarea:focus, select:focus {
     border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
-    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(34,197,94,0.15);
+    background: white;
   }
   textarea { resize: none; line-height: 1.6; }
 
   /* ─── CARD ─── */
   .card {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    background: white; border-radius: 20px; margin-bottom: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.02);
     border: 1px solid rgba(0,0,0,0.04);
     overflow: hidden;
   }
@@ -160,96 +160,98 @@
   /* ─── PAYMENT OPTIONS ─── */
   .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .pay-option {
-    border: 2px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 14px 12px;
+    border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 14px 12px;
     cursor: pointer; display: flex; align-items: center; gap: 10px;
-    transition: all 0.2s; background: var(--gray-50);
+    transition: all 0.2s; background: #f8fafc;
   }
-  .pay-option.selected {
-    border-color: var(--green);
-    background: var(--green-pale);
-  }
+  .pay-option.selected { border-color: var(--green); background: var(--green-pale); box-shadow: 0 4px 12px rgba(34,197,94,0.1); }
   .pay-icon { font-size: 22px; }
-  .pay-label { font-size: 13px; font-weight: 500; color: var(--gray-600); line-height: 1.3; }
+  .pay-label { font-size: 13px; font-weight: 600; color: var(--gray-700); line-height: 1.3; }
   .pay-option.selected .pay-label { color: var(--green-dark); }
 
-  /* ─── QUANTITY ─── */
-  .qty-row { display: inline-flex; align-items: center; gap: 16px; padding: 6px 12px; border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); background: var(--white); width: fit-content; }
-  .qty-btn { width: 30px; height: 30px; border: none; background: var(--green-pale); border-radius: 8px; font-size: 18px; cursor: pointer; color: var(--green-dark); font-weight: 600; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
-  .qty-btn:active { transform: scale(0.9); background: var(--green-light); }
-  .qty-val { font-size: 15px; font-weight: 600; color: var(--gray-800); min-width: 24px; text-align: center; pointer-events: none; }
+  /* Quick Suggestion Chips */
+  .quick-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .quick-chip {
+    background: white; border: 1.5px solid #e2e8f0; color: var(--gray-600);
+    padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .quick-chip:active { transform: scale(0.95); }
+  .quick-chip:hover, .quick-chip:active { border-color: var(--green); color: var(--green-dark); background: var(--green-pale); }
+
+  /* Service Select Chips */
+  .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .svc-chip {
+    background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px;
+    padding: 14px 12px; text-align: center; font-size: 14px; font-weight: 600; color: var(--gray-700);
+    cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .svc-chip .svc-icon { font-size: 24px; }
+  .svc-chip.selected { background: var(--green-pale); border-color: var(--green); color: var(--green-dark); box-shadow: 0 4px 12px rgba(34,197,94,0.1); }
 
   /* ─── TOGGLE ─── */
-  .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--gray-50); border-radius: var(--radius-sm); border: 1.5px solid var(--gray-200); }
-  .toggle-label { font-size: 15px; font-weight: 500; color: var(--gray-800); }
-  .toggle-sub { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
-  .toggle-switch { width: 48px; height: 26px; background: var(--gray-200); border-radius: 13px; position: relative; cursor: pointer; transition: background 0.25s; flex-shrink: 0; }
-  .toggle-switch.on { background: var(--green); }
-  .toggle-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: white; border-radius: 50%; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: transform 0.25s; }
-  .toggle-switch.on::after { transform: translateX(22px); }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 16px; background: #fff1f2; border-radius: 16px; border: 1px solid #ffe4e6; }
+  .toggle-label { font-size: 15px; font-weight: 700; color: #e11d48; }
+  .toggle-sub { font-size: 12px; color: #fb7185; margin-top: 2px; }
+  .toggle-switch { width: 50px; height: 28px; background: #fda4af; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; flex-shrink: 0; }
+  .toggle-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; background: white; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.3s; }
+  .toggle-switch.on { background: #e11d48; }
+  .toggle-switch.on::after { left: 25px; }
 
   /* ─── NOTE BOX ─── */
   .note-box {
     background: linear-gradient(135deg, #fefce8, #fef9c3);
-    border: 1px solid #fde68a;
-    border-radius: var(--radius-sm); padding: 14px 16px;
+    border: 1px solid #fde68a; border-radius: 14px; padding: 14px 16px;
     display: flex; gap: 10px; align-items: flex-start;
   }
   .note-icon { font-size: 18px; flex-shrink: 0; }
-  .note-text { font-size: 13px; color: #854d0e; line-height: 1.5; }
+  .note-text { font-size: 13px; color: #854d0e; line-height: 1.5; font-weight: 500; }
 
   .warn-box {
     background: linear-gradient(135deg, #fff1f2, #ffe4e6);
-    border: 1px solid #fca5a5;
-    border-radius: var(--radius-sm); padding: 14px 16px;
+    border: 1px solid #fca5a5; border-radius: 14px; padding: 14px 16px; margin-bottom: 16px;
     display: flex; gap: 10px; align-items: flex-start;
   }
-  .warn-text { font-size: 13px; color: #9f1239; line-height: 1.5; }
+  .warn-text { font-size: 13px; color: #9f1239; line-height: 1.5; font-weight: 500; }
 
   /* ─── UPLOAD BUTTON ─── */
   .upload-btn {
-    border: 2px dashed var(--green);
-    border-radius: var(--radius-sm);
-    padding: 20px; text-align: center; cursor: pointer;
-    background: var(--green-pale);
-    transition: background 0.2s;
+    border: 2px dashed #cbd5e1; border-radius: 16px; padding: 24px 16px;
+    text-align: center; cursor: pointer; background: #f8fafc; transition: all 0.2s;
   }
-  .upload-btn:active { background: var(--green-light); }
-  .upload-icon { font-size: 28px; display: block; margin-bottom: 6px; }
-  .upload-text { font-size: 14px; color: var(--green-dark); font-weight: 500; }
-  .upload-sub { font-size: 12px; color: var(--gray-400); margin-top: 3px; }
+  .upload-btn:active { background: #f1f5f9; transform: scale(0.98); }
+  .upload-btn.has-file { background: #f0fdf4; border-color: var(--green); border-style: solid; box-shadow: 0 4px 12px rgba(34,197,94,0.1); }
+  .upload-icon { font-size: 32px; display: block; margin-bottom: 8px; }
+  .upload-text { font-size: 14px; font-weight: 600; color: var(--gray-700); }
+  .upload-btn.has-file .upload-text { color: var(--green-dark); }
+  .upload-sub { font-size: 12px; color: #94a3b8; margin-top: 4px; }
 
   /* ─── STICKY BOTTOM ─── */
   .sticky-bottom {
     position: fixed; bottom: 0; left: 0; right: 0;
-    max-width: 480px; margin: 0 auto;
-    padding: 16px 20px 28px;
-    background: linear-gradient(to top, white 60%, transparent);
-    z-index: 100;
+    max-width: 480px; margin: 0 auto; padding: 16px 20px 24px;
+    background: linear-gradient(to top, rgba(255,255,255,1) 60%, rgba(255,255,255,0));
+    z-index: 100; pointer-events: none;
   }
   .btn-primary {
-    width: 100%; padding: 17px;
+    pointer-events: all; width: 100%; padding: 18px;
     background: linear-gradient(135deg, var(--green-dark), var(--green));
-    color: white; border: none; border-radius: var(--radius);
-    font-family: 'Clash Display', sans-serif;
-    font-size: 16px; font-weight: 600;
-    cursor: pointer; letter-spacing: 0.3px;
-    box-shadow: var(--shadow-green);
-    transition: transform 0.15s, box-shadow 0.15s;
-    position: relative; overflow: hidden;
+    color: white; border: none; border-radius: 18px;
+    font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700;
+    cursor: pointer; letter-spacing: 0.2px;
+    box-shadow: 0 8px 24px rgba(34,197,94,0.25);
+    transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;
   }
-  .btn-primary:active { transform: scale(0.97); box-shadow: 0 4px 12px rgba(34,197,94,0.2); }
+  .btn-primary:active { transform: translateY(2px); box-shadow: 0 4px 12px rgba(34,197,94,0.15); }
   .btn-primary::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
-    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent); pointer-events: none;
   }
   .btn-secondary {
-    width: 100%; padding: 15px;
+    width: 100%; padding: 16px;
     background: transparent; color: var(--green-dark);
-    border: 2px solid var(--green); border-radius: var(--radius);
-    font-family: 'Clash Display', sans-serif; font-size: 15px; font-weight: 600;
+    border: 2px solid var(--green); border-radius: 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700;
     cursor: pointer; transition: background 0.2s;
   }
   .btn-secondary:active { background: var(--green-pale); }
@@ -745,15 +747,13 @@
     <div class="card">
       <div class="card-inner" style="display:flex;flex-direction:column;gap:16px;">
         <div class="form-group">
-          <label class="form-label">Items Needed *</label>
-          <textarea id="g-items" rows="4" placeholder="e.g. 1kg tomatoes, 500g paneer, 2L milk, 1 dozen eggs…"></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Approx. Quantity</label>
-          <div class="qty-row">
-            <button class="qty-btn" onclick="changeQty('g-qty',-1)">−</button>
-            <div class="qty-val" id="g-qty">1</div>
-            <button class="qty-btn" onclick="changeQty('g-qty',1)">+</button>
+          <label class="form-label">Items Needed & Quantity *</label>
+          <textarea id="g-items" rows="4" placeholder="e.g. Milk - 2 packets&#10;Onion - 1kg&#10;Eggs - 1 dozen..."></textarea>
+          <div class="quick-chips">
+            <div class="quick-chip" onclick="appendItem('g-items', 'Milk')">+ Milk</div>
+            <div class="quick-chip" onclick="appendItem('g-items', 'Rice')">+ Rice</div>
+            <div class="quick-chip" onclick="appendItem('g-items', 'Eggs')">+ Eggs</div>
+            <div class="quick-chip" onclick="appendItem('g-items', 'Vegetables')">+ Vegetables</div>
           </div>
         </div>
         <div class="form-group">
@@ -824,20 +824,12 @@
     <div class="card">
       <div class="card-inner" style="display:flex;flex-direction:column;gap:16px;">
         <div class="form-group">
-          <label class="form-label">School/Office Items *</label>
-          <textarea id="s-items" rows="4" placeholder="e.g. 2 A4 notebooks, blue pens × 5, geometry box, pencils…"></textarea>
+          <label class="form-label">School/Office Items & Quantity *</label>
+          <textarea id="s-items" rows="4" placeholder="e.g. A4 Notebook - 2&#10;Blue Pen - 5&#10;Pencils - 1 box..."></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">Quantity</label>
-          <div class="qty-row">
-            <button class="qty-btn" onclick="changeQty('s-qty',-1)">−</button>
-            <div class="qty-val" id="s-qty">1</div>
-            <button class="qty-btn" onclick="changeQty('s-qty',1)">+</button>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Additional Notes</label>
-          <textarea id="s-notes" rows="2" placeholder="Brand preferences, color, type…"></textarea>
+          <label class="form-label">Brand Preference / Notes</label>
+          <textarea id="s-notes" rows="2" placeholder="e.g. Classmate notebooks, Reynolds pens..."></textarea>
         </div>
       </div>
     </div>
@@ -897,8 +889,8 @@
     <div class="card">
       <div class="card-inner" style="display:flex;flex-direction:column;gap:16px;">
         <div class="form-group">
-          <label class="form-label">Medicine Names *</label>
-          <textarea id="m-items" rows="4" placeholder="e.g. Crocin 500mg × 2 strips, Azithromycin 500, Paracetamol syrup…"></textarea>
+          <label class="form-label">Medicine Names & Quantity *</label>
+          <textarea id="m-items" rows="4" placeholder="e.g. Crocin 500mg - 2 strips&#10;Paracetamol syrup - 1 bottle..."></textarea>
         </div>
         <div class="form-group">
           <label class="form-label">Upload Prescription (if required)</label>
@@ -911,8 +903,8 @@
         </div>
         <div class="toggle-row">
           <div>
-            <div class="toggle-label">🚨 Urgent Delivery</div>
-            <div class="toggle-sub">Higher priority processing</div>
+            <div class="toggle-label">🚨 Emergency Delivery</div>
+            <div class="toggle-sub">High priority processing</div>
           </div>
           <div class="toggle-switch" id="urgentToggle" onclick="this.classList.toggle('on')"></div>
         </div>
@@ -971,14 +963,25 @@
       <div class="card-inner" style="display:flex;flex-direction:column;gap:16px;">
         <div class="form-group">
           <label class="form-label">Service Type *</label>
-          <select id="hs-type">
-            <option value="">— Select a service —</option>
-            <option>⚡ Electrician</option>
-            <option>🔧 Plumber</option>
-            <option>🧹 Cleaning</option>
-            <option>❄️ AC Repair</option>
-            <option>🪵 Carpenter</option>
-          </select>
+          <div class="service-grid">
+            <div class="svc-chip" onclick="selectService('⚡ Electrician', this)">
+              <div class="svc-icon">⚡</div>
+              Electrician
+            </div>
+            <div class="svc-chip" onclick="selectService('🔧 Plumber', this)">
+              <div class="svc-icon">🔧</div>
+              Plumber
+            </div>
+            <div class="svc-chip" onclick="selectService('❄️ AC Repair', this)">
+              <div class="svc-icon">❄️</div>
+              AC Repair
+            </div>
+            <div class="svc-chip" onclick="selectService('🧹 Cleaning', this)">
+              <div class="svc-icon">🧹</div>
+              Cleaning
+            </div>
+          </div>
+          <input type="hidden" id="hs-type" value="">
         </div>
         <div class="form-group">
           <label class="form-label">Problem Description *</label>
@@ -1367,6 +1370,22 @@ window.handleRxUpload = function(input) {
   }
 };
 
+// ── Redesign Helpers ────────────────────────────────────────────────────────
+window.appendItem = function(id, text) {
+  const el = document.getElementById(id);
+  if(el) {
+    el.value = el.value ? el.value + '\n' + text + ' - ' : text + ' - ';
+    el.focus();
+  }
+};
+
+window.selectService = function(val, el) {
+  document.getElementById('hs-type').value = val;
+  const chips = document.querySelectorAll('.svc-chip');
+  chips.forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+};
+
 // ── Place Order ───────────────────────────────────────────────────────────────
 window.placeOrder = async function(cat) {
   const prefixMap = { grocery: 'g', stationery: 's', medicine: 'm', homeservice: 'hs' };
@@ -1395,11 +1414,11 @@ window.placeOrder = async function(cat) {
   // Category-specific fields
   if (cat === 'grocery') {
     orderData.items = document.getElementById('g-items').value;
-    orderData.qty = document.getElementById('g-qty').textContent;
+    orderData.qty = document.getElementById('g-qty') ? document.getElementById('g-qty').textContent : 'Combined in items';
     orderData.deliveryTime = state.selectedTimes['g'] || 'ASAP';
   } else if (cat === 'stationery') {
     orderData.items = document.getElementById('s-items').value;
-    orderData.qty = document.getElementById('s-qty').textContent;
+    orderData.qty = document.getElementById('s-qty') ? document.getElementById('s-qty').textContent : 'Combined in items';
     orderData.notes = document.getElementById('s-notes').value;
   } else if (cat === 'medicine') {
     orderData.items = document.getElementById('m-items').value;
