@@ -1125,13 +1125,13 @@
 
 // ── Firebase Config ─────────────────────────────────────────────────────────
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBcSxt0MxZ1FA9SNTS-W1KcM1B11uueRoE",
-  authDomain: "homagohq-56d15.firebaseapp.com",
-  projectId: "homagohq-56d15",
-  storageBucket: "homagohq-56d15.firebasestorage.app",
-  messagingSenderId: "278927771415",
-  appId: "1:278927771415:web:db0d7e0d314efc2a141952",
-  measurementId: "G-LN6489R1NG"
+  apiKey: "AIzaSyBXOHEIRgMmDWIxkWJVs69N2djQ5qIQk6s",
+  authDomain: "homago-99796.firebaseapp.com",
+  projectId: "homago-99796",
+  storageBucket: "homago-99796.firebasestorage.app",
+  messagingSenderId: "322344930543",
+  appId: "1:322344930543:web:7fa06ede00ffb0db9a5f1a",
+  measurementId: "G-E377Y9JZL1"
 };
 
 // ── Google Apps Script Web App URL ───────────────────────────────────────────
@@ -1157,10 +1157,10 @@ let firebaseReady = false;
 
 async function initFirebase() {
   try {
-    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js');
-    const { getAnalytics } = await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js');
-    const { getAuth, RecaptchaVerifier, signInWithPhoneNumber } = await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js');
-    const { getFirestore, collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js');
+    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js');
+    const { getAnalytics } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js');
+    const { getAuth, RecaptchaVerifier, signInWithPhoneNumber } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js');
+    const { getFirestore, collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js');
 
     const app = initializeApp(FIREBASE_CONFIG);
     if (FIREBASE_CONFIG.measurementId) {
