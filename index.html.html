@@ -1124,7 +1124,12 @@
 <script type="module">
 
 // ── Firebase Config ─────────────────────────────────────────────────────────
-const FIREBASE_CONFIG = {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+const firebaseConfig = {
   apiKey: "AIzaSyBXOHEIRgMmDWIxkWJVs69N2djQ5qIQk6s",
   authDomain: "homago-99796.firebaseapp.com",
   projectId: "homago-99796",
@@ -1133,6 +1138,9 @@ const FIREBASE_CONFIG = {
   appId: "1:322344930543:web:7fa06ede00ffb0db9a5f1a",
   measurementId: "G-E377Y9JZL1"
 };
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 // ── Google Apps Script Web App URL ───────────────────────────────────────────
 // Deploy a Google Apps Script as a Web App and paste the URL here
@@ -1155,31 +1163,18 @@ const state = {
 let auth, db, appVerifier;
 let firebaseReady = false;
 
-async function initFirebase() {
-  try {
-    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js');
-    const { getAnalytics } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js');
-    const { getAuth, RecaptchaVerifier, signInWithPhoneNumber } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js');
-    const { getFirestore, collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js');
+try {
+  auth = getAuth(app);
+  db = getFirestore(app);
+  firebaseReady = true;
 
-    const app = initializeApp(FIREBASE_CONFIG);
-    if (FIREBASE_CONFIG.measurementId) {
-      getAnalytics(app);
-    }
-    
-    auth = getAuth(app);
-    db = getFirestore(app);
-    firebaseReady = true;
-
-    // Expose to global for button handlers
-    window._firebase = { auth, db, getAuth, RecaptchaVerifier, signInWithPhoneNumber, collection, addDoc, serverTimestamp };
-    console.log('Firebase successfully initialized and connected');
-  } catch (e) {
-    console.error('Firebase init failed (running in fallback mode):', e);
-    firebaseReady = false;
-  }
+  // Expose to global for button handlers
+  window._firebase = { auth, db, getAuth, RecaptchaVerifier, signInWithPhoneNumber, collection, addDoc, serverTimestamp };
+  console.log('Firebase successfully initialized and connected');
+} catch (e) {
+  console.error('Firebase init failed (running in fallback mode):', e);
+  firebaseReady = false;
 }
-initFirebase();
 
 // ── Utility ──────────────────────────────────────────────────────────────────
 function showLoading(msg = 'Please wait…') {
