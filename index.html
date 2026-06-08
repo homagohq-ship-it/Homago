@@ -713,20 +713,16 @@
 
     // Initialize Firebase
     let db, auth, appVerifier, analytics;
-    let firebaseReady = false;
 
     try {
       const app = initializeApp(firebaseConfig);
       analytics = getAnalytics(app);
       auth = getAuth(app);
       db = getFirestore(app);
-      firebaseReady = true;
-
-      // Global Access hook
-      window._firebaseRef = { auth, db, RecaptchaVerifier, signInWithPhoneNumber, collection, addDoc, serverTimestamp };
-      console.log("HOMAGO: Firebase initialized successfully (Project: homago-4d577).");
+      window._firebaseRef = { auth, db, collection, addDoc, serverTimestamp };
+      console.log('HOMAGO: Firebase initialized (homago-4d577).');
     } catch (e) {
-      console.warn("HOMAGO: Firebase failed initialization. Falling back to Demo Mode.", e);
+      console.error('HOMAGO: Firebase initialization failed.', e);
     }
 
     // ─── UTILITY HELPER METHODS ───
@@ -863,77 +859,106 @@
       }
     };
 
-    // ─── DEMO AUTH CONSTANTS ───
-    const DEMO_MOBILE = '9999999999';
-    const DEMO_OTP    = '123456';
-
-    // ─── LOGIN FLOW LOGIC ───
+    // ─── LOGIN FLOW – Real Firebase Phone Authentication ───
     window.sendOTPCode = async function() {
       const nameInput  = document.getElementById('loginName');
       const phoneInput = document.getElementById('loginPhone');
-
       if (!nameInput || !phoneInput) return;
 
       const fullName = nameInput.value.trim();
       const rawPhone = phoneInput.value.trim().replace(/\s+/g, '');
 
+      // Validate name
       if (fullName.length < 2) {
         triggerToast('Please enter your full name', '⚠️');
         nameInput.focus();
         return;
       }
 
-      if (!/^[0-9]{10}$/.test(rawPhone)) {
+      // Validate 10-digit Indian mobile number
+      if (!/^[6-9]\d{9}$/.test(rawPhone)) {
         triggerToast('Enter a valid 10-digit mobile number', '⚠️');
         phoneInput.focus();
         return;
       }
 
-      // Strict demo number check
-      if (rawPhone !== DEMO_MOBILE) {
-        triggerToast('Invalid demo mobile number', '❌');
-        phoneInput.focus();
+      if (!auth) {
+        triggerToast('Authentication service unavailable. Please refresh.', '❌');
         return;
       }
 
       state.verificationPhone = rawPhone;
-      showLoader('Sending Demo OTP...');
+      showLoader('Sending OTP to +91 ' + rawPhone + '...');
 
-      setTimeout(() => {
+      try {
+        // Clear any previous verifier
+        if (appVerifier) {
+          try { appVerifier.clear(); } catch (_) {}
+          appVerifier = null;
+        }
+
+        // Create invisible reCAPTCHA
+        appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+          size: 'invisible',
+          callback: () => {},
+          'expired-callback': () => {
+            triggerToast('reCAPTCHA expired. Please try again.', '⚠️');
+            if (appVerifier) { try { appVerifier.clear(); } catch (_) {} appVerifier = null; }
+          }
+        });
+
+        const phoneNumber = `+91${rawPhone}`;
+        state.confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
+
         hideLoader();
-        triggerToast('Demo OTP sent to +91 ' + DEMO_MOBILE, '✉️');
+        triggerToast('OTP sent to +91 ' + rawPhone, '✉️');
         proceedToOTPScreen(fullName, rawPhone);
-      }, 800);
+
+      } catch (e) {
+        hideLoader();
+        console.error('OTP send error:', e);
+
+        // Map Firebase error codes to readable messages
+        const errorMap = {
+          'auth/invalid-phone-number':    'Invalid phone number format.',
+          'auth/too-many-requests':        'Too many attempts. Please wait and try again.',
+          'auth/quota-exceeded':           'SMS quota exceeded. Try later.',
+          'auth/captcha-check-failed':     'reCAPTCHA verification failed. Refresh and retry.',
+          'auth/missing-phone-number':     'Phone number is required.',
+          'auth/network-request-failed':   'Network error. Check your connection.',
+        };
+        const msg = errorMap[e.code] || `Failed to send OTP: ${e.message}`;
+        triggerToast(msg, '❌');
+
+        // Clean up verifier on error
+        if (appVerifier) { try { appVerifier.clear(); } catch (_) {} appVerifier = null; }
+      }
     };
 
     let countdownInterval;
     function proceedToOTPScreen(name, phone) {
-      // Set values on screen
       const displayNum = document.getElementById('displayMobileNum');
       if (displayNum) displayNum.textContent = `+91 ${phone.slice(0,5)} ${phone.slice(5)}`;
-      
-      // Clear OTP inputs
+
       for (let i = 1; i <= 6; i++) {
         const el = document.getElementById(`otp-${i}`);
         if (el) el.value = '';
       }
-      
+
       showScreen('screen-otp');
       const otp1 = document.getElementById('otp-1');
       if (otp1) setTimeout(() => otp1.focus(), 400);
-
-      // Start Resend timer
       startResendCountdown();
     }
 
     function startResendCountdown() {
-      const link = document.getElementById('otpResendLink');
+      const link  = document.getElementById('otpResendLink');
       const timer = document.getElementById('otpTimer');
       if (!link || !timer) return;
 
       clearInterval(countdownInterval);
       link.classList.remove('active');
-      
+
       let duration = 30;
       timer.textContent = `(${duration}s)`;
 
@@ -949,38 +974,59 @@
       }, 1000);
     }
 
-    window.resendOTPCode = function() {
-      // Only allow resend for the demo number
-      if (state.verificationPhone !== DEMO_MOBILE) {
-        triggerToast('Invalid demo mobile number', '❌');
+    window.resendOTPCode = async function() {
+      if (!state.verificationPhone) {
+        triggerToast('Please go back and enter your mobile number.', '⚠️');
         return;
       }
-      triggerToast('Demo OTP resent to +91 ' + DEMO_MOBILE, '✉️');
-      startResendCountdown();
+      if (!auth) {
+        triggerToast('Authentication service unavailable.', '❌');
+        return;
+      }
+
+      showLoader('Resending OTP...');
+      try {
+        if (appVerifier) { try { appVerifier.clear(); } catch (_) {} appVerifier = null; }
+
+        appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+          size: 'invisible',
+          callback: () => {},
+        });
+
+        const phoneNumber = `+91${state.verificationPhone}`;
+        state.confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
+
+        hideLoader();
+        triggerToast('OTP resent to +91 ' + state.verificationPhone, '✉️');
+        startResendCountdown();
+
+      } catch (e) {
+        hideLoader();
+        console.error('Resend OTP error:', e);
+        triggerToast('Failed to resend OTP. Try again.', '❌');
+        if (appVerifier) { try { appVerifier.clear(); } catch (_) {} appVerifier = null; }
+      }
     };
 
-    // OTP Navigation helper
+    // OTP input focus navigation
     window.moveOTPFocus = function(current, next, event) {
       const input = document.getElementById(`otp-${current}`);
       if (!input) return;
-
       input.value = input.value.replace(/[^0-9]/g, '');
-
       if (event.key === 'Backspace' && current > 1 && !input.value) {
-        const prevInput = document.getElementById(`otp-${current - 1}`);
-        if (prevInput) prevInput.focus();
+        const prev = document.getElementById(`otp-${current - 1}`);
+        if (prev) prev.focus();
       } else if (input.value && next) {
-        const nextInput = document.getElementById(`otp-${next}`);
-        if (nextInput) nextInput.focus();
+        const nextEl = document.getElementById(`otp-${next}`);
+        if (nextEl) nextEl.focus();
       }
     };
 
-    // Verify OTP Submission
+    // Verify OTP — Real Firebase confirmation
     window.submitOTPCode = async function() {
       let otpVal = '';
       for (let i = 1; i <= 6; i++) {
-        const val = document.getElementById(`otp-${i}`).value;
-        otpVal += val;
+        otpVal += document.getElementById(`otp-${i}`).value;
       }
 
       if (otpVal.length !== 6) {
@@ -988,26 +1034,38 @@
         return;
       }
 
-      // Strict demo OTP check
-      if (otpVal !== DEMO_OTP) {
-        triggerToast('Invalid demo OTP', '❌');
-        // Shake the OTP inputs to signal error
-        const grid = document.querySelector('.otp-box-grid');
-        if (grid) {
-          grid.style.animation = 'none';
-          grid.style.transition = 'transform 0.1s';
-          grid.style.transform = 'translateX(-6px)';
-          setTimeout(() => { grid.style.transform = 'translateX(6px)'; }, 100);
-          setTimeout(() => { grid.style.transform = 'translateX(-4px)'; }, 200);
-          setTimeout(() => { grid.style.transform = 'translateX(0)';    }, 300);
-        }
+      if (!state.confirmationResult) {
+        triggerToast('Session expired. Please go back and request OTP again.', '❌');
         return;
       }
 
-      showLoader('Verifying & preparing your profile...');
-      setTimeout(async () => {
+      showLoader('Verifying OTP...');
+      try {
+        await state.confirmationResult.confirm(otpVal);
+        // OTP verified — proceed to register profile
         await completeUserProfileRegistration();
-      }, 800);
+
+      } catch (e) {
+        hideLoader();
+        console.error('OTP verification error:', e);
+
+        // Shake OTP grid to signal wrong code
+        const grid = document.querySelector('.otp-box-grid');
+        if (grid) {
+          grid.style.transition = 'transform 0.1s';
+          grid.style.transform  = 'translateX(-6px)';
+          setTimeout(() => { grid.style.transform = 'translateX(6px)';  }, 100);
+          setTimeout(() => { grid.style.transform = 'translateX(-4px)'; }, 200);
+          setTimeout(() => { grid.style.transform = 'translateX(0)';    }, 300);
+        }
+
+        const errorMap = {
+          'auth/invalid-verification-code': 'Incorrect OTP. Please check and try again.',
+          'auth/code-expired':              'OTP has expired. Please request a new one.',
+          'auth/session-expired':           'Session expired. Please request OTP again.',
+        };
+        triggerToast(errorMap[e.code] || 'Verification failed. Try again.', '❌');
+      }
     };
 
     async function completeUserProfileRegistration() {
