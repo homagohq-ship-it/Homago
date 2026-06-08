@@ -713,6 +713,7 @@
 
     // Initialize Firebase
     let db, auth, appVerifier, analytics;
+    let firebaseReady = false;
 
     try {
       const app = initializeApp(firebaseConfig);
@@ -720,6 +721,7 @@
       auth = getAuth(app);
       db = getFirestore(app);
       window._firebaseRef = { auth, db, collection, addDoc, serverTimestamp };
+      firebaseReady = true;
       console.log('HOMAGO: Firebase initialized (homago-4d577).');
     } catch (e) {
       console.error('HOMAGO: Firebase initialization failed.', e);
