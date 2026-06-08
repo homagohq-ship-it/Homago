@@ -863,11 +863,15 @@
       }
     };
 
+    // ─── DEMO AUTH CONSTANTS ───
+    const DEMO_MOBILE = '9999999999';
+    const DEMO_OTP    = '123456';
+
     // ─── LOGIN FLOW LOGIC ───
     window.sendOTPCode = async function() {
-      const nameInput = document.getElementById('loginName');
+      const nameInput  = document.getElementById('loginName');
       const phoneInput = document.getElementById('loginPhone');
-      
+
       if (!nameInput || !phoneInput) return;
 
       const fullName = nameInput.value.trim();
@@ -879,47 +883,27 @@
         return;
       }
 
-      if (!/^[6-9]\d{9}$/.test(rawPhone)) {
+      if (!/^[0-9]{10}$/.test(rawPhone)) {
         triggerToast('Enter a valid 10-digit mobile number', '⚠️');
         phoneInput.focus();
         return;
       }
 
-      state.verificationPhone = rawPhone;
-      showLoader('Sending Verification OTP...');
-
-      // Firebase Verification Flow
-      if (firebaseReady && auth) {
-        try {
-          if (!appVerifier) {
-            appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-              size: 'invisible'
-            });
-            await appVerifier.render();
-          }
-
-          const fullNum = `+91${rawPhone}`;
-          state.confirmationResult = await signInWithPhoneNumber(auth, fullNum, appVerifier);
-          
-          triggerToast('OTP sent successfully!', '✉️');
-          proceedToOTPScreen(fullName, rawPhone);
-        } catch (e) {
-          console.error("Firebase auth error:", e);
-          triggerToast("Firebase Error. Falling back to Demo Mode...", "💡");
-          setTimeout(() => {
-            proceedToOTPScreen(fullName, rawPhone);
-          }, 1500);
-        } finally {
-          hideLoader();
-        }
-      } else {
-        // Local Demo Mode simulation
-        setTimeout(() => {
-          hideLoader();
-          triggerToast('Demo Mode: Verification OTP sent (+91' + rawPhone + ')', '✉️');
-          proceedToOTPScreen(fullName, rawPhone);
-        }, 1200);
+      // Strict demo number check
+      if (rawPhone !== DEMO_MOBILE) {
+        triggerToast('Invalid demo mobile number', '❌');
+        phoneInput.focus();
+        return;
       }
+
+      state.verificationPhone = rawPhone;
+      showLoader('Sending Demo OTP...');
+
+      setTimeout(() => {
+        hideLoader();
+        triggerToast('Demo OTP sent to +91 ' + DEMO_MOBILE, '✉️');
+        proceedToOTPScreen(fullName, rawPhone);
+      }, 800);
     };
 
     let countdownInterval;
@@ -966,12 +950,13 @@
     }
 
     window.resendOTPCode = function() {
-      triggerToast('Resending OTP code...', '✉️');
-      startResendCountdown();
-      // Simulate/trigger resend
-      if (firebaseReady && auth && state.verificationPhone) {
-        sendOTPCode();
+      // Only allow resend for the demo number
+      if (state.verificationPhone !== DEMO_MOBILE) {
+        triggerToast('Invalid demo mobile number', '❌');
+        return;
       }
+      triggerToast('Demo OTP resent to +91 ' + DEMO_MOBILE, '✉️');
+      startResendCountdown();
     };
 
     // OTP Navigation helper
@@ -999,26 +984,30 @@
       }
 
       if (otpVal.length !== 6) {
-        triggerToast('Please enter complete 6-digit OTP code', '⚠️');
+        triggerToast('Please enter the complete 6-digit OTP', '⚠️');
         return;
       }
 
-      showLoader('Verifying code & preparing profile...');
-
-      if (firebaseReady && state.confirmationResult) {
-        try {
-          await state.confirmationResult.confirm(otpVal);
-          await completeUserProfileRegistration();
-        } catch (e) {
-          hideLoader();
-          triggerToast('Invalid verification code. Try again.', '❌');
+      // Strict demo OTP check
+      if (otpVal !== DEMO_OTP) {
+        triggerToast('Invalid demo OTP', '❌');
+        // Shake the OTP inputs to signal error
+        const grid = document.querySelector('.otp-box-grid');
+        if (grid) {
+          grid.style.animation = 'none';
+          grid.style.transition = 'transform 0.1s';
+          grid.style.transform = 'translateX(-6px)';
+          setTimeout(() => { grid.style.transform = 'translateX(6px)'; }, 100);
+          setTimeout(() => { grid.style.transform = 'translateX(-4px)'; }, 200);
+          setTimeout(() => { grid.style.transform = 'translateX(0)';    }, 300);
         }
-      } else {
-        // Demo Mode Successful login
-        setTimeout(async () => {
-          await completeUserProfileRegistration();
-        }, 1200);
+        return;
       }
+
+      showLoader('Verifying & preparing your profile...');
+      setTimeout(async () => {
+        await completeUserProfileRegistration();
+      }, 800);
     };
 
     async function completeUserProfileRegistration() {
