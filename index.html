@@ -200,42 +200,90 @@
        SCREEN 4: GROCERY ORDER PAGE
        ═══════════════════════════════════ -->
   <div class="screen" id="screen-grocery">
-    <div class="compact-header">
+
+    <!-- ── Sticky Hero Header ── -->
+    <div class="grocery-hero-header">
       <button class="header-back-btn" onclick="backToHome()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
-      <div class="header-title-wrap">
-        <div class="header-title-text">Grocery Delivery</div>
-        <div class="header-subtitle-text">Fresh items from local markets</div>
+      <div class="grocery-hero-title-wrap">
+        <div class="grocery-hero-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        </div>
+        <div>
+          <div class="grocery-hero-title">Grocery Order</div>
+          <div class="grocery-hero-sub">Fresh from local markets · Fast delivery</div>
+        </div>
       </div>
       <div class="header-spacer"></div>
     </div>
 
-    <div class="scroll-body">
-      <div class="card-group">
-        <div class="card-title">
-          <span>🛒</span> Items Needed
+    <!-- ── Scrollable Body ── -->
+    <div class="grocery-scroll-body">
+
+      <!-- ── Grocery Image Banner ── -->
+      <div class="grocery-banner-card">
+        <div class="grocery-banner-tag">
+          <span>⚡</span> Express Delivery
         </div>
-        <div class="form-group">
-          <label class="form-label" for="groceryItems">Items Needed & Quantity *</label>
-          <div class="input-wrapper">
-            <textarea id="groceryItems" class="form-input" rows="4" placeholder="e.g.&#10;Rice - 5kg&#10;Milk - 2 packets&#10;Sugar - 1kg"></textarea>
+        <div class="grocery-banner-heading">Fresh Groceries,<br>Delivered to Your Door</div>
+        <div class="grocery-banner-sub">Eggs • Milk • Fruits • Veggies & more</div>
+        <div class="grocery-banner-img-strip">
+          <img src="grocery-banner.png" alt="Grocery items including eggs, bananas, bread, tomatoes, milk, vegetables and fruits" class="grocery-banner-img" loading="eager">
+        </div>
+        <div class="grocery-item-emoji-row">
+          <span class="grocery-item-pill">🥚 Eggs</span>
+          <span class="grocery-item-pill">🍌 Bananas</span>
+          <span class="grocery-item-pill">🍞 Bread</span>
+          <span class="grocery-item-pill">🍅 Tomatoes</span>
+          <span class="grocery-item-pill">🥛 Milk</span>
+          <span class="grocery-item-pill">🥦 Veggies</span>
+          <span class="grocery-item-pill">🍎 Fruits</span>
+        </div>
+      </div>
+
+      <!-- ── Order Details Card ── -->
+      <div class="grocery-form-card">
+        <div class="grocery-card-header">
+          <div class="grocery-card-icon-wrap grocery-icon-green">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
           </div>
-          <div class="quick-chips">
-            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Rice - 5kg')">+ Rice</span>
-            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Milk - 2 packets')">+ Milk</span>
-            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Sugar - 1kg')">+ Sugar</span>
-            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Onions - 2kg')">+ Onions</span>
+          <div>
+            <div class="grocery-card-title">Order Details</div>
+            <div class="grocery-card-sub">List what you need with quantities</div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label" for="groceryItems">Items Needed &amp; Quantity *</label>
+          <div class="input-wrapper">
+            <textarea id="groceryItems" class="form-input grocery-textarea" rows="4" placeholder="e.g.&#10;Rice - 5kg&#10;Milk - 2 packets&#10;Bread - 1 loaf&#10;Eggs - 12 pcs"></textarea>
+          </div>
+          <div class="quick-chips" style="margin-top:10px;">
+            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Rice - 5kg')">🌾 Rice</span>
+            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Milk - 2 packets')">🥛 Milk</span>
+            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Eggs - 12 pcs')">🥚 Eggs</span>
+            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Bread - 1 loaf')">🍞 Bread</span>
+            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Onions - 2kg')">🧅 Onions</span>
+            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Tomatoes - 1kg')">🍅 Tomatoes</span>
+            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Bananas - 1 dozen')">🍌 Bananas</span>
+            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Sugar - 1kg')">🍚 Sugar</span>
           </div>
         </div>
       </div>
 
-      <div class="card-group">
-        <div class="card-title">
-          <span>📍</span> Delivery Location
+      <!-- ── Landmark Card ── -->
+      <div class="grocery-form-card">
+        <div class="grocery-card-header">
+          <div class="grocery-card-icon-wrap grocery-icon-orange">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </div>
+          <div>
+            <div class="grocery-card-title">Landmark</div>
+            <div class="grocery-card-sub">Help us locate you faster</div>
+          </div>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="groceryLandmark">Landmark *</label>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label" for="groceryLandmark">Nearby Landmark *</label>
           <div class="input-wrapper">
             <div class="input-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -243,8 +291,25 @@
             <input type="text" id="groceryLandmark" class="form-input" placeholder="e.g. Opposite City Park, Near Metro Gate 2">
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="groceryLocation">GPS Location (Auto-Filled)</label>
+      </div>
+
+      <!-- ── GPS Location Card ── -->
+      <div class="grocery-form-card">
+        <div class="grocery-card-header">
+          <div class="grocery-card-icon-wrap grocery-icon-blue">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 5.25 10 12 10 12s10-6.75 10-12a10 10 0 0 0-10-10z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div>
+            <div class="grocery-card-title">GPS Location</div>
+            <div class="grocery-card-sub">Auto-detected from your device</div>
+          </div>
+        </div>
+        <div class="grocery-gps-badge" id="groceryGpsBadge">
+          <div class="grocery-gps-pulse"></div>
+          <span class="grocery-gps-label">Detecting location…</span>
+        </div>
+        <div class="form-group" style="margin-bottom:0; margin-top: 10px;">
+          <label class="form-label" for="groceryLocation">Coordinates (Auto-Filled)</label>
           <div class="input-wrapper">
             <div class="input-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 5.25 10 12 10 12s10-6.75 10-12a10 10 0 0 0-10-10z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -254,41 +319,59 @@
         </div>
       </div>
 
-      <div class="card-group">
-        <div class="card-title">
-          <span>💵</span> Payment Method
-        </div>
-        <div class="payment-grid">
-          <div class="payment-card selected" onclick="selectPaymentOption('g', 'Cash On Delivery', this)">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">Cash On Delivery</span>
-              <span class="payment-desc">Pay cash when items arrive</span>
-            </div>
+      <!-- ── Payment Card ── -->
+      <div class="grocery-form-card">
+        <div class="grocery-card-header">
+          <div class="grocery-card-icon-wrap grocery-icon-purple">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
           </div>
-          <div class="payment-card" onclick="selectPaymentOption('g', 'Pay After Confirmation', this)">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">Pay After Confirm</span>
-              <span class="payment-desc">UPI link sent on WhatsApp</span>
-            </div>
+          <div>
+            <div class="grocery-card-title">Payment Method</div>
+            <div class="grocery-card-sub">Choose how you want to pay</div>
           </div>
         </div>
-        <div class="info-note">
-          <span class="info-note-icon">💡</span>
-          <span class="info-note-text">Final merchant bill copy will be shared with you on WhatsApp prior to dispatch.</span>
+        <div class="grocery-payment-options">
+          <div class="grocery-pay-option selected" id="grocery-pay-cod" onclick="selectPaymentOption('g', 'Cash On Delivery', this); groceryPaySelect('cod')">
+            <div class="grocery-pay-radio">
+              <div class="grocery-pay-dot"></div>
+            </div>
+            <div class="grocery-pay-icon-box">💵</div>
+            <div class="grocery-pay-info">
+              <span class="grocery-pay-name">Cash on Delivery</span>
+              <span class="grocery-pay-desc">Pay when your order arrives</span>
+            </div>
+          </div>
+          <div class="grocery-pay-option" id="grocery-pay-upi" onclick="selectPaymentOption('g', 'Pay After Confirmation', this); groceryPaySelect('upi')">
+            <div class="grocery-pay-radio">
+              <div class="grocery-pay-dot"></div>
+            </div>
+            <div class="grocery-pay-icon-box">📱</div>
+            <div class="grocery-pay-info">
+              <span class="grocery-pay-name">UPI / Online</span>
+              <span class="grocery-pay-desc">Link sent via WhatsApp</span>
+            </div>
+          </div>
+        </div>
+        <div class="grocery-info-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span>Final bill from merchant shared on WhatsApp before dispatch.</span>
         </div>
       </div>
 
-      <button class="btn-submit" onclick="submitOrder('grocery')">
-        <span>Place Order</span>
+      <!-- Bottom spacer for sticky button -->
+      <div style="height: 16px;"></div>
+
+    </div>
+
+    <!-- ── Sticky Bottom CTA ── -->
+    <div class="grocery-sticky-cta">
+      <button class="grocery-place-order-btn" onclick="submitOrder('grocery')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span>Place Grocery Order</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </button>
     </div>
+
   </div>
 
   <!-- ═══════════════════════════════════
@@ -1160,6 +1243,14 @@
         parent.querySelectorAll('.payment-card').forEach(card => card.classList.remove('selected'));
       }
       element.classList.add('selected');
+    };
+
+    // Grocery-specific payment toggle (new card style)
+    window.groceryPaySelect = function(type) {
+      const cod = document.getElementById('grocery-pay-cod');
+      const upi = document.getElementById('grocery-pay-upi');
+      if (cod) cod.classList.toggle('selected', type === 'cod');
+      if (upi) upi.classList.toggle('selected', type === 'upi');
     };
 
     // File selection triggers
