@@ -953,7 +953,11 @@
 
     try {
       const app = initializeApp(firebaseConfig);
-      analytics = getAnalytics(app);
+      try {
+        analytics = getAnalytics(app);
+      } catch (analyticsErr) {
+        console.warn("Firebase Analytics initialization skipped/failed: ", analyticsErr);
+      }
       auth = getAuth(app);
       db = getFirestore(app);
       storage = getStorage(app);
