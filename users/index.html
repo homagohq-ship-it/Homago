@@ -1837,8 +1837,8 @@
       } else {
         state.cart.push({
           id: productId,
-          productName: product.productName,
-          image: product.image || '',
+          productName: product.name || product.productName,
+          image: product.imageUrl || product.image || '',
           price: price,
           quantity: qty,
           category: category,
@@ -1851,7 +1851,7 @@
       if (el) el.textContent = 1;
 
       saveCart();
-      triggerToast(`${product.productName} added to cart!`, '🛒');
+      triggerToast(`${product.name || product.productName} added to cart!`, '🛒');
     };
 
     window.bookService = function(serviceId) {
@@ -1867,7 +1867,7 @@
         state.cart.push({
           id: serviceId,
           productName: service.serviceName,
-          image: service.image || '',
+          image: service.imageUrl || service.image || '',
           price: price,
           quantity: 1,
           category: 'homeservice',
@@ -1881,36 +1881,6 @@
     };
 
     // Real-time catalog & offers sync from Firestore collections
-    // ─── LOCAL MOCK DATA FOR SEAMLESS TESTING & FALLBACKS ───
-    const mockGrocery = [
-      { id: 'mock-g1', productName: 'Fresh Cavendish Banana', category: 'Fruits & Vegetables', unit: '1kg', price: 60, offerPrice: 48, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=400&q=80' },
-      { id: 'mock-g2', productName: 'Organic Whole Milk', category: 'Dairy & Eggs', unit: '1L', price: 70, offerPrice: 62, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=400&q=80' },
-      { id: 'mock-g3', productName: 'Farm Fresh Brown Eggs', category: 'Dairy & Eggs', unit: '12 pcs', price: 120, offerPrice: 98, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1516448620398-c5f44bf9f441?auto=format&fit=crop&w=400&q=80' },
-      { id: 'mock-g4', productName: 'Premium Basmati Rice', category: 'Staples', unit: '5kg', price: 450, offerPrice: 399, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80' }
-    ];
-
-    const mockStationery = [
-      { id: 'mock-s1', productName: 'Classmate Notebook A4', category: 'Notebooks', price: 80, offerPrice: 65, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=400&q=80' },
-      { id: 'mock-s2', productName: 'Parker Vector Rollerball Pen', category: 'Writing Instruments', price: 350, offerPrice: 299, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=400&q=80' },
-      { id: 'mock-s3', productName: 'Premium Sketchbook 120GSM', category: 'Art Supplies', price: 240, offerPrice: 180, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80' }
-    ];
-
-    const mockMedicine = [
-      { id: 'mock-m1', productName: 'Paracetamol 650mg (Dolo)', price: 30, prescriptionRequired: false, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80' },
-      { id: 'mock-m2', productName: 'Amoxicillin 500mg', price: 120, prescriptionRequired: true, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80' },
-      { id: 'mock-m3', productName: 'Vitamin C Chewable (Limcee)', price: 45, prescriptionRequired: false, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1616679911721-eff6eec18fcd?auto=format&fit=crop&w=400&q=80' }
-    ];
-
-    const mockServices = [
-      { id: 'mock-h1', serviceName: 'Professional House Cleaning', description: 'Deep cleaning of rooms, kitchen, and bathrooms by experts.', startingPrice: 1499, image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=400&q=80' },
-      { id: 'mock-h2', serviceName: 'AC Service & Repair', description: 'AC filter cleaning, cooling check, and gas charging.', startingPrice: 499, image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=400&q=80' },
-      { id: 'mock-h3', serviceName: 'Certified Electrician Work', description: 'Fix wiring issues, switch boards, and appliance setup.', startingPrice: 199, image: 'https://images.unsplash.com/photo-1621905252507-b354bc25edac?auto=format&fit=crop&w=400&q=80' }
-    ];
-
-    const mockOffers = [
-      { title: 'Super Saver Fruits', discountPercentage: 20, startDate: '12 June', endDate: '20 June', image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=400&q=80' }
-    ];
-
     function renderGroceryCatalogUI(products) {
       const groceryGrid = document.getElementById('groceryCatalogGrid');
       const groceryCard = document.getElementById('groceryCatalogCard');
@@ -1918,13 +1888,16 @@
 
       let html = '';
       products.forEach(item => {
-        const inStock = item.stockStatus === 'In Stock';
+        const nameVal = item.name || item.productName || '';
+        const imgVal = item.imageUrl || item.image || '';
+        const stockVal = item.stock || item.stockStatus || 'In Stock';
+        const inStock = stockVal === 'In Stock';
         const priceDisplay = item.offerPrice ? 
           `<span class="catalog-price">₹${item.offerPrice}</span><span class="catalog-price-orig">₹${item.price}</span>` :
           `<span class="catalog-price">₹${item.price}</span>`;
 
-        const imgHtml = item.image ? 
-          `<img src="${item.image}" alt="${item.productName}">` : 
+        const imgHtml = imgVal ? 
+          `<img src="${imgVal}" alt="${nameVal}">` : 
           `<span class="catalog-img-placeholder">🥦</span>`;
 
         if (!state.productQuantities) state.productQuantities = {};
@@ -1933,11 +1906,11 @@
         html += `
           <div class="catalog-card">
             <div class="catalog-img-wrap">${imgHtml}</div>
-            <div class="catalog-name">${item.productName}</div>
+            <div class="catalog-name">${nameVal}</div>
             <div class="catalog-category">${item.category || 'Grocery'}</div>
             <div class="catalog-unit">${item.unit || '1 Unit'}</div>
             <div class="catalog-price-row">${priceDisplay}</div>
-            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${item.stockStatus}</span>
+            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${stockVal}</span>
             ${inStock ? `
               <div class="qty-selector">
                 <button class="qty-btn" onclick="decrementProductQty('${item.id}')">-</button>
@@ -1956,7 +1929,8 @@
         groceryGrid.innerHTML = html;
         if (groceryCard) groceryCard.style.display = 'block';
       } else {
-        if (groceryCard) groceryCard.style.display = 'none';
+        groceryGrid.innerHTML = `<div style="text-align:center;padding:40px;color:var(--gray-400);grid-column:1/-1;">No grocery products configured.</div>`;
+        if (groceryCard) groceryCard.style.display = 'block';
       }
     }
 
@@ -1967,13 +1941,16 @@
 
       let html = '';
       products.forEach(item => {
-        const inStock = item.stockStatus === 'In Stock';
+        const nameVal = item.name || item.productName || '';
+        const imgVal = item.imageUrl || item.image || '';
+        const stockVal = item.stock || item.stockStatus || 'In Stock';
+        const inStock = stockVal === 'In Stock';
         const priceDisplay = item.offerPrice ? 
           `<span class="catalog-price">₹${item.offerPrice}</span><span class="catalog-price-orig">₹${item.price}</span>` :
           `<span class="catalog-price">₹${item.price}</span>`;
 
-        const imgHtml = item.image ? 
-          `<img src="${item.image}" alt="${item.productName}">` : 
+        const imgHtml = imgVal ? 
+          `<img src="${imgVal}" alt="${nameVal}">` : 
           `<span class="catalog-img-placeholder">📚</span>`;
 
         if (!state.productQuantities) state.productQuantities = {};
@@ -1982,10 +1959,10 @@
         html += `
           <div class="catalog-card">
             <div class="catalog-img-wrap">${imgHtml}</div>
-            <div class="catalog-name">${item.productName}</div>
+            <div class="catalog-name">${nameVal}</div>
             <div class="catalog-category">${item.category || 'Stationery'}</div>
             <div class="catalog-price-row">${priceDisplay}</div>
-            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${item.stockStatus}</span>
+            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${stockVal}</span>
             ${inStock ? `
               <div class="qty-selector">
                 <button class="qty-btn" onclick="decrementProductQty('${item.id}')">-</button>
@@ -2004,7 +1981,8 @@
         stationeryGrid.innerHTML = html;
         if (stationeryCard) stationeryCard.style.display = 'block';
       } else {
-        if (stationeryCard) stationeryCard.style.display = 'none';
+        stationeryGrid.innerHTML = `<div style="text-align:center;padding:40px;color:var(--gray-400);grid-column:1/-1;">No stationery products configured.</div>`;
+        if (stationeryCard) stationeryCard.style.display = 'block';
       }
     }
 
@@ -2015,10 +1993,13 @@
 
       let html = '';
       products.forEach(item => {
-        const inStock = item.stockStatus === 'In Stock';
+        const nameVal = item.name || item.productName || '';
+        const imgVal = item.imageUrl || item.image || '';
+        const stockVal = item.stock || item.stockStatus || 'In Stock';
+        const inStock = stockVal === 'In Stock';
         const priceDisplay = `<span class="catalog-price">₹${item.price}</span>`;
-        const imgHtml = item.image ? 
-          `<img src="${item.image}" alt="${item.productName}">` : 
+        const imgHtml = imgVal ? 
+          `<img src="${imgVal}" alt="${nameVal}">` : 
           `<span class="catalog-img-placeholder">💊</span>`;
 
         const rxBadge = item.prescriptionRequired ? 
@@ -2030,12 +2011,12 @@
         html += `
           <div class="catalog-card">
             <div class="catalog-img-wrap">${imgHtml}</div>
-            <div class="catalog-name">${item.productName}</div>
+            <div class="catalog-name">${nameVal}</div>
             <div style="min-height: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
               ${rxBadge}
             </div>
             <div class="catalog-price-row">${priceDisplay}</div>
-            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${item.stockStatus}</span>
+            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${stockVal}</span>
             ${inStock ? `
               <div class="qty-selector">
                 <button class="qty-btn" onclick="decrementProductQty('${item.id}')">-</button>
@@ -2054,7 +2035,8 @@
         medicineGrid.innerHTML = html;
         if (medicineCard) medicineCard.style.display = 'block';
       } else {
-        if (medicineCard) medicineCard.style.display = 'none';
+        medicineGrid.innerHTML = `<div style="text-align:center;padding:40px;color:var(--gray-400);grid-column:1/-1;">No medicines configured.</div>`;
+        if (medicineCard) medicineCard.style.display = 'block';
       }
     }
 
@@ -2064,7 +2046,7 @@
 
       let html = '';
       services.forEach(item => {
-        const imgStyle = item.image ? `<img src="${item.image}" alt="${item.serviceName}">` : `<span style="font-size:32px;">🔧</span>`;
+        const imgStyle = item.imageUrl || item.image ? `<img src="${item.imageUrl || item.image}" alt="${item.serviceName}">` : `<span style="font-size:32px;">🔧</span>`;
         html += `
           <div class="service-card">
             <div class="service-img-wrap">
@@ -2089,11 +2071,11 @@
 
       let html = '';
       offers.forEach(item => {
-        const imgStyle = item.image ? `background-image: url('${item.image}'); background-size: cover; background-position: center;` : '';
+        const imgStyle = item.imageUrl || item.image ? `background-image: url('${item.imageUrl || item.image}'); background-size: cover; background-position: center;` : '';
         html += `
           <div class="promo-card" style="margin-bottom: 12px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1.5px solid var(--primary-light); cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 12px; border-radius: 12px;" onclick="triggerPromoAdd('${item.title}', '${item.discountPercentage || 0}')">
             <div style="display: flex; align-items: center; gap: 12px;">
-              ${item.image ? `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; ${imgStyle}"></div>` : `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 20px;">🏷️</div>`}
+              ${item.imageUrl || item.image ? `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; ${imgStyle}"></div>` : `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 20px;">🏷️</div>`}
               <div class="promo-text-wrap" style="flex: 1;">
                 <div class="promo-title-text" style="color: var(--primary-dark); font-size:14px; font-weight:700;">🏷️ ${item.title || 'Weekly Offer'}</div>
                 <div class="promo-desc-text" style="color: var(--gray-600); font-size:11px; margin-top:2px;">Get ${item.discountPercentage}% OFF! Valid: ${item.startDate} &rarr; ${item.endDate}</div>
@@ -2108,17 +2090,10 @@
 
     // Real-time catalog & offers sync from Firestore collections
     function startCatalogSync() {
-      // Load initial mock values first so the page is never blank
-      state.syncedGrocery = mockGrocery;
-      state.syncedStationery = mockStationery;
-      state.syncedMedicine = mockMedicine;
-      state.syncedServices = mockServices;
-
-      renderGroceryCatalogUI(mockGrocery);
-      renderStationeryCatalogUI(mockStationery);
-      renderMedicineCatalogUI(mockMedicine);
-      renderServicesUI(mockServices);
-      renderOffersUI(mockOffers);
+      state.syncedGrocery = [];
+      state.syncedStationery = [];
+      state.syncedMedicine = [];
+      state.syncedServices = [];
 
       if (!db) return;
 
@@ -2128,24 +2103,9 @@
         snapshot.forEach(docSnap => {
           state.syncedGrocery.push({ id: docSnap.id, ...docSnap.data() });
         });
-        
-        // Merge with local storage added products (from admin panel fallback)
-        const localProds = JSON.parse(localStorage.getItem('homago_local_grocery') || '[]');
-        localProds.forEach(lp => {
-          if (!state.syncedGrocery.some(p => p.id === lp.id)) {
-            state.syncedGrocery.push(lp);
-          }
-        });
-
-        if (state.syncedGrocery.length === 0) {
-          state.syncedGrocery = mockGrocery;
-        }
         renderGroceryCatalogUI(state.syncedGrocery);
       }, (error) => {
-        console.warn("Firestore Grocery sync failed, using local fallback.", error);
-        const localProds = JSON.parse(localStorage.getItem('homago_local_grocery') || '[]');
-        state.syncedGrocery = localProds.length > 0 ? [...mockGrocery, ...localProds] : mockGrocery;
-        renderGroceryCatalogUI(state.syncedGrocery);
+        console.error("Firestore Grocery sync failed:", error);
       });
 
       // 2. Sync Stationery Products
@@ -2154,24 +2114,9 @@
         snapshot.forEach(docSnap => {
           state.syncedStationery.push({ id: docSnap.id, ...docSnap.data() });
         });
-
-        // Merge with local storage stationery
-        const localProds = JSON.parse(localStorage.getItem('homago_local_stationery') || '[]');
-        localProds.forEach(lp => {
-          if (!state.syncedStationery.some(p => p.id === lp.id)) {
-            state.syncedStationery.push(lp);
-          }
-        });
-
-        if (state.syncedStationery.length === 0) {
-          state.syncedStationery = mockStationery;
-        }
         renderStationeryCatalogUI(state.syncedStationery);
       }, (error) => {
-        console.warn("Firestore Stationery sync failed, using local fallback.", error);
-        const localProds = JSON.parse(localStorage.getItem('homago_local_stationery') || '[]');
-        state.syncedStationery = localProds.length > 0 ? [...mockStationery, ...localProds] : mockStationery;
-        renderStationeryCatalogUI(state.syncedStationery);
+        console.error("Firestore Stationery sync failed:", error);
       });
 
       // 3. Sync Medicine Products
@@ -2180,24 +2125,9 @@
         snapshot.forEach(docSnap => {
           state.syncedMedicine.push({ id: docSnap.id, ...docSnap.data() });
         });
-
-        // Merge with local storage medicines
-        const localProds = JSON.parse(localStorage.getItem('homago_local_medicine') || '[]');
-        localProds.forEach(lp => {
-          if (!state.syncedMedicine.some(p => p.id === lp.id)) {
-            state.syncedMedicine.push(lp);
-          }
-        });
-
-        if (state.syncedMedicine.length === 0) {
-          state.syncedMedicine = mockMedicine;
-        }
         renderMedicineCatalogUI(state.syncedMedicine);
       }, (error) => {
-        console.warn("Firestore Medicine sync failed, using local fallback.", error);
-        const localProds = JSON.parse(localStorage.getItem('homago_local_medicine') || '[]');
-        state.syncedMedicine = localProds.length > 0 ? [...mockMedicine, ...localProds] : mockMedicine;
-        renderMedicineCatalogUI(state.syncedMedicine);
+        console.error("Firestore Medicine sync failed:", error);
       });
 
       // 4. Sync Services
@@ -2206,39 +2136,20 @@
         snapshot.forEach(docSnap => {
           state.syncedServices.push({ id: docSnap.id, ...docSnap.data() });
         });
-
-        // Merge with local storage services
-        const localSvc = JSON.parse(localStorage.getItem('homago_local_services') || '[]');
-        localSvc.forEach(ls => {
-          if (!state.syncedServices.some(s => s.id === ls.id)) {
-            state.syncedServices.push(ls);
-          }
-        });
-
-        if (state.syncedServices.length === 0) {
-          state.syncedServices = mockServices;
-        }
         renderServicesUI(state.syncedServices);
       }, (error) => {
-        console.warn("Firestore Services sync failed, using local fallback.", error);
-        const localSvc = JSON.parse(localStorage.getItem('homago_local_services') || '[]');
-        state.syncedServices = localSvc.length > 0 ? [...mockServices, ...localSvc] : mockServices;
-        renderServicesUI(state.syncedServices);
+        console.error("Firestore Services sync failed:", error);
       });
 
-      // 5. Sync Weekly Offers slider/highlights
+      // 5. Sync Weekly Offers
       onSnapshot(collection(db, 'weekly_offers'), (snapshot) => {
         let offers = [];
         snapshot.forEach(docSnap => {
           offers.push({ id: docSnap.id, ...docSnap.data() });
         });
-        if (offers.length === 0) {
-          offers = mockOffers;
-        }
         renderOffersUI(offers);
       }, (error) => {
-        console.warn("Firestore Weekly Offers sync failed, using local fallback.", error);
-        renderOffersUI(mockOffers);
+        console.error("Firestore Weekly Offers sync failed:", error);
       });
     }
 
