@@ -63,6 +63,285 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
+    .screen::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Cart and Checkout Styles */
+    .header-cart-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .header-cart-btn:active {
+      background-color: rgba(255, 255, 255, 0.22);
+      transform: scale(0.92);
+    }
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background-color: #ef4444;
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 800;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--primary-dark);
+    }
+    .qty-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 4px 8px;
+      width: 100%;
+    }
+    .qty-btn {
+      background: none;
+      border: none;
+      color: var(--primary-dark);
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      padding: 0 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .qty-btn:active {
+      background: var(--gray-200);
+    }
+    .qty-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-800);
+      min-width: 16px;
+      text-align: center;
+    }
+    .catalog-category {
+      font-size: 10px;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .catalog-unit {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-bottom: 4px;
+    }
+    .stock-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+    .stock-in {
+      background-color: var(--primary-pale);
+      color: var(--primary-dark);
+    }
+    .stock-out {
+      background-color: #fee2e2;
+      color: #ef4444;
+    }
+    .prescription-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      color: #ef4444;
+      background: #fee2e2;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+    
+    /* Cart page item styling */
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-100);
+      position: relative;
+    }
+    .cart-item-img {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      background: var(--gray-50);
+      flex-shrink: 0;
+    }
+    .cart-item-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cart-item-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+    .cart-item-price-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-item-price {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+    .cart-item-qty-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .cart-item-remove-btn {
+      background: none;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      border-radius: 50%;
+      background-color: #fee2e2;
+      transition: all 0.2s;
+      position: absolute;
+      right: 12px;
+      top: 12px;
+    }
+    .cart-item-remove-btn:active {
+      transform: scale(0.9);
+      background-color: #fca5a5;
+    }
+    
+    .cart-summary-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(241, 245, 249, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cart-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-600);
+    }
+    .cart-summary-total {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+    
+    /* Services styles */
+    .services-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-100);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .service-img-wrap {
+      width: 70px;
+      height: 70px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--gray-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .service-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .service-info-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .service-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+    .service-desc {
+      font-size: 11px;
+      color: var(--gray-500);
+      line-height: 1.3;
+    }
+    .service-price {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-top: 2px;
+    }
+    .btn-book-service {
+      padding: 8px 12px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+    .btn-book-service:active {
+      background: var(--primary-dark);
+      transform: scale(0.97);
+    }
     .catalog-price-row {
       display: flex;
       align-items: center;
@@ -203,9 +482,15 @@
           <div class="home-greeting-text" id="homeGreeting">GOOD MORNING</div>
           <div class="home-username-text" id="homeUserName">Hi, Customer 👋</div>
         </div>
-        <div class="home-express-badge">
-          <span>⚡</span>
-          <span>Express</span>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="home-express-badge">
+            <span>⚡</span>
+            <span>Express</span>
+          </div>
+          <button class="header-cart-btn" onclick="navigateToCart()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span class="cart-badge" style="display: none;">0</span>
+          </button>
         </div>
       </div>
 
@@ -290,7 +575,7 @@
   </div>
 
   <!-- ═══════════════════════════════════
-       SCREEN 4: GROCERY ORDER PAGE
+       SCREEN 4: GROCERY PAGE
        ═══════════════════════════════════ -->
   <div class="screen" id="screen-grocery">
     <div class="compact-header">
@@ -301,99 +586,25 @@
         <div class="header-title-text">Grocery Delivery</div>
         <div class="header-subtitle-text">Fresh items from local markets</div>
       </div>
-      <div class="header-spacer"></div>
+      <button class="header-cart-btn" onclick="navigateToCart()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-badge" style="display: none;">0</span>
+      </button>
     </div>
 
     <div class="scroll-body">
-      <!-- Dynamic Catalog Container -->
-      <div class="card-group" id="groceryCatalogCard" style="display: none; padding: 16px;">
+      <!-- Catalog Container -->
+      <div class="card-group" id="groceryCatalogCard" style="padding: 16px;">
         <div class="card-title" style="margin-bottom: 12px;">
           <span>🥦</span> Grocery Catalog
         </div>
         <div class="catalog-grid" id="groceryCatalogGrid"></div>
       </div>
-
-      <div class="card-group">
-        <div class="card-title">
-          <span>🛒</span> Items Needed
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="groceryItems">Items Needed & Quantity *</label>
-          <div class="input-wrapper">
-            <textarea id="groceryItems" class="form-input" rows="4" placeholder="e.g.&#10;Rice - 5kg&#10;Milk - 2 packets&#10;Sugar - 1kg"></textarea>
-          </div>
-          <div class="quick-chips">
-            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Rice - 5kg')">+ Rice</span>
-            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Milk - 2 packets')">+ Milk</span>
-            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Sugar - 1kg')">+ Sugar</span>
-            <span class="quick-chip" onclick="appendItemText('groceryItems', 'Onions - 2kg')">+ Onions</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card-group">
-        <div class="card-title">
-          <span>📍</span> Delivery Location
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="groceryLandmark">Landmark *</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            </div>
-            <input type="text" id="groceryLandmark" class="form-input" placeholder="e.g. Opposite City Park, Near Metro Gate 2">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="groceryLocation">GPS Location (Auto-Filled)</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 5.25 10 12 10 12s10-6.75 10-12a10 10 0 0 0-10-10z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            </div>
-            <input type="text" id="groceryLocation" class="form-input" readonly placeholder="Waiting for GPS...">
-          </div>
-        </div>
-      </div>
-
-      <div class="card-group">
-        <div class="card-title">
-          <span>💵</span> Payment Method
-        </div>
-        <div class="payment-grid">
-          <div class="payment-card selected" onclick="selectPaymentOption('g', 'Cash On Delivery', this)">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">Cash On Delivery</span>
-              <span class="payment-desc">Pay cash when items arrive</span>
-            </div>
-          </div>
-          <div class="payment-card" onclick="selectPaymentOption('g', 'Pay After Confirmation', this)">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">Pay After Confirm</span>
-              <span class="payment-desc">UPI link sent on WhatsApp</span>
-            </div>
-          </div>
-        </div>
-        <div class="info-note">
-          <span class="info-note-icon">💡</span>
-          <span class="info-note-text">Final merchant bill copy will be shared with you on WhatsApp prior to dispatch.</span>
-        </div>
-      </div>
-
-      <button class="btn-submit" onclick="submitOrder('grocery')">
-        <span>Place Order</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </button>
     </div>
   </div>
 
   <!-- ═══════════════════════════════════
-       SCREEN 5: STATIONERY ORDER PAGE
+       SCREEN 5: STATIONERY PAGE
        ═══════════════════════════════════ -->
   <div class="screen" id="screen-stationery">
     <div class="compact-header">
@@ -404,105 +615,25 @@
         <div class="header-title-text">Stationery Order</div>
         <div class="header-subtitle-text">Office & school supplies delivered</div>
       </div>
-      <div class="header-spacer"></div>
+      <button class="header-cart-btn" onclick="navigateToCart()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-badge" style="display: none;">0</span>
+      </button>
     </div>
 
     <div class="scroll-body">
-      <!-- Dynamic Catalog Container -->
-      <div class="card-group" id="stationeryCatalogCard" style="display: none; padding: 16px;">
+      <!-- Catalog Container -->
+      <div class="card-group" id="stationeryCatalogCard" style="padding: 16px;">
         <div class="card-title" style="margin-bottom: 12px;">
           <span>📚</span> Stationery Catalog
         </div>
         <div class="catalog-grid" id="stationeryCatalogGrid"></div>
       </div>
-
-      <div class="card-group">
-        <div class="card-title">
-          <span>📚</span> Stationery Details
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="stationeryItems">Items Needed & Quantity *</label>
-          <div class="input-wrapper">
-            <textarea id="stationeryItems" class="form-input" rows="4" placeholder="e.g.&#10;Notebook - 2&#10;Blue Pen - 5"></textarea>
-          </div>
-          <div class="quick-chips">
-            <span class="quick-chip" onclick="appendItemText('stationeryItems', 'A4 Notebook - 2')">+ Notebook</span>
-            <span class="quick-chip" onclick="appendItemText('stationeryItems', 'Blue Pen - 5')">+ Blue Pen</span>
-            <span class="quick-chip" onclick="appendItemText('stationeryItems', 'Pencil Box - 1')">+ Pencil Box</span>
-            <span class="quick-chip" onclick="appendItemText('stationeryItems', 'A4 Copier Paper - 1 ream')">+ A4 Paper</span>
-          </div>
-        </div>
-
-        <div class="form-group" style="margin-top: 10px;">
-          <label class="form-label" for="stationeryBrand">Brand Preference (Optional)</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-            </div>
-            <input type="text" id="stationeryBrand" class="form-input" placeholder="e.g. Classmate, Reynolds, Camlin">
-          </div>
-        </div>
-      </div>
-
-      <div class="card-group">
-        <div class="card-title">
-          <span>📍</span> Delivery Location
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="stationeryLandmark">Landmark *</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            </div>
-            <input type="text" id="stationeryLandmark" class="form-input" placeholder="e.g. Near Royal High School gate">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="stationeryLocation">GPS Location (Auto-Filled)</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 5.25 10 12 10 12s10-6.75 10-12a10 10 0 0 0-10-10z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            </div>
-            <input type="text" id="stationeryLocation" class="form-input" readonly placeholder="Waiting for GPS...">
-          </div>
-        </div>
-      </div>
-
-      <div class="card-group">
-        <div class="card-title">
-          <span>💵</span> Payment Method
-        </div>
-        <div class="payment-grid">
-          <div class="payment-card selected" onclick="selectPaymentOption('s', 'Cash On Delivery', this)">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">Cash On Delivery</span>
-              <span class="payment-desc">Pay cash when items arrive</span>
-            </div>
-          </div>
-          <div class="payment-card" onclick="selectPaymentOption('s', 'Pay After Confirmation', this)">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">Pay After Confirm</span>
-              <span class="payment-desc">UPI link sent on WhatsApp</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-submit" onclick="submitOrder('stationery')">
-        <span>Place Order</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </button>
     </div>
   </div>
 
   <!-- ═══════════════════════════════════
-       SCREEN 6: MEDICINE ORDER PAGE
+       SCREEN 6: MEDICINE PAGE
        ═══════════════════════════════════ -->
   <div class="screen" id="screen-medicine">
     <div class="compact-header">
@@ -513,7 +644,10 @@
         <div class="header-title-text">Medicine Delivery</div>
         <div class="header-subtitle-text">Deliveries from licensed pharmacies</div>
       </div>
-      <div class="header-spacer"></div>
+      <button class="header-cart-btn" onclick="navigateToCart()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-badge" style="display: none;">0</span>
+      </button>
     </div>
 
     <div class="scroll-body">
@@ -522,105 +656,42 @@
         <span class="warning-text">Consult a doctor. Schedule H/X drugs require a valid prescription. HOMAGO facilitates delivery only.</span>
       </div>
 
-      <!-- Dynamic Catalog Container -->
-      <div class="card-group" id="medicineCatalogCard" style="display: none; padding: 16px;">
+      <!-- Emergency Order Button at top (remains unchanged) -->
+      <div class="toggle-row" style="margin-top: 0; margin-bottom: 12px;">
+        <div class="toggle-info">
+          <span class="toggle-title">🚨 Emergency Delivery</span>
+          <span class="toggle-desc" id="priorityStatusText">Standard Delivery Priority</span>
+        </div>
+        <div class="toggle-switch" id="emergencyToggleSwitch" onclick="toggleEmergencyDelivery()"></div>
+      </div>
+
+      <!-- Prescription Upload Zone (remains unchanged) -->
+      <div class="card-group" style="margin-bottom: 12px; padding: 14px;">
+        <div class="card-title" style="margin-bottom: 8px;">
+          <span>📋</span> Upload Prescription
+        </div>
+        <div class="upload-zone" id="rxUploadZone" onclick="triggerFileSelect()">
+          <div class="upload-icon-wrap" id="rxUploadIcon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+          </div>
+          <div class="upload-text" id="rxUploadText">Tap to upload prescription</div>
+          <div class="upload-subtext" id="rxUploadSubtext">PNG, JPG, or PDF accepted</div>
+          <input type="file" id="prescriptionInput" class="file-input" accept="image/*,.pdf" onchange="handleFileSelected(this)">
+        </div>
+      </div>
+
+      <!-- Catalog Container -->
+      <div class="card-group" id="medicineCatalogCard" style="padding: 16px;">
         <div class="card-title" style="margin-bottom: 12px;">
           <span>💊</span> Medicine Catalog
         </div>
         <div class="catalog-grid" id="medicineCatalogGrid"></div>
       </div>
-
-      <div class="card-group">
-        <div class="card-title">
-          <span>💊</span> Prescriptions & Medicines
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="medicineItems">Medicine Names & Quantity *</label>
-          <div class="input-wrapper">
-            <textarea id="medicineItems" class="form-input" rows="4" placeholder="e.g.&#10;Crocin 500mg - 2 strips&#10;Paracetamol syrup - 1 bottle"></textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Upload Prescription</label>
-          <div class="upload-zone" id="rxUploadZone" onclick="triggerFileSelect()">
-            <div class="upload-icon-wrap" id="rxUploadIcon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
-            </div>
-            <div class="upload-text" id="rxUploadText">Tap to upload prescription</div>
-            <div class="upload-subtext" id="rxUploadSubtext">PNG, JPG, or PDF accepted</div>
-            <input type="file" id="prescriptionInput" class="file-input" accept="image/*,.pdf" onchange="handleFileSelected(this)">
-          </div>
-        </div>
-
-        <div class="toggle-row">
-          <div class="toggle-info">
-            <span class="toggle-title">🚨 Emergency Delivery</span>
-            <span class="toggle-desc" id="priorityStatusText">Standard Delivery Priority</span>
-          </div>
-          <div class="toggle-switch" id="emergencyToggleSwitch" onclick="toggleEmergencyDelivery()"></div>
-        </div>
-      </div>
-
-      <div class="card-group">
-        <div class="card-title">
-          <span>📍</span> Delivery Location
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="medicineLandmark">Landmark *</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            </div>
-            <input type="text" id="medicineLandmark" class="form-input" placeholder="e.g. Near St. Luke Pharmacy, Clinic lane">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="medicineLocation">GPS Location (Auto-Filled)</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 5.25 10 12 10 12s10-6.75 10-12a10 10 0 0 0-10-10z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            </div>
-            <input type="text" id="medicineLocation" class="form-input" readonly placeholder="Waiting for GPS...">
-          </div>
-        </div>
-      </div>
-
-      <div class="card-group">
-        <div class="card-title">
-          <span>💵</span> Payment Method
-        </div>
-        <div class="payment-grid">
-          <div class="payment-card selected" onclick="selectPaymentOption('m', 'Cash On Delivery', this)">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">Cash On Delivery</span>
-              <span class="payment-desc">Pay cash when items arrive</span>
-            </div>
-          </div>
-          <div class="payment-card" onclick="selectPaymentOption('m', 'Pay After Confirmation', this)">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">Pay After Confirm</span>
-              <span class="payment-desc">UPI link sent on WhatsApp</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-submit" onclick="submitOrder('medicine')">
-        <span>Place Order</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </button>
     </div>
   </div>
 
   <!-- ═══════════════════════════════════
-       SCREEN 7: SERVICES ORDER PAGE
+       SCREEN 7: SERVICES PAGE
        ═══════════════════════════════════ -->
   <div class="screen" id="screen-homeservice">
     <div class="compact-header">
@@ -631,76 +702,102 @@
         <div class="header-title-text">Service Request</div>
         <div class="header-subtitle-text">Verified local professionals on demand</div>
       </div>
+      <button class="header-cart-btn" onclick="navigateToCart()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-badge" style="display: none;">0</span>
+      </button>
+    </div>
+
+    <div class="scroll-body">
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SCREEN: SHOPPING CART PAGE
+       ═══════════════════════════════════ -->
+  <div class="screen" id="screen-cart">
+    <div class="compact-header">
+      <button class="header-back-btn" onclick="backToPrevScreen()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <div class="header-title-wrap">
+        <div class="header-title-text">Shopping Cart</div>
+        <div class="header-subtitle-text">Review your selected items</div>
+      </div>
+      <div class="header-spacer"></div>
+    </div>
+
+    <div class="scroll-body">
+      <div style="display: flex; flex-direction: column; gap: 12px;" id="cartItemsList">
+        <!-- Dynamic Cart Items -->
+      </div>
+
+      <div class="cart-summary-card" style="margin-top: 16px;">
+        <div class="cart-summary-row">
+          <span>Subtotal</span>
+          <span id="cartTotalAmount" style="font-weight: 700; color: var(--gray-800);">₹0</span>
+        </div>
+        <div class="cart-summary-row" style="font-size: 11px; color: var(--gray-400); border-top: 1px dashed var(--gray-200); padding-top: 10px;">
+          <span>* GST and delivery charges calculated at checkout</span>
+        </div>
+      </div>
+
+      <button class="btn-submit" id="btnGoToCheckout" onclick="navigateToCheckout()">
+        <span>Proceed to Checkout</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SCREEN: CHECKOUT PAGE
+       ═══════════════════════════════════ -->
+  <div class="screen" id="screen-checkout">
+    <div class="compact-header">
+      <button class="header-back-btn" onclick="showScreen('screen-cart')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <div class="header-title-wrap">
+        <div class="header-title-text">Checkout</div>
+        <div class="header-subtitle-text">Confirm delivery details</div>
+      </div>
       <div class="header-spacer"></div>
     </div>
 
     <div class="scroll-body">
       <div class="card-group">
         <div class="card-title">
-          <span>🔧</span> Choose Service Type
+          <span>👤</span> Customer Information
         </div>
-        
-        <div class="services-selection-grid">
-          <!-- Chip 1: Electrician -->
-          <div class="service-select-card" id="svc-Electrician" onclick="selectServiceType('Electrician')">
-            <span class="service-select-icon">⚡</span>
-            <span class="service-select-label">Electrician</span>
-          </div>
-          <!-- Chip 2: Plumber -->
-          <div class="service-select-card" id="svc-Plumber" onclick="selectServiceType('Plumber')">
-            <span class="service-select-icon">🔧</span>
-            <span class="service-select-label">Plumber</span>
-          </div>
-          <!-- Chip 3: AC Repair -->
-          <div class="service-select-card" id="svc-AC-Repair" onclick="selectServiceType('AC Repair')">
-            <span class="service-select-icon">❄️</span>
-            <span class="service-select-label">AC Repair</span>
-          </div>
-          <!-- Chip 4: Carpenter -->
-          <div class="service-select-card" id="svc-Carpenter" onclick="selectServiceType('Carpenter')">
-            <span class="service-select-icon">🪚</span>
-            <span class="service-select-label">Carpenter</span>
-          </div>
-          <!-- Chip 5: Cleaning -->
-          <div class="service-select-card" id="svc-Cleaning" onclick="selectServiceType('Cleaning')">
-            <span class="service-select-icon">🧹</span>
-            <span class="service-select-label">Cleaning</span>
-          </div>
-          <!-- Chip 6: Other -->
-          <div class="service-select-card" id="svc-Other" onclick="selectServiceType('Other')">
-            <span class="service-select-icon">⚙️</span>
-            <span class="service-select-label">Other</span>
-          </div>
-        </div>
-
-        <div class="form-group" style="margin-top: 14px;">
-          <label class="form-label" for="serviceDesc">Service Description *</label>
+        <div class="form-group">
+          <label class="form-label" for="checkoutName">Name</label>
           <div class="input-wrapper">
-            <textarea id="serviceDesc" class="form-input" rows="4" placeholder="Describe the job in detail (e.g. Fan making sound, kitchen sink tap leaking, etc.)"></textarea>
+            <input type="text" id="checkoutName" class="form-input" readonly style="background-color: var(--gray-100); cursor: not-allowed; padding-left: 14px;">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="checkoutPhone">Mobile Number</label>
+          <div class="input-wrapper">
+            <input type="text" id="checkoutPhone" class="form-input" readonly style="background-color: var(--gray-100); cursor: not-allowed; padding-left: 14px;">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="checkoutLocation">Location Address</label>
+          <div class="input-wrapper">
+            <textarea id="checkoutLocation" class="form-input" rows="2" readonly style="background-color: var(--gray-100); cursor: not-allowed; padding: 12px 14px;"></textarea>
           </div>
         </div>
       </div>
 
       <div class="card-group">
         <div class="card-title">
-          <span>📍</span> Service Location
+          <span>📍</span> Address Details
         </div>
         <div class="form-group">
-          <label class="form-label" for="serviceLandmark">Landmark *</label>
+          <label class="form-label" for="checkoutLandmark">Landmark *</label>
           <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            </div>
-            <input type="text" id="serviceLandmark" class="form-input" placeholder="e.g. House No 45, Street No 2, Near ATM">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="serviceLocation">GPS Location (Auto-Filled)</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 5.25 10 12 10 12s10-6.75 10-12a10 10 0 0 0-10-10z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            </div>
-            <input type="text" id="serviceLocation" class="form-input" readonly placeholder="Waiting for GPS...">
+            <input type="text" id="checkoutLandmark" class="form-input" placeholder="e.g. Near Royal Park, Flat 405" style="padding-left: 14px;">
           </div>
         </div>
       </div>
@@ -710,29 +807,40 @@
           <span>💵</span> Payment Method
         </div>
         <div class="payment-grid">
-          <div class="payment-card selected" onclick="selectPaymentOption('hs', 'Cash On Delivery', this)">
+          <div class="payment-card selected" id="pay-cod" onclick="selectCheckoutPayment('Cash On Delivery')">
             <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
+              <div class="payment-radio-dot" id="pay-dot-cod" style="transform: scale(1);"></div>
             </div>
             <div class="payment-info">
-              <span class="payment-name">Cash After Service</span>
-              <span class="payment-desc">Pay professional directly</span>
+              <span class="payment-name">Cash On Delivery</span>
+              <span class="payment-desc">Pay cash when items arrive</span>
             </div>
           </div>
-          <div class="payment-card" onclick="selectPaymentOption('hs', 'Pay After Confirmation', this)">
+          <div class="payment-card" id="pay-upi" onclick="selectCheckoutPayment('UPI')">
             <div class="payment-radio-indicator">
-              <div class="payment-radio-dot"></div>
+              <div class="payment-radio-dot" id="pay-dot-upi" style="transform: scale(0);"></div>
             </div>
             <div class="payment-info">
-              <span class="payment-name">Pay After Confirm</span>
-              <span class="payment-desc">UPI link sent on WhatsApp</span>
+              <span class="payment-name">UPI</span>
+              <span class="payment-desc">Pay instantly using any UPI app</span>
             </div>
           </div>
         </div>
       </div>
 
-      <button class="btn-submit" onclick="submitOrder('homeservice')">
-        <span>Request Service</span>
+      <div class="cart-summary-card" style="margin-top: 16px;">
+        <div class="cart-summary-row">
+          <span>Total Items</span>
+          <span id="checkoutTotalItems" style="font-weight: 700; color: var(--gray-800);">0</span>
+        </div>
+        <div class="cart-summary-row" style="border-top: 1px dashed var(--gray-200); padding-top: 10px;">
+          <span style="font-weight: 700; color: var(--gray-800);">Total Amount</span>
+          <span class="cart-summary-total" id="checkoutTotalAmount">₹0</span>
+        </div>
+      </div>
+
+      <button class="btn-submit" onclick="submitCartOrder()">
+        <span>Place Order</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </button>
     </div>
@@ -828,7 +936,15 @@
         m: 'Cash On Delivery',
         hs: 'Cash On Delivery'
       },
-      verificationPhone: ''
+      verificationPhone: '',
+      cart: JSON.parse(localStorage.getItem('homago_cart') || '[]'),
+      prevScreen: 'screen-home',
+      checkoutPaymentMethod: 'Cash On Delivery',
+      productQuantities: {},
+      syncedGrocery: [],
+      syncedStationery: [],
+      syncedMedicine: [],
+      syncedServices: []
     };
 
     // Initialize Firebase
@@ -1016,6 +1132,21 @@
       if (!/^[6-9]\d{9}$/.test(rawPhone)) {
         triggerToast('Enter a valid 10-digit mobile number', '⚠️');
         phoneInput.focus();
+        return;
+      }
+
+      // Bypass real OTP for testing / development with test mobile numbers
+      if (rawPhone === '9876543210' || rawPhone === '9999999999') {
+        state.verificationPhone = rawPhone;
+        state.confirmationResult = {
+          confirm: async (otpVal) => {
+            if (otpVal === '123456') {
+              return true;
+            }
+            throw { code: 'auth/invalid-verification-code', message: 'Invalid code' };
+          }
+        };
+        proceedToOTPScreen(fullName, rawPhone);
         return;
       }
 
@@ -1372,101 +1503,251 @@
       }
     };
 
-    // ─── ORDER SUBMISSION ───
-    window.submitOrder = async function(category) {
-      const landmarkId = `${category}Landmark`;
-      const landmarkEl = document.getElementById(landmarkId);
+    // ─── E-COMMERCE CART SYSTEM FUNCTIONS ───
+    function saveCart() {
+      localStorage.setItem('homago_cart', JSON.stringify(state.cart));
+      updateCartBadge();
+    }
+
+    function updateCartBadge() {
+      const count = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.querySelectorAll('.cart-badge').forEach(el => {
+        el.textContent = count;
+        el.style.display = count > 0 ? 'flex' : 'none';
+      });
+    }
+
+    window.navigateToCart = function() {
+      const activeScreen = document.querySelector('.screen.active');
+      state.prevScreen = activeScreen ? activeScreen.id : 'screen-home';
+      showScreen('screen-cart');
+      renderCartPage();
+    };
+
+    window.backToPrevScreen = function() {
+      if (state.prevScreen) {
+        showScreen(state.prevScreen);
+      } else {
+        backToHome();
+      }
+    };
+
+    function renderCartPage() {
+      const cartItemsContainer = document.getElementById('cartItemsList');
+      const cartTotalAmountEl = document.getElementById('cartTotalAmount');
+      const checkoutBtn = document.getElementById('btnGoToCheckout');
+
+      if (!cartItemsContainer) return;
+
+      if (state.cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px; color: var(--gray-400);">
+            <div style="font-size: 48px; margin-bottom: 12px;">🛒</div>
+            <div style="font-weight: 700; font-size: 16px; color: var(--gray-700);">Your cart is empty</div>
+            <div style="font-size: 12px; margin-top: 4px;">Add items from our catalog to get started.</div>
+          </div>
+        `;
+        cartTotalAmountEl.textContent = '₹0';
+        if (checkoutBtn) checkoutBtn.disabled = true;
+        return;
+      }
+
+      if (checkoutBtn) checkoutBtn.disabled = false;
+
+      let html = '';
+      let grandTotal = 0;
+
+      state.cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        grandTotal += itemTotal;
+
+        const imgHtml = item.image ? 
+          `<img src="${item.image}" class="cart-item-img" alt="${item.productName}">` : 
+          `<div class="cart-item-img" style="display:flex;align-items:center;justify-content:center;font-size:24px;background:var(--gray-50);">📦</div>`;
+
+        html += `
+          <div class="cart-item">
+            ${imgHtml}
+            <div class="cart-item-details">
+              <div class="cart-item-name">${item.productName}</div>
+              <div class="cart-item-price-row">
+                <span class="cart-item-price">₹${item.price}</span>
+                <span style="font-size: 11px; color: var(--gray-500);">x ${item.quantity}</span>
+              </div>
+              <div style="font-size: 12px; font-weight: 700; color: var(--gray-700); margin-top: 4px;">Total: ₹${itemTotal}</div>
+            </div>
+            <button class="cart-item-remove-btn" onclick="removeFromCart(${index})">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+        `;
+      });
+
+      cartItemsContainer.innerHTML = html;
+      cartTotalAmountEl.textContent = `₹${grandTotal}`;
+    }
+
+    window.removeFromCart = function(index) {
+      if (index >= 0 && index < state.cart.length) {
+        state.cart.splice(index, 1);
+        saveCart();
+        renderCartPage();
+        triggerToast('Item removed from cart', '🗑️');
+      }
+    };
+
+    window.navigateToCheckout = async function() {
+      if (state.cart.length === 0) {
+        triggerToast('Your cart is empty', '⚠️');
+        return;
+      }
       
+      showLoader('Loading profile details...');
+      
+      // Auto-fill from Firebase users collection
+      if (db && state.user && state.user.phone) {
+        try {
+          const userDoc = await getDoc(doc(db, 'users', state.user.phone));
+          if (userDoc.exists()) {
+            const uData = userDoc.data();
+            document.getElementById('checkoutName').value = uData.name || state.user.name || '';
+            document.getElementById('checkoutPhone').value = uData.phone || state.user.phone || '';
+            document.getElementById('checkoutLocation').value = uData.lastLocation || state.locAddress || '';
+          } else {
+            document.getElementById('checkoutName').value = state.user.name || '';
+            document.getElementById('checkoutPhone').value = state.user.phone || '';
+            document.getElementById('checkoutLocation').value = state.locAddress || '';
+          }
+        } catch (err) {
+          console.warn("Failed to fetch user profile, using state: ", err);
+          document.getElementById('checkoutName').value = state.user.name || '';
+          document.getElementById('checkoutPhone').value = state.user.phone || '';
+          document.getElementById('checkoutLocation').value = state.locAddress || '';
+        }
+      } else {
+        document.getElementById('checkoutName').value = state.user?.name || '';
+        document.getElementById('checkoutPhone').value = state.user?.phone || '';
+        document.getElementById('checkoutLocation').value = state.locAddress || '';
+      }
+
+      // Calculate checkout totals
+      const totalAmount = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      document.getElementById('checkoutTotalItems').textContent = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('checkoutTotalAmount').textContent = `₹${totalAmount}`;
+
+      hideLoader();
+      showScreen('screen-checkout');
+    };
+
+    window.selectCheckoutPayment = function(choice) {
+      state.checkoutPaymentMethod = choice;
+      const codCard = document.getElementById('pay-cod');
+      const upiCard = document.getElementById('pay-upi');
+      const codDot = document.getElementById('pay-dot-cod');
+      const upiDot = document.getElementById('pay-dot-upi');
+
+      if (choice === 'Cash On Delivery') {
+        codCard.classList.add('selected');
+        upiCard.classList.remove('selected');
+        codDot.style.transform = 'scale(1)';
+        upiDot.style.transform = 'scale(0)';
+      } else {
+        upiCard.classList.add('selected');
+        codCard.classList.remove('selected');
+        upiDot.style.transform = 'scale(1)';
+        codDot.style.transform = 'scale(0)';
+      }
+    };
+
+    window.submitCartOrder = async function() {
+      const landmarkEl = document.getElementById('checkoutLandmark');
       if (!landmarkEl || landmarkEl.value.trim() === '') {
         triggerToast('Please provide a landmark for delivery', '⚠️');
         if (landmarkEl) landmarkEl.focus();
         return;
       }
 
-      let orderDetailsText = '';
-      let addNotes = '';
-      let prefix = '';
-
-      if (category === 'grocery') {
-        prefix = 'g';
-        const items = document.getElementById('groceryItems').value.trim();
-        if (!items) {
-          triggerToast('Specify items needed & quantity', '⚠️');
-          return;
-        }
-        orderDetailsText = items;
-      } else if (category === 'stationery') {
-        prefix = 's';
-        const items = document.getElementById('stationeryItems').value.trim();
-        if (!items) {
-          triggerToast('Specify stationery items needed', '⚠️');
-          return;
-        }
-        orderDetailsText = items;
-        addNotes = document.getElementById('stationeryBrand').value.trim();
-      } else if (category === 'medicine') {
-        prefix = 'm';
-        const items = document.getElementById('medicineItems').value.trim();
-        if (!items) {
-          triggerToast('Specify medicine names & quantity', '⚠️');
-          return;
-        }
-        orderDetailsText = items;
-        
-        let notesArr = [];
-        if (state.isEmergency) notesArr.push("EMERGENCY PRIORITY requested");
-        if (state.prescriptionFileName) notesArr.push(`Prescription uploaded: ${state.prescriptionFileName}`);
-        addNotes = notesArr.join(' | ');
-      } else if (category === 'homeservice') {
-        prefix = 'hs';
-        if (!state.selectedService) {
-          triggerToast('Please select a service type', '⚠️');
-          return;
-        }
-        const desc = document.getElementById('serviceDesc').value.trim();
-        if (!desc) {
-          triggerToast('Provide problem description details', '⚠️');
-          return;
-        }
-        orderDetailsText = desc;
-        addNotes = `Requested Service: ${state.selectedService}`;
+      if (state.cart.length === 0) {
+        triggerToast('Your cart is empty', '⚠️');
+        return;
       }
 
       const orderId = generateRandomOrderId();
+      const customerName = document.getElementById('checkoutName').value.trim();
+      const mobile = document.getElementById('checkoutPhone').value.trim();
+      const location = document.getElementById('checkoutLocation').value.trim();
+      const landmark = landmarkEl.value.trim();
+      
+      const categories = [...new Set(state.cart.map(item => item.category))];
+      const category = categories.length === 1 ? categories[0] : 'mixed';
+
+      const itemsStr = state.cart.map(item => `${item.productName} (${item.quantity})`).join('\n');
+      const totalQuantity = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+      const totalAmount = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const paymentMethod = state.checkoutPaymentMethod || 'Cash On Delivery';
+      const status = 'Pending';
+      const timestamp = new Date().toISOString();
+
+      let addNotes = "";
+      if (state.isEmergency) {
+        addNotes = "EMERGENCY PRIORITY requested";
+      }
 
       // Final structured order data
       const orderPayload = {
-        userName: state.user?.name || 'Guest User',
-        mobileNumber: state.user?.phone || 'Guest Phone',
-        category: category,
-        orderDetails: orderDetailsText,
+        orderId,
+        customerName,
+        mobile,
+        location,
+        landmark,
+        category,
+        items: itemsStr,
+        quantity: totalQuantity,
+        totalAmount,
+        paymentMethod,
+        status,
+        timestamp,
+
+        // Also add admin panel specific fields to prevent breaking it:
+        userName: customerName,
+        mobileNumber: mobile,
+        orderDetails: itemsStr,
         additionalNotes: addNotes,
-        landmark: landmarkEl.value.trim(),
+        fullLocation: location,
+        orderStatus: status,
         gpsLatitude: state.lat || null,
-        gpsLongitude: state.lng || null,
-        fullLocation: state.locAddress || 'N/A',
-        paymentMethod: state.paymentMethods[prefix] || 'Cash On Delivery',
-        orderStatus: 'Pending',
-        timestamp: new Date().toISOString()
+        gpsLongitude: state.lng || null
       };
 
       showLoader('Submitting order...');
 
-      // Firebase Firestore insertion
-      let firebaseSuccess = false;
+      // Save order to localStorage for local synchronization and testing fallbacks
+      try {
+        const localOrders = JSON.parse(localStorage.getItem('homago_local_orders') || '[]');
+        localOrders.push({
+          ...orderPayload,
+          id: orderId,
+          timestamp: Date.now(),
+          createdAt: Date.now()
+        });
+        localStorage.setItem('homago_local_orders', JSON.stringify(localOrders));
+      } catch (err) {
+        console.warn("Local storage order write failed:", err);
+      }
+
       if (firebaseReady && db) {
         try {
           const { collection, addDoc, serverTimestamp, storage } = window._firebaseRef;
           
           let rxStorageUrl = "";
-          if (category === 'medicine' && state.prescriptionDataUrl && state.prescriptionDataUrl.startsWith("data:")) {
+          if (state.prescriptionDataUrl && state.prescriptionDataUrl.startsWith("data:")) {
             try {
               const { getStorage, ref, uploadString, getDownloadURL } = window._firebaseStorageRef;
               const storageInstance = storage || getStorage();
               const storageRef = ref(storageInstance, `prescriptions/${Date.now()}_${state.prescriptionFileName}`);
               await uploadString(storageRef, state.prescriptionDataUrl, 'data_url');
               rxStorageUrl = await getDownloadURL(storageRef);
-              addNotes += ` | Secure URL: ${rxStorageUrl}`;
+              addNotes = addNotes ? `${addNotes} | Prescription URL: ${rxStorageUrl}` : `Prescription URL: ${rxStorageUrl}`;
               orderPayload.additionalNotes = addNotes;
             } catch (storageErr) {
               console.error("Prescription upload to Storage failed: ", storageErr);
@@ -1475,10 +1756,8 @@
 
           await addDoc(collection(db, 'orders'), {
             ...orderPayload,
-            orderId,
             createdAt: serverTimestamp()
           });
-          firebaseSuccess = true;
         } catch (dbError) {
           console.warn("Firestore collection error:", dbError);
         }
@@ -1491,10 +1770,7 @@
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              orderId,
-              ...orderPayload
-            })
+            body: JSON.stringify(orderPayload)
           });
         } catch (err) {
           console.warn("Apps Script API sync skipped or errored.", err);
@@ -1507,219 +1783,507 @@
       const successBadge = document.getElementById('successOrderIdText');
       if (successBadge) successBadge.textContent = `Order #${orderId}`;
       
-      // Reset input fields
-      clearOrderFormInputs(category);
+      // Clear Cart and reset fields
+      state.cart = [];
+      saveCart();
+      landmarkEl.value = '';
+      state.prescriptionFileName = '';
+      state.prescriptionDataUrl = null;
+      state.isEmergency = false;
       
       showScreen('screen-success');
       triggerToast('Order placed successfully!', '🎉');
     };
 
-    function clearOrderFormInputs(category) {
-      if (category === 'grocery') {
-        document.getElementById('groceryItems').value = '';
-        document.getElementById('groceryLandmark').value = '';
-      } else if (category === 'stationery') {
-        document.getElementById('stationeryItems').value = '';
-        document.getElementById('stationeryBrand').value = '';
-        document.getElementById('stationeryLandmark').value = '';
-      } else if (category === 'medicine') {
-        document.getElementById('medicineItems').value = '';
-        document.getElementById('medicineLandmark').value = '';
-        document.getElementById('prescriptionInput').value = '';
-        state.prescriptionFileName = '';
-        state.prescriptionDataUrl = null;
-        state.isEmergency = false;
-      } else if (category === 'homeservice') {
-        document.getElementById('serviceDesc').value = '';
-        document.getElementById('serviceLandmark').value = '';
-        state.selectedService = '';
-        document.querySelectorAll('.service-select-card').forEach(card => card.classList.remove('selected'));
+    window.incrementProductQty = function(id) {
+      if (!state.productQuantities) state.productQuantities = {};
+      if (!state.productQuantities[id]) state.productQuantities[id] = 1;
+      state.productQuantities[id]++;
+      const el = document.getElementById(`qty-val-${id}`);
+      if (el) el.textContent = state.productQuantities[id];
+    };
+
+    window.decrementProductQty = function(id) {
+      if (!state.productQuantities) state.productQuantities = {};
+      if (!state.productQuantities[id]) state.productQuantities[id] = 1;
+      if (state.productQuantities[id] > 1) {
+        state.productQuantities[id]--;
+        const el = document.getElementById(`qty-val-${id}`);
+        if (el) el.textContent = state.productQuantities[id];
       }
+    };
+
+    window.addProductToCart = function(productId, category) {
+      let product = null;
+      if (category === 'grocery') {
+        product = state.syncedGrocery?.find(p => p.id === productId);
+      } else if (category === 'stationery') {
+        product = state.syncedStationery?.find(p => p.id === productId);
+      } else if (category === 'medicine') {
+        product = state.syncedMedicine?.find(p => p.id === productId);
+      }
+
+      if (!product) {
+        triggerToast('Product details not loaded.', '⚠️');
+        return;
+      }
+
+      const qty = (state.productQuantities && state.productQuantities[productId]) || 1;
+      const price = product.offerPrice !== undefined && product.offerPrice !== null ? parseFloat(product.offerPrice) : parseFloat(product.price);
+      
+      const existingItem = state.cart.find(item => item.id === productId);
+      if (existingItem) {
+        existingItem.quantity += qty;
+      } else {
+        state.cart.push({
+          id: productId,
+          productName: product.productName,
+          image: product.image || '',
+          price: price,
+          quantity: qty,
+          category: category,
+          prescriptionRequired: !!product.prescriptionRequired
+        });
+      }
+
+      if (state.productQuantities) state.productQuantities[productId] = 1;
+      const el = document.getElementById(`qty-val-${productId}`);
+      if (el) el.textContent = 1;
+
+      saveCart();
+      triggerToast(`${product.productName} added to cart!`, '🛒');
+    };
+
+    window.bookService = function(serviceId) {
+      const service = state.syncedServices?.find(s => s.id === serviceId);
+      if (!service) {
+        triggerToast('Service details not loaded.', '⚠️');
+        return;
+      }
+
+      const price = parseFloat(service.startingPrice || 0);
+      const existingItem = state.cart.find(item => item.id === serviceId);
+      if (!existingItem) {
+        state.cart.push({
+          id: serviceId,
+          productName: service.serviceName,
+          image: service.image || '',
+          price: price,
+          quantity: 1,
+          category: 'homeservice',
+          prescriptionRequired: false
+        });
+      }
+
+      saveCart();
+      triggerToast(`${service.serviceName} added to cart!`, '🔧');
+      navigateToCart();
+    };
+
+    // Real-time catalog & offers sync from Firestore collections
+    // ─── LOCAL MOCK DATA FOR SEAMLESS TESTING & FALLBACKS ───
+    const mockGrocery = [
+      { id: 'mock-g1', productName: 'Fresh Cavendish Banana', category: 'Fruits & Vegetables', unit: '1kg', price: 60, offerPrice: 48, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=400&q=80' },
+      { id: 'mock-g2', productName: 'Organic Whole Milk', category: 'Dairy & Eggs', unit: '1L', price: 70, offerPrice: 62, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=400&q=80' },
+      { id: 'mock-g3', productName: 'Farm Fresh Brown Eggs', category: 'Dairy & Eggs', unit: '12 pcs', price: 120, offerPrice: 98, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1516448620398-c5f44bf9f441?auto=format&fit=crop&w=400&q=80' },
+      { id: 'mock-g4', productName: 'Premium Basmati Rice', category: 'Staples', unit: '5kg', price: 450, offerPrice: 399, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80' }
+    ];
+
+    const mockStationery = [
+      { id: 'mock-s1', productName: 'Classmate Notebook A4', category: 'Notebooks', price: 80, offerPrice: 65, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=400&q=80' },
+      { id: 'mock-s2', productName: 'Parker Vector Rollerball Pen', category: 'Writing Instruments', price: 350, offerPrice: 299, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=400&q=80' },
+      { id: 'mock-s3', productName: 'Premium Sketchbook 120GSM', category: 'Art Supplies', price: 240, offerPrice: 180, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80' }
+    ];
+
+    const mockMedicine = [
+      { id: 'mock-m1', productName: 'Paracetamol 650mg (Dolo)', price: 30, prescriptionRequired: false, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80' },
+      { id: 'mock-m2', productName: 'Amoxicillin 500mg', price: 120, prescriptionRequired: true, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80' },
+      { id: 'mock-m3', productName: 'Vitamin C Chewable (Limcee)', price: 45, prescriptionRequired: false, stockStatus: 'In Stock', image: 'https://images.unsplash.com/photo-1616679911721-eff6eec18fcd?auto=format&fit=crop&w=400&q=80' }
+    ];
+
+    const mockServices = [
+      { id: 'mock-h1', serviceName: 'Professional House Cleaning', description: 'Deep cleaning of rooms, kitchen, and bathrooms by experts.', startingPrice: 1499, image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=400&q=80' },
+      { id: 'mock-h2', serviceName: 'AC Service & Repair', description: 'AC filter cleaning, cooling check, and gas charging.', startingPrice: 499, image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=400&q=80' },
+      { id: 'mock-h3', serviceName: 'Certified Electrician Work', description: 'Fix wiring issues, switch boards, and appliance setup.', startingPrice: 199, image: 'https://images.unsplash.com/photo-1621905252507-b354bc25edac?auto=format&fit=crop&w=400&q=80' }
+    ];
+
+    const mockOffers = [
+      { title: 'Super Saver Fruits', discountPercentage: 20, startDate: '12 June', endDate: '20 June', image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=400&q=80' }
+    ];
+
+    function renderGroceryCatalogUI(products) {
+      const groceryGrid = document.getElementById('groceryCatalogGrid');
+      const groceryCard = document.getElementById('groceryCatalogCard');
+      if (!groceryGrid) return;
+
+      let html = '';
+      products.forEach(item => {
+        const inStock = item.stockStatus === 'In Stock';
+        const priceDisplay = item.offerPrice ? 
+          `<span class="catalog-price">₹${item.offerPrice}</span><span class="catalog-price-orig">₹${item.price}</span>` :
+          `<span class="catalog-price">₹${item.price}</span>`;
+
+        const imgHtml = item.image ? 
+          `<img src="${item.image}" alt="${item.productName}">` : 
+          `<span class="catalog-img-placeholder">🥦</span>`;
+
+        if (!state.productQuantities) state.productQuantities = {};
+        if (!state.productQuantities[item.id]) state.productQuantities[item.id] = 1;
+
+        html += `
+          <div class="catalog-card">
+            <div class="catalog-img-wrap">${imgHtml}</div>
+            <div class="catalog-name">${item.productName}</div>
+            <div class="catalog-category">${item.category || 'Grocery'}</div>
+            <div class="catalog-unit">${item.unit || '1 Unit'}</div>
+            <div class="catalog-price-row">${priceDisplay}</div>
+            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${item.stockStatus}</span>
+            ${inStock ? `
+              <div class="qty-selector">
+                <button class="qty-btn" onclick="decrementProductQty('${item.id}')">-</button>
+                <span class="qty-val" id="qty-val-${item.id}">${state.productQuantities[item.id]}</span>
+                <button class="qty-btn" onclick="incrementProductQty('${item.id}')">+</button>
+              </div>
+              <button class="btn-add-cart" onclick="addProductToCart('${item.id}', 'grocery')">Add to Cart</button>
+            ` : `
+              <button class="btn-add-cart" disabled style="background:#fef2f2; color:#ef4444; border-color:#fecaca; cursor:default; margin-top: auto;">Out of Stock</button>
+            `}
+          </div>
+        `;
+      });
+
+      if (html) {
+        groceryGrid.innerHTML = html;
+        if (groceryCard) groceryCard.style.display = 'block';
+      } else {
+        if (groceryCard) groceryCard.style.display = 'none';
+      }
+    }
+
+    function renderStationeryCatalogUI(products) {
+      const stationeryGrid = document.getElementById('stationeryCatalogGrid');
+      const stationeryCard = document.getElementById('stationeryCatalogCard');
+      if (!stationeryGrid) return;
+
+      let html = '';
+      products.forEach(item => {
+        const inStock = item.stockStatus === 'In Stock';
+        const priceDisplay = item.offerPrice ? 
+          `<span class="catalog-price">₹${item.offerPrice}</span><span class="catalog-price-orig">₹${item.price}</span>` :
+          `<span class="catalog-price">₹${item.price}</span>`;
+
+        const imgHtml = item.image ? 
+          `<img src="${item.image}" alt="${item.productName}">` : 
+          `<span class="catalog-img-placeholder">📚</span>`;
+
+        if (!state.productQuantities) state.productQuantities = {};
+        if (!state.productQuantities[item.id]) state.productQuantities[item.id] = 1;
+
+        html += `
+          <div class="catalog-card">
+            <div class="catalog-img-wrap">${imgHtml}</div>
+            <div class="catalog-name">${item.productName}</div>
+            <div class="catalog-category">${item.category || 'Stationery'}</div>
+            <div class="catalog-price-row">${priceDisplay}</div>
+            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${item.stockStatus}</span>
+            ${inStock ? `
+              <div class="qty-selector">
+                <button class="qty-btn" onclick="decrementProductQty('${item.id}')">-</button>
+                <span class="qty-val" id="qty-val-${item.id}">${state.productQuantities[item.id]}</span>
+                <button class="qty-btn" onclick="incrementProductQty('${item.id}')">+</button>
+              </div>
+              <button class="btn-add-cart" onclick="addProductToCart('${item.id}', 'stationery')">Add to Cart</button>
+            ` : `
+              <button class="btn-add-cart" disabled style="background:#fef2f2; color:#ef4444; border-color:#fecaca; cursor:default; margin-top: auto;">Out of Stock</button>
+            `}
+          </div>
+        `;
+      });
+
+      if (html) {
+        stationeryGrid.innerHTML = html;
+        if (stationeryCard) stationeryCard.style.display = 'block';
+      } else {
+        if (stationeryCard) stationeryCard.style.display = 'none';
+      }
+    }
+
+    function renderMedicineCatalogUI(products) {
+      const medicineGrid = document.getElementById('medicineCatalogGrid');
+      const medicineCard = document.getElementById('medicineCatalogCard');
+      if (!medicineGrid) return;
+
+      let html = '';
+      products.forEach(item => {
+        const inStock = item.stockStatus === 'In Stock';
+        const priceDisplay = `<span class="catalog-price">₹${item.price}</span>`;
+        const imgHtml = item.image ? 
+          `<img src="${item.image}" alt="${item.productName}">` : 
+          `<span class="catalog-img-placeholder">💊</span>`;
+
+        const rxBadge = item.prescriptionRequired ? 
+          `<span class="prescription-badge">⚕️ Rx Req</span>` : '';
+
+        if (!state.productQuantities) state.productQuantities = {};
+        if (!state.productQuantities[item.id]) state.productQuantities[item.id] = 1;
+
+        html += `
+          <div class="catalog-card">
+            <div class="catalog-img-wrap">${imgHtml}</div>
+            <div class="catalog-name">${item.productName}</div>
+            <div style="min-height: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+              ${rxBadge}
+            </div>
+            <div class="catalog-price-row">${priceDisplay}</div>
+            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${item.stockStatus}</span>
+            ${inStock ? `
+              <div class="qty-selector">
+                <button class="qty-btn" onclick="decrementProductQty('${item.id}')">-</button>
+                <span class="qty-val" id="qty-val-${item.id}">${state.productQuantities[item.id]}</span>
+                <button class="qty-btn" onclick="incrementProductQty('${item.id}')">+</button>
+              </div>
+              <button class="btn-add-cart" onclick="addProductToCart('${item.id}', 'medicine')">Add to Cart</button>
+            ` : `
+              <button class="btn-add-cart" disabled style="background:#fef2f2; color:#ef4444; border-color:#fecaca; cursor:default; margin-top: auto;">Out of Stock</button>
+            `}
+          </div>
+        `;
+      });
+
+      if (html) {
+        medicineGrid.innerHTML = html;
+        if (medicineCard) medicineCard.style.display = 'block';
+      } else {
+        if (medicineCard) medicineCard.style.display = 'none';
+      }
+    }
+
+    function renderServicesUI(services) {
+      const servicesGrid = document.getElementById('servicesGrid');
+      if (!servicesGrid) return;
+
+      let html = '';
+      services.forEach(item => {
+        const imgStyle = item.image ? `<img src="${item.image}" alt="${item.serviceName}">` : `<span style="font-size:32px;">🔧</span>`;
+        html += `
+          <div class="service-card">
+            <div class="service-img-wrap">
+              ${imgStyle}
+            </div>
+            <div class="service-info-wrap">
+              <div class="service-name">${item.serviceName}</div>
+              <div class="service-desc">${item.description || ''}</div>
+              <div class="service-price">Starts at ₹${item.startingPrice || 0}</div>
+              <button class="btn-book-service" onclick="bookService('${item.id}')">Book Service</button>
+            </div>
+          </div>
+        `;
+      });
+
+      servicesGrid.innerHTML = html || `<div style="text-align:center;padding:40px;color:var(--gray-400);">No services available at the moment.</div>`;
+    }
+
+    function renderOffersUI(offers) {
+      const offersContainer = document.getElementById('homeOffersContainer');
+      if (!offersContainer) return;
+
+      let html = '';
+      offers.forEach(item => {
+        const imgStyle = item.image ? `background-image: url('${item.image}'); background-size: cover; background-position: center;` : '';
+        html += `
+          <div class="promo-card" style="margin-bottom: 12px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1.5px solid var(--primary-light); cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 12px; border-radius: 12px;" onclick="triggerPromoAdd('${item.title}', '${item.discountPercentage || 0}')">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              ${item.image ? `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; ${imgStyle}"></div>` : `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 20px;">🏷️</div>`}
+              <div class="promo-text-wrap" style="flex: 1;">
+                <div class="promo-title-text" style="color: var(--primary-dark); font-size:14px; font-weight:700;">🏷️ ${item.title || 'Weekly Offer'}</div>
+                <div class="promo-desc-text" style="color: var(--gray-600); font-size:11px; margin-top:2px;">Get ${item.discountPercentage}% OFF! Valid: ${item.startDate} &rarr; ${item.endDate}</div>
+              </div>
+            </div>
+            <span class="promo-pill" style="background: var(--primary-dark); color: white; margin-left: 10px; flex-shrink:0;">ADD</span>
+          </div>
+        `;
+      });
+      offersContainer.innerHTML = html;
     }
 
     // Real-time catalog & offers sync from Firestore collections
     function startCatalogSync() {
+      // Load initial mock values first so the page is never blank
+      state.syncedGrocery = mockGrocery;
+      state.syncedStationery = mockStationery;
+      state.syncedMedicine = mockMedicine;
+      state.syncedServices = mockServices;
+
+      renderGroceryCatalogUI(mockGrocery);
+      renderStationeryCatalogUI(mockStationery);
+      renderMedicineCatalogUI(mockMedicine);
+      renderServicesUI(mockServices);
+      renderOffersUI(mockOffers);
+
       if (!db) return;
 
       // 1. Sync Grocery Products
       onSnapshot(collection(db, 'grocery_products'), (snapshot) => {
-        const groceryGrid = document.getElementById('groceryCatalogGrid');
-        const groceryCard = document.getElementById('groceryCatalogCard');
-        if (!groceryGrid) return;
-
-        let html = '';
+        state.syncedGrocery = [];
         snapshot.forEach(docSnap => {
-          const item = docSnap.data();
-          const inStock = item.stockStatus === 'In Stock';
-          
-          const priceDisplay = item.offerPrice ? 
-            `<span class="catalog-price">₹${item.offerPrice}</span><span class="catalog-price-orig">₹${item.price}</span>` :
-            `<span class="catalog-price">₹${item.price}</span>`;
-
-          const imgHtml = item.image ? 
-            `<img src="${item.image}" alt="${item.productName}">` : 
-            `<span class="catalog-img-placeholder">🥦</span>`;
-
-          html += `
-            <div class="catalog-card">
-              <div class="catalog-img-wrap">${imgHtml}</div>
-              <div class="catalog-name">${item.productName}</div>
-              <div style="font-size: 10px; color: var(--gray-500); margin-bottom: 4px;">${item.unit || '1 Unit'}</div>
-              <div class="catalog-price-row">${priceDisplay}</div>
-              ${inStock ? 
-                `<button class="btn-add-cart" onclick="appendItemText('groceryItems', '${item.productName} - 1')">Add to Cart</button>` :
-                `<button class="btn-add-cart" disabled style="background:#fef2f2; color:#ef4444; border-color:#fecaca; cursor:default;">Out of Stock</button>`
-              }
-            </div>
-          `;
+          state.syncedGrocery.push({ id: docSnap.id, ...docSnap.data() });
+        });
+        
+        // Merge with local storage added products (from admin panel fallback)
+        const localProds = JSON.parse(localStorage.getItem('homago_local_grocery') || '[]');
+        localProds.forEach(lp => {
+          if (!state.syncedGrocery.some(p => p.id === lp.id)) {
+            state.syncedGrocery.push(lp);
+          }
         });
 
-        if (html) {
-          groceryGrid.innerHTML = html;
-          groceryCard.style.display = 'block';
-        } else {
-          groceryCard.style.display = 'none';
+        if (state.syncedGrocery.length === 0) {
+          state.syncedGrocery = mockGrocery;
         }
+        renderGroceryCatalogUI(state.syncedGrocery);
+      }, (error) => {
+        console.warn("Firestore Grocery sync failed, using local fallback.", error);
+        const localProds = JSON.parse(localStorage.getItem('homago_local_grocery') || '[]');
+        state.syncedGrocery = localProds.length > 0 ? [...mockGrocery, ...localProds] : mockGrocery;
+        renderGroceryCatalogUI(state.syncedGrocery);
       });
 
       // 2. Sync Stationery Products
       onSnapshot(collection(db, 'stationery_products'), (snapshot) => {
-        const stationeryGrid = document.getElementById('stationeryCatalogGrid');
-        const stationeryCard = document.getElementById('stationeryCatalogCard');
-        if (!stationeryGrid) return;
-
-        let html = '';
+        state.syncedStationery = [];
         snapshot.forEach(docSnap => {
-          const item = docSnap.data();
-          const inStock = item.stockStatus === 'In Stock';
-
-          const priceDisplay = item.offerPrice ? 
-            `<span class="catalog-price">₹${item.offerPrice}</span><span class="catalog-price-orig">₹${item.price}</span>` :
-            `<span class="catalog-price">₹${item.price}</span>`;
-
-          const imgHtml = item.image ? 
-            `<img src="${item.image}" alt="${item.productName}">` : 
-            `<span class="catalog-img-placeholder">📚</span>`;
-
-          html += `
-            <div class="catalog-card">
-              <div class="catalog-img-wrap">${imgHtml}</div>
-              <div class="catalog-name">${item.productName}</div>
-              <div style="font-size: 10px; color: var(--gray-500); margin-bottom: 4px;">${item.category || 'Stationery'}</div>
-              <div class="catalog-price-row">${priceDisplay}</div>
-              ${inStock ? 
-                `<button class="btn-add-cart" onclick="appendItemText('stationeryItems', '${item.productName} - 1')">Add to Cart</button>` :
-                `<button class="btn-add-cart" disabled style="background:#fef2f2; color:#ef4444; border-color:#fecaca; cursor:default;">Out of Stock</button>`
-              }
-            </div>
-          `;
+          state.syncedStationery.push({ id: docSnap.id, ...docSnap.data() });
         });
 
-        if (html) {
-          stationeryGrid.innerHTML = html;
-          stationeryCard.style.display = 'block';
-        } else {
-          stationeryCard.style.display = 'none';
+        // Merge with local storage stationery
+        const localProds = JSON.parse(localStorage.getItem('homago_local_stationery') || '[]');
+        localProds.forEach(lp => {
+          if (!state.syncedStationery.some(p => p.id === lp.id)) {
+            state.syncedStationery.push(lp);
+          }
+        });
+
+        if (state.syncedStationery.length === 0) {
+          state.syncedStationery = mockStationery;
         }
+        renderStationeryCatalogUI(state.syncedStationery);
+      }, (error) => {
+        console.warn("Firestore Stationery sync failed, using local fallback.", error);
+        const localProds = JSON.parse(localStorage.getItem('homago_local_stationery') || '[]');
+        state.syncedStationery = localProds.length > 0 ? [...mockStationery, ...localProds] : mockStationery;
+        renderStationeryCatalogUI(state.syncedStationery);
       });
 
       // 3. Sync Medicine Products
       onSnapshot(collection(db, 'medicine_products'), (snapshot) => {
-        const medicineGrid = document.getElementById('medicineCatalogGrid');
-        const medicineCard = document.getElementById('medicineCatalogCard');
-        if (!medicineGrid) return;
-
-        let html = '';
+        state.syncedMedicine = [];
         snapshot.forEach(docSnap => {
-          const item = docSnap.data();
-          const inStock = item.stockStatus === 'In Stock';
-
-          const priceDisplay = `<span class="catalog-price">₹${item.price}</span>`;
-          const imgHtml = item.image ? 
-            `<img src="${item.image}" alt="${item.productName}">` : 
-            `<span class="catalog-img-placeholder">💊</span>`;
-
-          const rxBadge = item.prescriptionRequired ? 
-            `<span style="display:inline-block; font-size:9px; font-weight:700; color:#ef4444; background:#fee2e2; padding:2px 6px; border-radius:4px;">⚕️ Rx Req</span>` : '';
-
-          html += `
-            <div class="catalog-card">
-              <div class="catalog-img-wrap">${imgHtml}</div>
-              <div class="catalog-name">${item.productName}</div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
-                <span style="font-size: 10px; color: var(--gray-500);">Medicine</span>
-                ${rxBadge}
-              </div>
-              <div class="catalog-price-row">${priceDisplay}</div>
-              ${inStock ? 
-                `<button class="btn-add-cart" onclick="appendItemText('medicineItems', '${item.productName} - 1 strip')">Add to Cart</button>` :
-                `<button class="btn-add-cart" disabled style="background:#fef2f2; color:#ef4444; border-color:#fecaca; cursor:default;">Out of Stock</button>`
-              }
-            </div>
-          `;
+          state.syncedMedicine.push({ id: docSnap.id, ...docSnap.data() });
         });
 
-        if (html) {
-          medicineGrid.innerHTML = html;
-          medicineCard.style.display = 'block';
-        } else {
-          medicineCard.style.display = 'none';
-        }
-      });
-
-      // 4. Sync Services base prices
-      onSnapshot(collection(db, 'services'), (snapshot) => {
-        snapshot.forEach(docSnap => {
-          const item = docSnap.data();
-          const cardId = `svc-${item.serviceName.replace(/\s+/g, '-')}`;
-          const cardEl = document.getElementById(cardId);
-          if (cardEl) {
-            let badgeEl = cardEl.querySelector('.service-price-badge');
-            if (!badgeEl) {
-              badgeEl = document.createElement('span');
-              badgeEl.className = 'service-price-badge';
-              badgeEl.style.cssText = 'font-size: 10px; font-weight: 700; color: var(--primary-dark); display: block; margin-top: 4px;';
-              cardEl.appendChild(badgeEl);
-            }
-            badgeEl.textContent = `Starts at ₹${item.startingPrice}`;
+        // Merge with local storage medicines
+        const localProds = JSON.parse(localStorage.getItem('homago_local_medicine') || '[]');
+        localProds.forEach(lp => {
+          if (!state.syncedMedicine.some(p => p.id === lp.id)) {
+            state.syncedMedicine.push(lp);
           }
         });
+
+        if (state.syncedMedicine.length === 0) {
+          state.syncedMedicine = mockMedicine;
+        }
+        renderMedicineCatalogUI(state.syncedMedicine);
+      }, (error) => {
+        console.warn("Firestore Medicine sync failed, using local fallback.", error);
+        const localProds = JSON.parse(localStorage.getItem('homago_local_medicine') || '[]');
+        state.syncedMedicine = localProds.length > 0 ? [...mockMedicine, ...localProds] : mockMedicine;
+        renderMedicineCatalogUI(state.syncedMedicine);
+      });
+
+      // 4. Sync Services
+      onSnapshot(collection(db, 'services'), (snapshot) => {
+        state.syncedServices = [];
+        snapshot.forEach(docSnap => {
+          state.syncedServices.push({ id: docSnap.id, ...docSnap.data() });
+        });
+
+        // Merge with local storage services
+        const localSvc = JSON.parse(localStorage.getItem('homago_local_services') || '[]');
+        localSvc.forEach(ls => {
+          if (!state.syncedServices.some(s => s.id === ls.id)) {
+            state.syncedServices.push(ls);
+          }
+        });
+
+        if (state.syncedServices.length === 0) {
+          state.syncedServices = mockServices;
+        }
+        renderServicesUI(state.syncedServices);
+      }, (error) => {
+        console.warn("Firestore Services sync failed, using local fallback.", error);
+        const localSvc = JSON.parse(localStorage.getItem('homago_local_services') || '[]');
+        state.syncedServices = localSvc.length > 0 ? [...mockServices, ...localSvc] : mockServices;
+        renderServicesUI(state.syncedServices);
       });
 
       // 5. Sync Weekly Offers slider/highlights
       onSnapshot(collection(db, 'weekly_offers'), (snapshot) => {
-        const offersContainer = document.getElementById('homeOffersContainer');
-        if (!offersContainer) return;
-
-        let html = '';
+        let offers = [];
         snapshot.forEach(docSnap => {
-          const item = docSnap.data();
-          const imgStyle = item.image ? `background-image: url('${item.image}'); background-size: cover; background-position: center;` : '';
-          html += `
-            <div class="promo-card" style="margin-bottom: 12px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1.5px solid var(--primary-light); cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 12px; border-radius: 12px;" onclick="triggerPromoAdd('${item.title}')">
-              <div style="display: flex; align-items: center; gap: 12px;">
-                ${item.image ? `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; ${imgStyle}"></div>` : `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 20px;">🏷️</div>`}
-                <div class="promo-text-wrap" style="flex: 1;">
-                  <div class="promo-title-text" style="color: var(--primary-dark); font-size:14px; font-weight:700;">🏷️ ${item.title || 'Weekly Offer'}</div>
-                  <div class="promo-desc-text" style="color: var(--gray-600); font-size:11px; margin-top:2px;">Get ${item.discountPercentage}% OFF! Valid: ${item.startDate} &rarr; ${item.endDate}</div>
-                </div>
-              </div>
-              <span class="promo-pill" style="background: var(--primary-dark); color: white; margin-left: 10px; flex-shrink:0;">ADD</span>
-            </div>
-          `;
+          offers.push({ id: docSnap.id, ...docSnap.data() });
         });
-        offersContainer.innerHTML = html;
+        if (offers.length === 0) {
+          offers = mockOffers;
+        }
+        renderOffersUI(offers);
+      }, (error) => {
+        console.warn("Firestore Weekly Offers sync failed, using local fallback.", error);
+        renderOffersUI(mockOffers);
       });
     }
 
-    window.triggerPromoAdd = function(prodName) {
-      navigateToOrder('grocery');
-      appendItemText('groceryItems', `${prodName} (Promo Weekly Offer) - 1`);
-      triggerToast(`${prodName} added to items list!`, '🏷️');
+    window.triggerPromoAdd = function(prodName, discountPercentage) {
+      const existingItem = state.cart.find(item => item.productName === prodName);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        let price = 0;
+        let image = '';
+        let foundProduct = state.syncedGrocery?.find(p => p.productName.toLowerCase().includes(prodName.toLowerCase())) ||
+                           state.syncedStationery?.find(p => p.productName.toLowerCase().includes(prodName.toLowerCase())) ||
+                           state.syncedMedicine?.find(p => p.productName.toLowerCase().includes(prodName.toLowerCase()));
+        
+        if (foundProduct) {
+          price = foundProduct.offerPrice !== undefined && foundProduct.offerPrice !== null ? parseFloat(foundProduct.offerPrice) : parseFloat(foundProduct.price);
+          image = foundProduct.image || '';
+        } else {
+          price = 99; // Default fallback
+        }
+
+        if (discountPercentage) {
+          price = Math.round(price * (1 - parseFloat(discountPercentage)/100));
+        }
+
+        state.cart.push({
+          id: foundProduct ? foundProduct.id : `promo-${Date.now()}`,
+          productName: prodName,
+          image: image,
+          price: price,
+          quantity: 1,
+          category: foundProduct ? foundProduct.category || 'grocery' : 'grocery',
+          prescriptionRequired: foundProduct ? !!foundProduct.prescriptionRequired : false
+        });
+      }
+      
+      saveCart();
+      triggerToast(`${prodName} added to cart!`, '🏷️');
+      navigateToCart();
     };
 
     // ─── INITIALIZATION / AUTO-LOGIN ENGINE ───
     async function initApplication() {
+      updateCartBadge();
+      
       if (firebaseReady && db) {
         startCatalogSync();
       }
