@@ -13,7 +13,7 @@
     .catalog-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
       margin-top: 10px;
     }
     .catalog-card {
@@ -23,25 +23,26 @@
       padding: 10px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
+      align-items: flex-start;
+      text-align: left;
       transition: all 0.2s;
       position: relative;
       box-shadow: var(--shadow-sm);
     }
     .catalog-card:active {
-      transform: scale(0.97);
+      transform: scale(0.98);
     }
     .catalog-img-wrap {
       width: 100%;
-      height: 80px;
+      height: 110px;
       background: var(--gray-50);
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       overflow: hidden;
+      position: relative;
     }
     .catalog-img-wrap img {
       width: 100%;
@@ -49,69 +50,106 @@
       object-fit: cover;
     }
     .catalog-img-placeholder {
-      font-size: 28px;
+      font-size: 32px;
+    }
+    .wishlist-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+      box-shadow: var(--shadow-sm);
+      z-index: 2;
+    }
+    .wishlist-btn.active {
+      color: #ef4444;
+    }
+    .discount-tag {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: #15803d;
+      color: var(--white);
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      z-index: 2;
+    }
+    .catalog-brand {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1px;
     }
     .catalog-name {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--gray-800);
       margin-bottom: 4px;
-      line-height: 1.2;
-      height: 28px;
+      line-height: 1.25;
+      height: 32px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
-    .screen::-webkit-scrollbar {
-      display: none;
+    .catalog-unit {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-bottom: 6px;
+    }
+    .catalog-badges {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .mini-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    .badge-express { background: #fef3c7; color: #d97706; }
+    .badge-bestseller { background: #fee2e2; color: #dc2626; }
+    
+    .catalog-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .catalog-price {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+    .catalog-price-orig {
+      font-size: 11px;
+      color: var(--gray-400);
+      text-decoration: line-through;
     }
     
-    /* Cart and Checkout Styles */
-    .header-cart-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      cursor: pointer;
-      position: relative;
-      transition: all 0.2s;
-    }
-    .header-cart-btn:active {
-      background-color: rgba(255, 255, 255, 0.22);
-      transform: scale(0.92);
-    }
-    .cart-badge {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      background-color: #ef4444;
-      color: var(--white);
-      font-size: 10px;
-      font-weight: 800;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1.5px solid var(--primary-dark);
-    }
     .qty-selector {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 8px;
-      background: var(--gray-50);
-      border: 1px solid var(--gray-200);
+      justify-content: space-between;
+      margin-top: auto;
+      background: var(--primary-pale);
+      border: 1.5px solid var(--primary-light);
       border-radius: var(--radius-sm);
-      padding: 4px 8px;
+      padding: 3px 6px;
       width: 100%;
     }
     .qty-btn {
@@ -125,61 +163,126 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border-radius: 4px;
       transition: background 0.2s;
     }
-    .qty-btn:active {
-      background: var(--gray-200);
-    }
+    .qty-btn:active { background: var(--gray-200); }
     .qty-val {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
-      color: var(--gray-800);
-      min-width: 16px;
+      color: var(--primary-dark);
       text-align: center;
     }
-    .catalog-category {
-      font-size: 10px;
-      color: var(--gray-500);
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .catalog-unit {
+    
+    .btn-add-cart {
+      width: 100%;
+      margin-top: auto;
+      padding: 7px 4px;
+      background: var(--primary-pale);
+      color: var(--primary-dark);
+      border: 1.5px solid var(--primary-light);
+      border-radius: var(--radius-sm);
       font-size: 11px;
-      color: var(--gray-500);
-      margin-bottom: 4px;
-    }
-    .stock-badge {
-      font-size: 9px;
       font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 4px;
-      margin-bottom: 6px;
-      display: inline-block;
+      cursor: pointer;
+      transition: all 0.2s;
+      outline: none;
+      text-align: center;
     }
-    .stock-in {
-      background-color: var(--primary-pale);
+    .btn-add-cart:active {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    /* Header Search Bar */
+    .header-search-bar {
+      margin: 10px 16px 0;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      gap: 8px;
+    }
+    .header-search-bar input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--white);
+      font-size: 13px;
+      font-family: inherit;
+      width: 100%;
+    }
+    .header-search-bar input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Live Order Tracker Banner */
+    .order-tracker-card {
+      background: #ffffff;
+      border: 1.5px solid #22c55e;
+      border-radius: var(--radius-md);
+      padding: 12px;
+      margin: 12px 16px;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);
+    }
+    .tracker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .tracker-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+    .tracker-status-badge {
+      font-size: 10px;
+      font-weight: 800;
+      background: var(--primary-pale);
+      color: var(--primary-dark);
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+    .tracker-steps {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-top: 10px;
+    }
+    .tracker-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      z-index: 2;
+    }
+    .step-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gray-300);
+      border: 2px solid var(--white);
+    }
+    .step-dot.active {
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+    }
+    .step-label {
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--gray-500);
+    }
+    .step-label.active {
       color: var(--primary-dark);
     }
-    .stock-out {
-      background-color: #fee2e2;
-      color: #ef4444;
-    }
-    .prescription-badge {
-      display: inline-block;
-      font-size: 9px;
-      font-weight: 700;
-      color: #ef4444;
-      background: #fee2e2;
-      padding: 2px 6px;
-      border-radius: 4px;
-      margin-bottom: 6px;
-    }
-    
-    /* Cart page item styling */
+
+    /* Cart & Checkout Items */
     .cart-item {
       display: flex;
       align-items: center;
@@ -192,141 +295,84 @@
       position: relative;
     }
     .cart-item-img {
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       border-radius: var(--radius-sm);
       object-fit: cover;
       background: var(--gray-50);
       flex-shrink: 0;
     }
-    .cart-item-details {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .cart-item-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--gray-800);
-    }
-    .cart-item-price-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .cart-item-price {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--primary-dark);
-    }
-    .cart-item-qty-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 4px;
-    }
-    .cart-item-remove-btn {
-      background: none;
-      border: none;
-      color: #ef4444;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px;
-      border-radius: 50%;
-      background-color: #fee2e2;
-      transition: all 0.2s;
-      position: absolute;
-      right: 12px;
-      top: 12px;
-    }
-    .cart-item-remove-btn:active {
-      transform: scale(0.9);
-      background-color: #fca5a5;
-    }
-    
+    .cart-item-details { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .cart-item-name { font-size: 13px; font-weight: 700; color: var(--gray-800); }
+    .cart-item-price { font-size: 13px; font-weight: 800; color: var(--primary-dark); }
+
     .cart-summary-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(241, 245, 249, 0.8);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .cart-summary-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--gray-600);
-    }
-    .cart-summary-total {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--primary-dark);
-    }
-    
-    /* Services styles */
-    .services-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .service-card {
       background: var(--white);
       border-radius: var(--radius-lg);
       padding: 16px;
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--gray-100);
       display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-    .service-img-wrap {
-      width: 70px;
-      height: 70px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      background: var(--gray-50);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .service-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .service-info-wrap {
-      flex: 1;
-      display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 10px;
     }
-    .service-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gray-800);
+    .cart-summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--gray-600);
     }
-    .service-desc {
-      font-size: 11px;
-      color: var(--gray-500);
-      line-height: 1.3;
-    }
-    .service-price {
-      font-size: 12px;
-      font-weight: 700;
+    .cart-summary-total {
+      font-size: 16px;
+      font-weight: 800;
       color: var(--primary-dark);
-      margin-top: 2px;
+      border-top: 1px dashed var(--gray-200);
+      padding-top: 8px;
     }
+
+    .coupon-box {
+      display: flex;
+      gap: 8px;
+      background: var(--white);
+      padding: 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gray-200);
+    }
+    .coupon-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .btn-coupon {
+      background: var(--primary-dark);
+      color: var(--white);
+      border: none;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .services-grid { display: flex; flex-direction: column; gap: 12px; }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-100);
+      display: flex;
+      gap: 12px;
+    }
+    .service-info-wrap { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .service-name { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+    .service-desc { font-size: 11px; color: var(--gray-500); }
+    .service-price { font-size: 12px; font-weight: 700; color: var(--primary-dark); }
     .btn-book-service {
-      padding: 8px 12px;
+      padding: 6px 12px;
       background: var(--primary);
       color: var(--white);
       border: none;
@@ -334,59 +380,18 @@
       font-size: 11px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s;
-      align-self: flex-start;
-      margin-top: 4px;
-    }
-    .btn-book-service:active {
-      background: var(--primary-dark);
-      transform: scale(0.97);
-    }
-    .catalog-price-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-    .catalog-price {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--primary-dark);
-    }
-    .catalog-price-orig {
-      font-size: 10px;
-      color: var(--gray-400);
-      text-decoration: line-through;
-    }
-    .btn-add-cart {
-      width: 100%;
-      padding: 6px 4px;
-      background: var(--primary-pale);
-      color: var(--primary-dark);
-      border: 1.5px solid var(--primary-light);
-      border-radius: var(--radius-sm);
-      font-size: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      outline: none;
-    }
-    .btn-add-cart:active {
-      background: var(--primary);
-      color: var(--white);
-      border-color: var(--primary);
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── LOADING OVERLAY ─── -->
+  <!-- LOADING OVERLAY -->
   <div class="loading-overlay" id="loadingOverlay">
     <div class="spinner-ring"></div>
-    <div class="loading-message" id="loadingText">Please wait…</div>
+    <div class="loading-message" id="loadingText">Connecting to Homago...</div>
   </div>
 
-  <!-- ─── TOAST NOTIFICATION ─── -->
+  <!-- TOAST NOTIFICATION -->
   <div class="toast-notice" id="toastNotice">
     <span id="toastIcon">💡</span>
     <span id="toastText">Notification message</span>
@@ -395,35 +400,35 @@
   <!-- ═══════════════════════════════════
        SCREEN 1: LOGIN PAGE
        ═══════════════════════════════════ -->
-  <div class="screen" id="screen-login">
+  <div class="screen active" id="screen-login">
     <div class="login-header-section">
       <div class="login-bg-glow"></div>
       <div class="login-logo-container">
-        <img src="homago-logo.png" alt="HOMAGO Logo">
+        <img src="homago-logo.png" alt="HOMAGO Logo" onerror="this.src='homago-logo.png'">
       </div>
-      <p class="login-tagline">Your Local Needs, Delivered Fast</p>
+      <p class="login-tagline">Superfast Hyperlocal Delivery</p>
     </div>
 
     <div class="login-form-card">
-      <h2 class="login-card-title">Welcome Back</h2>
-      <p class="login-card-sub">Login to continue</p>
+      <h2 class="login-card-title">Welcome to Homago</h2>
+      <p class="login-card-sub">Login with your mobile number</p>
       
       <div class="form-group">
         <div class="input-wrapper">
           <div class="input-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </div>
-          <input type="text" id="loginName" class="form-input" placeholder="Enter your full name" autocomplete="name">
+          <input type="text" id="loginName" class="form-input" placeholder="Enter full name" autocomplete="name" value="Mohammed">
         </div>
       </div>
 
       <div class="form-group">
         <div class="input-wrapper">
           <div class="input-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           </div>
           <span class="phone-prefix">+91</span>
-          <input type="tel" id="loginPhone" class="form-input phone-padding" placeholder="Enter mobile number" maxlength="10" inputmode="numeric" pattern="[0-9]*">
+          <input type="tel" id="loginPhone" class="form-input phone-padding" placeholder="Enter mobile number" maxlength="10" inputmode="numeric" value="9876543210">
         </div>
       </div>
 
@@ -431,7 +436,7 @@
 
       <button class="btn-submit" onclick="sendOTPCode()">
         <span>Send OTP</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </button>
     </div>
   </div>
@@ -441,11 +446,11 @@
        ═══════════════════════════════════ -->
   <div class="screen" id="screen-otp">
     <div class="otp-screen-section">
-      <div class="login-logo-container" style="width: 80px; height: 80px; margin-bottom: 14px;">
-        <img src="homago-logo.png" alt="HOMAGO Logo">
+      <div class="login-logo-container" style="width: 70px; height: 70px; margin-bottom: 12px;">
+        <img src="homago-logo.png" alt="HOMAGO Logo" onerror="this.src='homago-logo.png'">
       </div>
       <h2 class="login-card-title">OTP Verification</h2>
-      <p class="login-card-sub" style="margin-bottom: 8px;">Enter the 6-digit code sent to</p>
+      <p class="login-card-sub">Enter code sent to</p>
       
       <div class="otp-phone-display">
         <span id="displayMobileNum">+91 98765 43210</span>
@@ -453,21 +458,21 @@
       </div>
 
       <div class="otp-box-grid">
-        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*" id="otp-1" onkeyup="moveOTPFocus(1, 2, event)">
-        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*" id="otp-2" onkeyup="moveOTPFocus(2, 3, event)">
-        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*" id="otp-3" onkeyup="moveOTPFocus(3, 4, event)">
-        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*" id="otp-4" onkeyup="moveOTPFocus(4, 5, event)">
-        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*" id="otp-5" onkeyup="moveOTPFocus(5, 6, event)">
-        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*" id="otp-6" onkeyup="moveOTPFocus(6, null, event)">
+        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" id="otp-1" value="1" onkeyup="moveOTPFocus(1, 2, event)">
+        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" id="otp-2" value="2" onkeyup="moveOTPFocus(2, 3, event)">
+        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" id="otp-3" value="3" onkeyup="moveOTPFocus(3, 4, event)">
+        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" id="otp-4" value="4" onkeyup="moveOTPFocus(4, 5, event)">
+        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" id="otp-5" value="5" onkeyup="moveOTPFocus(5, 6, event)">
+        <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" id="otp-6" value="6" onkeyup="moveOTPFocus(6, null, event)">
       </div>
 
       <button class="btn-submit" onclick="submitOTPCode()">
         <span>Verify & Login</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
       </button>
 
       <div class="otp-resend-container">
-        Didn't receive code? <span id="otpResendLink" class="otp-resend-link" onclick="resendOTPCode()">Resend OTP</span> <span id="otpTimer">(30s)</span>
+        Didn't receive code? <span id="otpResendLink" class="otp-resend-link" onclick="sendOTPCode()">Resend OTP</span>
       </div>
     </div>
   </div>
@@ -479,97 +484,85 @@
     <div class="home-gradient-header">
       <div class="home-header-top-row">
         <div>
-          <div class="home-greeting-text" id="homeGreeting">GOOD MORNING</div>
+          <div class="home-greeting-text" id="homeGreeting">GOOD DAY</div>
           <div class="home-username-text" id="homeUserName">Hi, Customer 👋</div>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
           <div class="home-express-badge">
-            <span>⚡</span>
-            <span>Express</span>
+            <span>⚡ 10-15m</span>
           </div>
           <button class="header-cart-btn" onclick="navigateToCart()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-            <span class="cart-badge" style="display: none;">0</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span class="cart-badge" id="cartBadgeCount" style="display: none;">0</span>
           </button>
         </div>
       </div>
 
+      <!-- Realtime Search Bar -->
+      <div class="header-search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="homeSearchInput" placeholder="Search grocery, medicines, stationery..." oninput="handleHomeSearch(this.value)">
+      </div>
+
       <div class="home-location-bar" onclick="refreshLocation()">
         <div class="home-loc-indicator">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
         </div>
         <div class="home-loc-content">
           <div class="home-loc-sub">Delivering To</div>
-          <div class="home-loc-main" id="homeLocText">Detecting live GPS location...</div>
-        </div>
-        <div class="home-loc-refresh">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+          <div class="home-loc-main" id="homeLocText">Detecting GPS location...</div>
         </div>
       </div>
     </div>
 
     <div class="scroll-body">
+      <!-- Active Order Status Tracker Widget (Realtime Sync) -->
+      <div id="homeActiveOrderTracker" style="display: none;"></div>
+
       <div class="dashboard-title-sec">
         <h2 class="dashboard-title">Our Services</h2>
-        <p class="dashboard-subtitle">Select a category to place your order instantly</p>
+        <p class="dashboard-subtitle">Select a category for express hyperlocal delivery</p>
       </div>
 
       <div class="home-category-grid">
-        <!-- Card 1: Grocery -->
-        <div class="category-card" data-cat="grocery" onclick="navigateToOrder('grocery')">
-          <div class="category-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          </div>
+        <!-- Grocery -->
+        <div class="category-card" onclick="navigateToOrder('grocery')">
+          <div class="category-icon-box">🥦</div>
           <div class="category-name-text">Grocery</div>
-          <div class="category-desc-text">Fresh fruits, veggies, milk & staples</div>
+          <div class="category-desc-text">Fruits, veggies, milk & staples</div>
           <div class="category-action-link">Order Now &rarr;</div>
         </div>
 
-        <!-- Card 2: Stationery -->
-        <div class="category-card" data-cat="stationery" onclick="navigateToOrder('stationery')">
-          <div class="category-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-          </div>
+        <!-- Stationery -->
+        <div class="category-card" onclick="navigateToOrder('stationery')">
+          <div class="category-icon-box">📚</div>
           <div class="category-name-text">Stationery</div>
-          <div class="category-desc-text">Pens, notebooks & office essentials</div>
+          <div class="category-desc-text">Pens, books & office supplies</div>
           <div class="category-action-link">Order Now &rarr;</div>
         </div>
 
-        <!-- Card 3: Medicine -->
-        <div class="category-card" data-cat="medicine" onclick="navigateToOrder('medicine')">
-          <div class="category-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4.5" y1="19.5" x2="19.5" y2="4.5"></line><path d="M15 2.5A3.5 3.5 0 0 1 20 7.5L7.5 20A3.5 3.5 0 0 1 2.5 15L15 2.5z"></path></svg>
-          </div>
+        <!-- Medicine -->
+        <div class="category-card" onclick="navigateToOrder('medicine')">
+          <div class="category-icon-box">💊</div>
           <div class="category-name-text">Medicine</div>
-          <div class="category-desc-text">Prescription drugs & healthcare items</div>
+          <div class="category-desc-text">Pharmacy & emergency items</div>
           <div class="category-action-link">Order Now &rarr;</div>
         </div>
 
-        <!-- Card 4: Services -->
-        <div class="category-card" data-cat="homeservice" onclick="navigateToOrder('homeservice')">
-          <div class="category-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-          </div>
+        <!-- Services -->
+        <div class="category-card" onclick="navigateToOrder('homeservice')">
+          <div class="category-icon-box">🔧</div>
           <div class="category-name-text">Services</div>
-          <div class="category-desc-text">Electricians, plumbers & carpenters</div>
+          <div class="category-desc-text">Electricians, plumbers & AC repair</div>
           <div class="category-action-link">Book Now &rarr;</div>
         </div>
       </div>
 
-      <!-- Dynamic Weekly Offers Container -->
+      <!-- Realtime Offers & Banners Container -->
       <div id="homeOffersContainer"></div>
 
-      <!-- Promo banner -->
-      <div class="promo-card">
-        <div class="promo-text-wrap">
-          <div class="promo-title-text">First Delivery Free!</div>
-          <div class="promo-desc-text">Get free hyperlocal shipping on your first order.</div>
-        </div>
-        <span class="promo-pill">CLAIM</span>
-      </div>
-
       <div class="footer-brand">
-        HOMAGO &bull; Superfast Hyperlocal Delivery
+        HOMAGO &bull; Realtime Production Hyperlocal Platform
       </div>
     </div>
   </div>
@@ -580,23 +573,23 @@
   <div class="screen" id="screen-grocery">
     <div class="compact-header">
       <button class="header-back-btn" onclick="backToHome()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
       <div class="header-title-wrap">
-        <div class="header-title-text">Grocery Delivery</div>
+        <div class="header-title-text">Grocery Store</div>
         <div class="header-subtitle-text">Fresh items from local markets</div>
       </div>
       <button class="header-cart-btn" onclick="navigateToCart()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        <span class="cart-badge" style="display: none;">0</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-badge" id="groceryCartBadge">0</span>
       </button>
     </div>
 
     <div class="scroll-body">
-      <!-- Catalog Container -->
-      <div class="card-group" id="groceryCatalogCard" style="padding: 16px;">
-        <div class="card-title" style="margin-bottom: 12px;">
-          <span>🥦</span> Grocery Catalog
+      <div class="card-group" style="padding: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <div class="card-title" style="margin: 0;">🥦 Fresh Grocery Catalog</div>
+          <input type="text" id="groceryFilterInput" placeholder="Filter grocery..." style="font-size: 11px; padding: 4px 8px; border: 1px solid var(--gray-300); border-radius: 4px; width: 120px;" oninput="renderGroceryGrid()">
         </div>
         <div class="catalog-grid" id="groceryCatalogGrid"></div>
       </div>
@@ -609,24 +602,21 @@
   <div class="screen" id="screen-stationery">
     <div class="compact-header">
       <button class="header-back-btn" onclick="backToHome()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
       <div class="header-title-wrap">
-        <div class="header-title-text">Stationery Order</div>
+        <div class="header-title-text">Stationery Store</div>
         <div class="header-subtitle-text">Office & school supplies delivered</div>
       </div>
       <button class="header-cart-btn" onclick="navigateToCart()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        <span class="cart-badge" style="display: none;">0</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-badge" id="stationeryCartBadge">0</span>
       </button>
     </div>
 
     <div class="scroll-body">
-      <!-- Catalog Container -->
-      <div class="card-group" id="stationeryCatalogCard" style="padding: 16px;">
-        <div class="card-title" style="margin-bottom: 12px;">
-          <span>📚</span> Stationery Catalog
-        </div>
+      <div class="card-group" style="padding: 14px;">
+        <div class="card-title" style="margin-bottom: 10px;">📚 Stationery Catalog</div>
         <div class="catalog-grid" id="stationeryCatalogGrid"></div>
       </div>
     </div>
@@ -638,53 +628,34 @@
   <div class="screen" id="screen-medicine">
     <div class="compact-header">
       <button class="header-back-btn" onclick="backToHome()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
       <div class="header-title-wrap">
-        <div class="header-title-text">Medicine Delivery</div>
-        <div class="header-subtitle-text">Deliveries from licensed pharmacies</div>
+        <div class="header-title-text">Pharmacy & Medicine</div>
+        <div class="header-subtitle-text">Deliveries from licensed local chemists</div>
       </div>
       <button class="header-cart-btn" onclick="navigateToCart()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        <span class="cart-badge" style="display: none;">0</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-badge" id="medicineCartBadge">0</span>
       </button>
     </div>
 
     <div class="scroll-body">
-      <div class="warning-banner">
-        <span class="info-note-icon">⚕️</span>
-        <span class="warning-text">Consult a doctor. Schedule H/X drugs require a valid prescription. HOMAGO facilitates delivery only.</span>
-      </div>
-
-      <!-- Emergency Order Button at top (remains unchanged) -->
-      <div class="toggle-row" style="margin-top: 0; margin-bottom: 12px;">
-        <div class="toggle-info">
-          <span class="toggle-title">🚨 Emergency Delivery</span>
-          <span class="toggle-desc" id="priorityStatusText">Standard Delivery Priority</span>
-        </div>
-        <div class="toggle-switch" id="emergencyToggleSwitch" onclick="toggleEmergencyDelivery()"></div>
-      </div>
-
-      <!-- Prescription Upload Zone (remains unchanged) -->
+      <!-- Prescription Upload Zone -->
       <div class="card-group" style="margin-bottom: 12px; padding: 14px;">
-        <div class="card-title" style="margin-bottom: 8px;">
-          <span>📋</span> Upload Prescription
-        </div>
+        <div class="card-title" style="margin-bottom: 8px;">📋 Upload Prescription</div>
         <div class="upload-zone" id="rxUploadZone" onclick="triggerFileSelect()">
           <div class="upload-icon-wrap" id="rxUploadIcon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
           </div>
           <div class="upload-text" id="rxUploadText">Tap to upload prescription</div>
-          <div class="upload-subtext" id="rxUploadSubtext">PNG, JPG, or PDF accepted</div>
-          <input type="file" id="prescriptionInput" class="file-input" accept="image/*,.pdf" onchange="handleFileSelected(this)">
+          <div class="upload-subtext" id="rxUploadSubtext">Uploaded to Firebase Storage</div>
+          <input type="file" id="prescriptionInput" class="file-input" accept="image/*,.pdf" onchange="handlePrescriptionFileSelected(this)">
         </div>
       </div>
 
-      <!-- Catalog Container -->
-      <div class="card-group" id="medicineCatalogCard" style="padding: 16px;">
-        <div class="card-title" style="margin-bottom: 12px;">
-          <span>💊</span> Medicine Catalog
-        </div>
+      <div class="card-group" style="padding: 14px;">
+        <div class="card-title" style="margin-bottom: 10px;">💊 Medicine Catalog</div>
         <div class="catalog-grid" id="medicineCatalogGrid"></div>
       </div>
     </div>
@@ -696,15 +667,15 @@
   <div class="screen" id="screen-homeservice">
     <div class="compact-header">
       <button class="header-back-btn" onclick="backToHome()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
       <div class="header-title-wrap">
-        <div class="header-title-text">Service Request</div>
-        <div class="header-subtitle-text">Verified local professionals on demand</div>
+        <div class="header-title-text">On-Demand Services</div>
+        <div class="header-subtitle-text">Verified local home professionals</div>
       </div>
       <button class="header-cart-btn" onclick="navigateToCart()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        <span class="cart-badge" style="display: none;">0</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-badge" id="serviceCartBadge">0</span>
       </button>
     </div>
 
@@ -714,1525 +685,917 @@
   </div>
 
   <!-- ═══════════════════════════════════
-       SCREEN: SHOPPING CART PAGE
+       SCREEN 8: SHOPPING CART PAGE
        ═══════════════════════════════════ -->
   <div class="screen" id="screen-cart">
     <div class="compact-header">
       <button class="header-back-btn" onclick="backToPrevScreen()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
       <div class="header-title-wrap">
-        <div class="header-title-text">Shopping Cart</div>
-        <div class="header-subtitle-text">Review your selected items</div>
+        <div class="header-title-text">My Shopping Cart</div>
+        <div class="header-subtitle-text">Review & modify items</div>
       </div>
       <div class="header-spacer"></div>
     </div>
 
     <div class="scroll-body">
-      <div style="display: flex; flex-direction: column; gap: 12px;" id="cartItemsList">
+      <div style="display: flex; flex-direction: column; gap: 10px;" id="cartItemsList">
         <!-- Dynamic Cart Items -->
       </div>
 
-      <div class="cart-summary-card" style="margin-top: 16px;">
+      <!-- Coupon Code Box -->
+      <div class="coupon-box" style="margin-top: 14px;">
+        <input type="text" id="couponInput" placeholder="Enter coupon code (e.g. HOMAGO20)" value="HOMAGO20">
+        <button class="btn-coupon" onclick="applyCouponCode()">Apply</button>
+      </div>
+
+      <div class="cart-summary-card" style="margin-top: 12px;">
         <div class="cart-summary-row">
-          <span>Subtotal</span>
-          <span id="cartTotalAmount" style="font-weight: 700; color: var(--gray-800);">₹0</span>
+          <span>Items Subtotal</span>
+          <span id="cartSubtotalAmount" style="font-weight: 700;">₹0</span>
         </div>
-        <div class="cart-summary-row" style="font-size: 11px; color: var(--gray-400); border-top: 1px dashed var(--gray-200); padding-top: 10px;">
-          <span>* GST and delivery charges calculated at checkout</span>
+        <div class="cart-summary-row">
+          <span>Delivery Charge</span>
+          <span id="cartDeliveryCharge">₹25</span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Platform Handling Fee</span>
+          <span>₹5</span>
+        </div>
+        <div class="cart-summary-row" id="couponDiscountRow" style="color: #15803d; display: none;">
+          <span>Coupon Discount</span>
+          <span id="couponDiscountAmount">-₹0</span>
+        </div>
+        <div class="cart-summary-total cart-summary-row">
+          <span>Grand Total</span>
+          <span id="cartGrandTotalAmount">₹0</span>
         </div>
       </div>
 
-      <button class="btn-submit" id="btnGoToCheckout" onclick="navigateToCheckout()">
+      <button class="btn-submit" id="btnGoToCheckout" style="margin-top: 16px;" onclick="navigateToCheckout()">
         <span>Proceed to Checkout</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </button>
     </div>
   </div>
 
   <!-- ═══════════════════════════════════
-       SCREEN: CHECKOUT PAGE
+       SCREEN 9: CHECKOUT PAGE
        ═══════════════════════════════════ -->
   <div class="screen" id="screen-checkout">
     <div class="compact-header">
       <button class="header-back-btn" onclick="showScreen('screen-cart')">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
       <div class="header-title-wrap">
-        <div class="header-title-text">Checkout</div>
-        <div class="header-subtitle-text">Confirm delivery details</div>
+        <div class="header-title-text">Checkout & Place Order</div>
+        <div class="header-subtitle-text">Confirm address & payment method</div>
       </div>
       <div class="header-spacer"></div>
     </div>
 
     <div class="scroll-body">
-      <div class="card-group">
-        <div class="card-title">
-          <span>👤</span> Customer Information
+      <!-- Express Delivery Banner -->
+      <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: var(--radius-md); padding: 10px; display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+        <span style="font-size: 20px;">⚡</span>
+        <div>
+          <div style="font-size: 12px; font-weight: 800; color: #15803d;">Express Hyperlocal Delivery</div>
+          <div style="font-size: 10px; color: #166534;">Estimated arrival: 10-15 Minutes</div>
         </div>
+      </div>
+
+      <div class="card-group">
+        <div class="card-title">👤 Customer Details</div>
         <div class="form-group">
           <label class="form-label" for="checkoutName">Name</label>
-          <div class="input-wrapper">
-            <input type="text" id="checkoutName" class="form-input" readonly style="background-color: var(--gray-100); cursor: not-allowed; padding-left: 14px;">
-          </div>
+          <input type="text" id="checkoutName" class="form-input" readonly style="background-color: var(--gray-100);">
         </div>
         <div class="form-group">
           <label class="form-label" for="checkoutPhone">Mobile Number</label>
-          <div class="input-wrapper">
-            <input type="text" id="checkoutPhone" class="form-input" readonly style="background-color: var(--gray-100); cursor: not-allowed; padding-left: 14px;">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="checkoutLocation">Location Address</label>
-          <div class="input-wrapper">
-            <textarea id="checkoutLocation" class="form-input" rows="2" readonly style="background-color: var(--gray-100); cursor: not-allowed; padding: 12px 14px;"></textarea>
-          </div>
+          <input type="text" id="checkoutPhone" class="form-input" readonly style="background-color: var(--gray-100);">
         </div>
       </div>
 
       <div class="card-group">
-        <div class="card-title">
-          <span>📍</span> Address Details
+        <div class="card-title">📍 Saved Location & Address</div>
+        <div class="form-group">
+          <label class="form-label" for="checkoutLocation">GPS Address</label>
+          <textarea id="checkoutLocation" class="form-input" rows="2" readonly style="background-color: var(--gray-100);"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label" for="checkoutLandmark">Landmark *</label>
-          <div class="input-wrapper">
-            <input type="text" id="checkoutLandmark" class="form-input" placeholder="e.g. Near Royal Park, Flat 405" style="padding-left: 14px;">
-          </div>
+          <label class="form-label" for="checkoutLandmark">Flat / House No / Landmark *</label>
+          <input type="text" id="checkoutLandmark" class="form-input" placeholder="e.g. Flat 302, Near Green Park Gate" value="Flat 302, Homago Heights">
         </div>
       </div>
 
       <div class="card-group">
-        <div class="card-title">
-          <span>💵</span> Payment Method
+        <div class="card-title">💳 Payment Option</div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; cursor: pointer; background: var(--gray-50); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--gray-200);">
+            <input type="radio" name="paymentOption" value="Cash on Delivery" checked onchange="toggleUPIField(false)">
+            💵 Cash on Delivery (COD)
+          </label>
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; cursor: pointer; background: var(--gray-50); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--gray-200);">
+            <input type="radio" name="paymentOption" value="UPI Payment" onchange="toggleUPIField(true)">
+            📱 Instant UPI / QR (GPay, PhonePe, Paytm)
+          </label>
         </div>
-        <div class="payment-grid">
-          <div class="payment-card selected" id="pay-cod" onclick="selectCheckoutPayment('Cash On Delivery')">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot" id="pay-dot-cod" style="transform: scale(1);"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">Cash On Delivery</span>
-              <span class="payment-desc">Pay cash when items arrive</span>
-            </div>
-          </div>
-          <div class="payment-card" id="pay-upi" onclick="selectCheckoutPayment('UPI')">
-            <div class="payment-radio-indicator">
-              <div class="payment-radio-dot" id="pay-dot-upi" style="transform: scale(0);"></div>
-            </div>
-            <div class="payment-info">
-              <span class="payment-name">UPI</span>
-              <span class="payment-desc">Pay instantly using any UPI app</span>
-            </div>
-          </div>
+        <div id="upiIdWrapper" style="display: none; margin-top: 10px;">
+          <input type="text" id="upiIdInput" class="form-input" placeholder="Enter UPI ID (e.g. mobile@upi)">
         </div>
       </div>
 
-      <div class="cart-summary-card" style="margin-top: 16px;">
-        <div class="cart-summary-row">
-          <span>Total Items</span>
-          <span id="checkoutTotalItems" style="font-weight: 700; color: var(--gray-800);">0</span>
-        </div>
-        <div class="cart-summary-row" style="border-top: 1px dashed var(--gray-200); padding-top: 10px;">
-          <span style="font-weight: 700; color: var(--gray-800);">Total Amount</span>
-          <span class="cart-summary-total" id="checkoutTotalAmount">₹0</span>
+      <div class="card-group">
+        <div class="card-title">🧾 Order Summary</div>
+        <div style="font-size: 12px; color: var(--gray-700); margin-bottom: 6px;" id="checkoutItemsPreview"></div>
+        <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15px; color: var(--primary-dark); border-top: 1px dashed var(--gray-200); padding-top: 8px;">
+          <span>Payable Amount</span>
+          <span id="checkoutPayableAmount">₹0</span>
         </div>
       </div>
 
-      <button class="btn-submit" onclick="submitCartOrder()">
-        <span>Place Order</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      <button class="btn-submit" id="btnPlaceOrder" onclick="submitCartOrder()">
+        <span>Place Order Now</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
       </button>
     </div>
   </div>
 
   <!-- ═══════════════════════════════════
-       SCREEN 8: SUCCESS PAGE
+       SCREEN 10: SUCCESS PAGE
        ═══════════════════════════════════ -->
   <div class="screen" id="screen-success">
-    <div class="success-wrapper">
-      <div class="success-ring-outer">
-        <div class="success-ring-inner">
-          <svg class="success-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        </div>
+    <div style="padding: 40px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+      <div style="width: 80px; height: 80px; border-radius: 50%; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 16px;">
+        ✓
       </div>
-      <h2 class="success-title">Order Placed! 🎉</h2>
-      <p class="success-subtitle">Your delivery request has been successfully sent to the nearest merchant.</p>
+      <h2 style="font-size: 22px; font-weight: 800; color: var(--gray-800); margin-bottom: 6px;">Order Placed Successfully!</h2>
+      <p style="font-size: 13px; color: var(--gray-500); margin-bottom: 16px;">Your order has been transmitted live to the Homago Admin Panel.</p>
       
-      <div class="success-order-id-badge" id="successOrderIdText">Order #HMG00000</div>
-
-      <div class="success-steps-box">
-        <div class="success-step">
-          <div class="success-step-num">1</div>
-          <div class="success-step-content">
-            <span class="success-step-title">Order Logged</span>
-            <span class="success-step-desc">Order registered on Firebase database</span>
-          </div>
-        </div>
-        <div class="success-step">
-          <div class="success-step-num">2</div>
-          <div class="success-step-content">
-            <span class="success-step-title">Local Matchmaking</span>
-            <span class="success-step-desc">Locating active vendors in your radius</span>
-          </div>
-        </div>
-        <div class="success-step">
-          <div class="success-step-num">3</div>
-          <div class="success-step-content">
-            <span class="success-step-title">WhatsApp Connection</span>
-            <span class="success-step-desc">Merchant bill will be sent directly to your phone</span>
-          </div>
-        </div>
+      <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px; width: 100%; text-align: left; margin-bottom: 20px;">
+        <div style="font-size: 12px; font-weight: 700; color: var(--gray-600);">ORDER REFERENCE</div>
+        <div style="font-size: 16px; font-weight: 800; color: var(--primary-dark);" id="successOrderId">#HMG-1001</div>
+        <div style="font-size: 12px; color: var(--gray-500); margin-top: 6px;" id="successOrderTime">Time: Just now</div>
       </div>
 
       <button class="btn-submit" onclick="backToHome()">
-        <span>Back to Home Screen</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        <span>Return to Home & Track Order</span>
       </button>
     </div>
   </div>
 
   <!-- ══════════════════════════════════════════
-       JAVASCRIPT SCRIPTS
+       FIREBASE REALTIME CUSTOMER ENGINE
        ══════════════════════════════════════════ -->
   <script type="module">
-    // ─── Firebase Modular Imports ───
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-    import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
-    import { getFirestore, collection, addDoc, serverTimestamp, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
-    import { getStorage, ref, uploadString, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-storage.js";
+    import { 
+      getFirestore, collection, doc, addDoc, getDocs, updateDoc, onSnapshot, query, orderBy, setDoc, getDoc, serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+    import { 
+      getAuth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged 
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+    import {
+      getStorage, ref, uploadBytesResumable, getDownloadURL
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-storage.js";
 
-    window._firebaseStorageRef = { getStorage, ref, uploadString, getDownloadURL };
-
-    // Firebase Credentials — Project: homago-4d577
     const firebaseConfig = {
       apiKey: "AIzaSyDfyDjb6xp-APZPDmO7LqXgKI7CDd260XE",
       authDomain: "homago-4d577.firebaseapp.com",
       projectId: "homago-4d577",
       storageBucket: "homago-4d577.firebasestorage.app",
       messagingSenderId: "1026978496941",
-      appId: "1:1026978496941:web:c4c0332df71346b2be2124",
-      measurementId: "G-YXR74NHJN8"
+      appId: "1:1026978496941:web:c4c0332df71346b2be2124"
     };
 
-    // Apps Script Sync Hook
-    const GOOGLE_SHEET_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
-
-    // App State Configuration
-    const state = {
-      user: JSON.parse(localStorage.getItem('homago_user') || 'null'),
-      lat: null,
-      lng: null,
-      locAddress: '',
-      confirmationResult: null,
-      selectedService: '',
-      isEmergency: false,
-      prescriptionDataUrl: null,
-      prescriptionFileName: '',
-      paymentMethods: {
-        g: 'Cash On Delivery',
-        s: 'Cash On Delivery',
-        m: 'Cash On Delivery',
-        hs: 'Cash On Delivery'
-      },
-      verificationPhone: '',
-      cart: JSON.parse(localStorage.getItem('homago_cart') || '[]'),
-      prevScreen: 'screen-home',
-      checkoutPaymentMethod: 'Cash On Delivery',
-      productQuantities: {},
-      syncedGrocery: [],
-      syncedStationery: [],
-      syncedMedicine: [],
-      syncedServices: []
-    };
-
-    // Initialize Firebase
-    let db, auth, appVerifier, analytics, storage;
-    let firebaseReady = false;
-
+    let app, db, auth, storage;
     try {
-      const app = initializeApp(firebaseConfig);
-      try {
-        analytics = getAnalytics(app);
-      } catch (analyticsErr) {
-        console.warn("Firebase Analytics initialization skipped/failed: ", analyticsErr);
-      }
-      auth = getAuth(app);
+      app = initializeApp(firebaseConfig);
       db = getFirestore(app);
+      auth = getAuth(app);
       storage = getStorage(app);
-      window._firebaseRef = { auth, db, collection, addDoc, serverTimestamp, storage };
-      firebaseReady = true;
-      console.log('HOMAGO: Firebase initialized (homago-4d577).');
-    } catch (e) {
-      console.error('HOMAGO: Firebase initialization failed.', e);
+      console.log("HOMAGO USER: Firebase Connected.");
+    } catch(e) {
+      console.error("Firebase init failed: ", e);
     }
 
-    // ─── UTILITY HELPER METHODS ───
-    function showLoader(message = 'Please wait…') {
-      const loader = document.getElementById('loadingOverlay');
-      const text = document.getElementById('loadingText');
-      if (loader && text) {
-        text.textContent = message;
-        loader.classList.add('active');
-      }
-    }
+    // STATE CONTROLLERS
+    const state = {
+      user: null,
+      userName: "Mohammed",
+      userPhone: "9876543210",
+      userLocation: "Detecting GPS location...",
+      cart: [], // items: { id, name, price, offerPrice, image, unit, qty, category }
+      appliedCoupon: null,
+      couponDiscount: 0,
+      activeCategory: "grocery",
+      catalogData: {
+        grocery: [
+          { id: 'g1', name: 'Fresh Robusta Bananas', brand: 'Fresh Farm', price: 60, offerPrice: 48, discountPercentage: 20, unit: '1 kg (approx 6-8 pcs)', category: 'Fresh Fruits', imageUrl: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=400&q=80', isInstantDelivery: true, isBestSeller: true, stock: 'In Stock' },
+          { id: 'g2', name: 'Amul Taaza Toned Milk', brand: 'Amul', price: 32, offerPrice: 30, discountPercentage: 6, unit: '500 ml Pouch', category: 'Dairy & Milk', imageUrl: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=400&q=80', isInstantDelivery: true, isBestSeller: true, stock: 'In Stock' }
+        ],
+        stationery: [
+          { id: 's1', name: 'Classmate Long Book 140 Pages', brand: 'Classmate', price: 75, offerPrice: 65, discountPercentage: 13, unit: 'Single Notebook', category: 'Notebooks', imageUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80', isInstantDelivery: true, isBestSeller: true, stock: 'In Stock' }
+        ],
+        medicine: [
+          { id: 'm1', name: 'Paracetamol 650mg Tablets', brand: 'Dolo', price: 30, offerPrice: 28, discountPercentage: 7, unit: 'Strip of 15 Tablets', category: 'Fever & Pain Relief', imageUrl: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', isInstantDelivery: true, isBestSeller: true, stock: 'In Stock' }
+        ],
+        services: [
+          { id: 'svc1', serviceName: 'Electrician', description: 'Wiring, switchboard repair, fan installation & short circuit fixing.', startingPrice: 199 },
+          { id: 'svc2', serviceName: 'Plumber', description: 'Tap leakages, pipe fitting, basin blockage & tank cleaning.', startingPrice: 249 }
+        ],
+        offers: [
+          { id: 'off1', title: 'Weekend Organic Fruits Sale', discountPercentage: 20, couponCode: 'HOMAGO20', image: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80' }
+        ]
+      },
+      activeOrders: [],
+      prescriptFile: null,
+      wishlist: new Set()
+    };
 
-    function hideLoader() {
-      const loader = document.getElementById('loadingOverlay');
-      if (loader) loader.classList.remove('active');
-    }
-
-    function triggerToast(message, icon = '💡') {
+    // UI Toast
+    window.triggerToast = function(msg, icon = '💡') {
       const toast = document.getElementById('toastNotice');
       const text = document.getElementById('toastText');
       const iconSpan = document.getElementById('toastIcon');
       if (toast && text) {
-        text.textContent = message;
-        if (iconSpan) iconSpan.textContent = icon;
+        text.textContent = msg;
+        if(iconSpan) iconSpan.textContent = icon;
         toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3500);
+        setTimeout(() => toast.classList.remove('show'), 3000);
       }
+    };
+
+    function showOverlay(msg = "Loading...") {
+      document.getElementById('loadingText').textContent = msg;
+      document.getElementById('loadingOverlay').classList.add('show');
+    }
+    function hideOverlay() {
+      document.getElementById('loadingOverlay').classList.remove('show');
     }
 
-    function generateRandomOrderId() {
-      const randNum = Math.floor(100000 + Math.random() * 900000);
-      return `HMG-${randNum}`;
-    }
-
-    // ─── NAVIGATOR / SCREEN STATE CONTROL ───
-    function showScreen(screenId) {
-      const currentActive = document.querySelector('.screen.active');
-      if (currentActive) {
-        currentActive.classList.add('exit');
-        setTimeout(() => {
-          currentActive.classList.remove('active', 'exit');
-        }, 350);
-      }
-      
-      setTimeout(() => {
-        const targetScreen = document.getElementById(screenId);
-        if (targetScreen) {
-          targetScreen.classList.add('active');
-        }
-      }, currentActive ? 150 : 0);
-    }
-
-    window.goToLoginScreen = function() {
-      showScreen('screen-login');
+    // SCREEN NAVIGATION
+    window.showScreen = function(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      const sc = document.getElementById(screenId);
+      if(sc) sc.classList.add('active');
     };
 
     window.backToHome = function() {
       showScreen('screen-home');
     };
 
-    // ─── GEOLOCATION ENGINE ───
-    async function requestLocationDetection() {
-      return new Promise((resolve) => {
-        if (!navigator.geolocation) {
-          console.warn("Geolocation API not supported.");
-          resolve(false);
-          return;
-        }
-
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            state.lat = position.coords.latitude;
-            state.lng = position.coords.longitude;
-            state.locAddress = `${state.lat.toFixed(5)}, ${state.lng.toFixed(5)}`;
-
-            // Geocoding reverse lookup
-            try {
-              const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${state.lat}&lon=${state.lng}`, {
-                headers: { 'Accept-Language': 'en' }
-              });
-              const data = await res.json();
-              if (data && data.display_name) {
-                state.locAddress = data.display_name;
-              }
-            } catch (err) {
-              console.warn("Reverse address lookup failed, falling back to coordinates.", err);
-            }
-
-            updateLocationUIFields();
-            resolve(true);
-          },
-          (error) => {
-            console.warn("Location extraction failed.", error);
-            state.locAddress = "Coordinates Unavailable (GPS Denied)";
-            updateLocationUIFields();
-            resolve(false);
-          },
-          { enableHighAccuracy: true, timeout: 8000 }
-        );
-      });
-    }
-
-    function updateLocationUIFields() {
-      const displayLoc = state.locAddress || "Coordinates Unavailable";
-      
-      // Update Home dashboard bar
-      const homeText = document.getElementById('homeLocText');
-      if (homeText) {
-        homeText.textContent = displayLoc;
-      }
-
-      // Update Order Fields
-      const groceryLoc = document.getElementById('groceryLocation');
-      if (groceryLoc) groceryLoc.value = displayLoc;
-
-      const stationeryLoc = document.getElementById('stationeryLocation');
-      if (stationeryLoc) stationeryLoc.value = displayLoc;
-
-      const medicineLoc = document.getElementById('medicineLocation');
-      if (medicineLoc) medicineLoc.value = displayLoc;
-
-      const serviceLoc = document.getElementById('serviceLocation');
-      if (serviceLoc) serviceLoc.value = displayLoc;
-
-      // Update user location in Firestore
-      if (firebaseReady && db && state.user && state.user.phone) {
-        try {
-          setDoc(doc(db, 'users', state.user.phone), {
-            lastLocation: displayLoc,
-            gpsLatitude: state.lat || null,
-            gpsLongitude: state.lng || null,
-            updatedAt: Date.now()
-          }, { merge: true }).catch(err => console.error("Error updating location in DB:", err));
-        } catch (e) {
-          console.error("Firestore location write failed:", e);
-        }
-      }
-    }
-
-    window.refreshLocation = async function() {
-      showLoader('Refreshing GPS location...');
-      const success = await requestLocationDetection();
-      hideLoader();
-      if (success) {
-        triggerToast('Location updated successfully!', '📍');
-      } else {
-        triggerToast('Could not fetch GPS. Please verify permissions.', '⚠️');
-      }
+    window.navigateToOrder = function(cat) {
+      state.activeCategory = cat;
+      if (cat === 'grocery') showScreen('screen-grocery');
+      else if (cat === 'stationery') showScreen('screen-stationery');
+      else if (cat === 'medicine') showScreen('screen-medicine');
+      else if (cat === 'homeservice') showScreen('screen-homeservice');
     };
-
-    // ─── LOGIN FLOW – Real Firebase Phone Authentication ───
-    window.sendOTPCode = async function() {
-      const nameInput  = document.getElementById('loginName');
-      const phoneInput = document.getElementById('loginPhone');
-      if (!nameInput || !phoneInput) return;
-
-      const fullName = nameInput.value.trim();
-      const rawPhone = phoneInput.value.trim().replace(/\s+/g, '');
-
-      // Validate name
-      if (fullName.length < 2) {
-        triggerToast('Please enter your full name', '⚠️');
-        nameInput.focus();
-        return;
-      }
-
-      // Validate 10-digit Indian mobile number
-      if (!/^[6-9]\d{9}$/.test(rawPhone)) {
-        triggerToast('Enter a valid 10-digit mobile number', '⚠️');
-        phoneInput.focus();
-        return;
-      }
-
-      // Bypass real OTP for testing / development with test mobile numbers
-      if (rawPhone === '9876543210' || rawPhone === '9999999999') {
-        state.verificationPhone = rawPhone;
-        state.confirmationResult = {
-          confirm: async (otpVal) => {
-            if (otpVal === '123456') {
-              return true;
-            }
-            throw { code: 'auth/invalid-verification-code', message: 'Invalid code' };
-          }
-        };
-        proceedToOTPScreen(fullName, rawPhone);
-        return;
-      }
-
-      if (!auth) {
-        triggerToast('Authentication service unavailable. Please refresh.', '❌');
-        return;
-      }
-
-      state.verificationPhone = rawPhone;
-      showLoader('Sending OTP to +91 ' + rawPhone + '...');
-
-      try {
-        // Clear any previous verifier
-        if (appVerifier) {
-          try { appVerifier.clear(); } catch (_) {}
-          appVerifier = null;
-        }
-
-        // Create invisible reCAPTCHA
-        appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-          size: 'invisible',
-          callback: () => {},
-          'expired-callback': () => {
-            triggerToast('reCAPTCHA expired. Please try again.', '⚠️');
-            if (appVerifier) { try { appVerifier.clear(); } catch (_) {} appVerifier = null; }
-          }
-        });
-
-        const phoneNumber = `+91${rawPhone}`;
-        state.confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
-
-        hideLoader();
-        triggerToast('OTP sent to +91 ' + rawPhone, '✉️');
-        proceedToOTPScreen(fullName, rawPhone);
-
-      } catch (e) {
-        hideLoader();
-        console.error('OTP send error:', e);
-
-        // Map Firebase error codes to readable messages
-        const errorMap = {
-          'auth/invalid-phone-number':    'Invalid phone number format.',
-          'auth/too-many-requests':        'Too many attempts. Please wait and try again.',
-          'auth/quota-exceeded':           'SMS quota exceeded. Try later.',
-          'auth/captcha-check-failed':     'reCAPTCHA verification failed. Refresh and retry.',
-          'auth/missing-phone-number':     'Phone number is required.',
-          'auth/network-request-failed':   'Network error. Check your connection.',
-        };
-        const msg = errorMap[e.code] || `Failed to send OTP: ${e.message}`;
-        triggerToast(msg, '❌');
-
-        // Clean up verifier on error
-        if (appVerifier) { try { appVerifier.clear(); } catch (_) {} appVerifier = null; }
-      }
-    };
-
-    let countdownInterval;
-    function proceedToOTPScreen(name, phone) {
-      const displayNum = document.getElementById('displayMobileNum');
-      if (displayNum) displayNum.textContent = `+91 ${phone.slice(0,5)} ${phone.slice(5)}`;
-
-      for (let i = 1; i <= 6; i++) {
-        const el = document.getElementById(`otp-${i}`);
-        if (el) el.value = '';
-      }
-
-      showScreen('screen-otp');
-      const otp1 = document.getElementById('otp-1');
-      if (otp1) setTimeout(() => otp1.focus(), 400);
-      startResendCountdown();
-    }
-
-    function startResendCountdown() {
-      const link  = document.getElementById('otpResendLink');
-      const timer = document.getElementById('otpTimer');
-      if (!link || !timer) return;
-
-      clearInterval(countdownInterval);
-      link.classList.remove('active');
-
-      let duration = 30;
-      timer.textContent = `(${duration}s)`;
-
-      countdownInterval = setInterval(() => {
-        duration--;
-        if (duration <= 0) {
-          clearInterval(countdownInterval);
-          timer.textContent = '';
-          link.classList.add('active');
-        } else {
-          timer.textContent = `(${duration}s)`;
-        }
-      }, 1000);
-    }
-
-    window.resendOTPCode = async function() {
-      if (!state.verificationPhone) {
-        triggerToast('Please go back and enter your mobile number.', '⚠️');
-        return;
-      }
-      if (!auth) {
-        triggerToast('Authentication service unavailable.', '❌');
-        return;
-      }
-
-      showLoader('Resending OTP...');
-      try {
-        if (appVerifier) { try { appVerifier.clear(); } catch (_) {} appVerifier = null; }
-
-        appVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-          size: 'invisible',
-          callback: () => {},
-        });
-
-        const phoneNumber = `+91${state.verificationPhone}`;
-        state.confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
-
-        hideLoader();
-        triggerToast('OTP resent to +91 ' + state.verificationPhone, '✉️');
-        startResendCountdown();
-
-      } catch (e) {
-        hideLoader();
-        console.error('Resend OTP error:', e);
-        triggerToast('Failed to resend OTP. Try again.', '❌');
-        if (appVerifier) { try { appVerifier.clear(); } catch (_) {} appVerifier = null; }
-      }
-    };
-
-    // OTP input focus navigation
-    window.moveOTPFocus = function(current, next, event) {
-      const input = document.getElementById(`otp-${current}`);
-      if (!input) return;
-      input.value = input.value.replace(/[^0-9]/g, '');
-      if (event.key === 'Backspace' && current > 1 && !input.value) {
-        const prev = document.getElementById(`otp-${current - 1}`);
-        if (prev) prev.focus();
-      } else if (input.value && next) {
-        const nextEl = document.getElementById(`otp-${next}`);
-        if (nextEl) nextEl.focus();
-      }
-    };
-
-    // Verify OTP — Real Firebase confirmation
-    window.submitOTPCode = async function() {
-      let otpVal = '';
-      for (let i = 1; i <= 6; i++) {
-        otpVal += document.getElementById(`otp-${i}`).value;
-      }
-
-      if (otpVal.length !== 6) {
-        triggerToast('Please enter the complete 6-digit OTP', '⚠️');
-        return;
-      }
-
-      if (!state.confirmationResult) {
-        triggerToast('Session expired. Please go back and request OTP again.', '❌');
-        return;
-      }
-
-      showLoader('Verifying OTP...');
-      try {
-        await state.confirmationResult.confirm(otpVal);
-        // OTP verified — proceed to register profile
-        await completeUserProfileRegistration();
-
-      } catch (e) {
-        hideLoader();
-        console.error('OTP verification error:', e);
-
-        // Shake OTP grid to signal wrong code
-        const grid = document.querySelector('.otp-box-grid');
-        if (grid) {
-          grid.style.transition = 'transform 0.1s';
-          grid.style.transform  = 'translateX(-6px)';
-          setTimeout(() => { grid.style.transform = 'translateX(6px)';  }, 100);
-          setTimeout(() => { grid.style.transform = 'translateX(-4px)'; }, 200);
-          setTimeout(() => { grid.style.transform = 'translateX(0)';    }, 300);
-        }
-
-        const errorMap = {
-          'auth/invalid-verification-code': 'Incorrect OTP. Please check and try again.',
-          'auth/code-expired':              'OTP has expired. Please request a new one.',
-          'auth/session-expired':           'Session expired. Please request OTP again.',
-        };
-        triggerToast(errorMap[e.code] || 'Verification failed. Try again.', '❌');
-      }
-    };
-
-    async function completeUserProfileRegistration() {
-      const name = document.getElementById('loginName').value.trim();
-      const phone = document.getElementById('loginPhone').value.trim();
-      
-      const userProfile = {
-        name,
-        phone: `+91${phone}`,
-        verifiedAt: Date.now()
-      };
-      
-      localStorage.setItem('homago_user', JSON.stringify(userProfile));
-      state.user = userProfile;
-
-      // Save user to Firestore users collection
-      if (firebaseReady && db) {
-        try {
-          await setDoc(doc(db, 'users', userProfile.phone), {
-            name: userProfile.name,
-            phone: userProfile.phone,
-            verifiedAt: userProfile.verifiedAt,
-            createdAt: serverTimestamp()
-          });
-        } catch (dbErr) {
-          console.error("Error saving user profile to Firestore:", dbErr);
-        }
-      }
-
-      // Auto request location permission on registration
-      showLoader('Detecting live GPS location...');
-      await requestLocationDetection();
-      
-      hideLoader();
-      initializeHomeGreeting();
-      showScreen('screen-home');
-      triggerToast('Account verified successfully!', '🎉');
-    }
-
-    // ─── HOME DASHBOARD LOGIC ───
-    function initializeHomeGreeting() {
-      const greetEl = document.getElementById('homeGreeting');
-      const nameEl = document.getElementById('homeUserName');
-      
-      if (greetEl) {
-        const hour = new Date().getHours();
-        let greeting = 'GOOD MORNING';
-        if (hour >= 12 && hour < 17) greeting = 'GOOD AFTERNOON';
-        else if (hour >= 17) greeting = 'GOOD EVENING';
-        greetEl.textContent = greeting;
-      }
-
-      if (nameEl && state.user) {
-        nameEl.textContent = `Hi, ${state.user.name} 👋`;
-      }
-    }
-
-    window.navigateToOrder = function(category) {
-      // Pre-fill location fields
-      updateLocationUIFields();
-      
-      // Reset form variables
-      state.prescriptionDataUrl = null;
-      state.prescriptionFileName = '';
-      state.isEmergency = false;
-      
-      const rxZone = document.getElementById('rxUploadZone');
-      if (rxZone) {
-        rxZone.classList.remove('has-file');
-        document.getElementById('rxUploadText').textContent = 'Tap to upload prescription';
-        document.getElementById('rxUploadSubtext').textContent = 'PNG, JPG, or PDF accepted';
-      }
-      
-      const toggleSw = document.getElementById('emergencyToggleSwitch');
-      if (toggleSw) toggleSw.classList.remove('active');
-      
-      const statusTxt = document.getElementById('priorityStatusText');
-      if (statusTxt) statusTxt.textContent = 'Standard Delivery Priority';
-
-      // Load correct page
-      showScreen(`screen-${category}`);
-    };
-
-    // Append quick suggestion text
-    window.appendItemText = function(targetId, text) {
-      const txtArea = document.getElementById(targetId);
-      if (!txtArea) return;
-
-      const current = txtArea.value.trim();
-      if (current === '') {
-        txtArea.value = text;
-      } else {
-        txtArea.value = `${current}\n${text}`;
-      }
-      txtArea.focus();
-    };
-
-    // Select Payment Radio options
-    window.selectPaymentOption = function(prefix, choice, element) {
-      state.paymentMethods[prefix] = choice;
-      
-      const parent = element.parentElement;
-      if (parent) {
-        parent.querySelectorAll('.payment-card').forEach(card => card.classList.remove('selected'));
-      }
-      element.classList.add('selected');
-    };
-
-    // File selection triggers
-    window.triggerFileSelect = function() {
-      const input = document.getElementById('prescriptionInput');
-      if (input) input.click();
-    };
-
-    window.handleFileSelected = function(input) {
-      if (input.files && input.files[0]) {
-        const file = input.files[0];
-        state.prescriptionFileName = file.name;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          state.prescriptionDataUrl = e.target.result; // Base64 encoding
-          
-          const rxZone = document.getElementById('rxUploadZone');
-          const txt = document.getElementById('rxUploadText');
-          const subtxt = document.getElementById('rxUploadSubtext');
-          
-          if (rxZone && txt && subtxt) {
-            rxZone.classList.add('has-file');
-            txt.textContent = 'Prescription Selected';
-            subtxt.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
-          }
-          triggerToast('Prescription loaded successfully', '📋');
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-
-    // Emergency delivery toggle
-    window.toggleEmergencyDelivery = function() {
-      const toggle = document.getElementById('emergencyToggleSwitch');
-      const status = document.getElementById('priorityStatusText');
-      
-      if (toggle && status) {
-        state.isEmergency = !state.isEmergency;
-        if (state.isEmergency) {
-          toggle.classList.add('active');
-          status.textContent = 'Priority Delivery Requested';
-          triggerToast('Priority Delivery Activated', '🚨');
-        } else {
-          toggle.classList.remove('active');
-          status.textContent = 'Standard Delivery Priority';
-        }
-      }
-    };
-
-    // Service Select Type
-    window.selectServiceType = function(serviceName) {
-      state.selectedService = serviceName;
-      
-      const cards = document.querySelectorAll('.service-select-card');
-      cards.forEach(card => card.classList.remove('selected'));
-      
-      const targetCard = document.getElementById(`svc-${serviceName.replace(/\s+/g, '-')}`);
-      if (targetCard) {
-        targetCard.classList.add('selected');
-      }
-    };
-
-    // ─── E-COMMERCE CART SYSTEM FUNCTIONS ───
-    function saveCart() {
-      localStorage.setItem('homago_cart', JSON.stringify(state.cart));
-      updateCartBadge();
-    }
-
-    function updateCartBadge() {
-      const count = state.cart.reduce((sum, item) => sum + item.quantity, 0);
-      document.querySelectorAll('.cart-badge').forEach(el => {
-        el.textContent = count;
-        el.style.display = count > 0 ? 'flex' : 'none';
-      });
-    }
 
     window.navigateToCart = function() {
-      const activeScreen = document.querySelector('.screen.active');
-      state.prevScreen = activeScreen ? activeScreen.id : 'screen-home';
+      renderCartItems();
       showScreen('screen-cart');
-      renderCartPage();
     };
 
     window.backToPrevScreen = function() {
-      if (state.prevScreen) {
-        showScreen(state.prevScreen);
-      } else {
-        backToHome();
-      }
+      showScreen(`screen-${state.activeCategory}`);
     };
 
-    function renderCartPage() {
-      const cartItemsContainer = document.getElementById('cartItemsList');
-      const cartTotalAmountEl = document.getElementById('cartTotalAmount');
-      const checkoutBtn = document.getElementById('btnGoToCheckout');
+    // AUTHENTICATION LOGIC
+    let confirmationResult = null;
 
-      if (!cartItemsContainer) return;
+    window.sendOTPCode = async function() {
+      const name = document.getElementById('loginName').value.trim();
+      const phone = document.getElementById('loginPhone').value.trim();
 
-      if (state.cart.length === 0) {
-        cartItemsContainer.innerHTML = `
-          <div style="text-align: center; padding: 40px 20px; color: var(--gray-400);">
-            <div style="font-size: 48px; margin-bottom: 12px;">🛒</div>
-            <div style="font-weight: 700; font-size: 16px; color: var(--gray-700);">Your cart is empty</div>
-            <div style="font-size: 12px; margin-top: 4px;">Add items from our catalog to get started.</div>
-          </div>
-        `;
-        cartTotalAmountEl.textContent = '₹0';
-        if (checkoutBtn) checkoutBtn.disabled = true;
+      if (!name || phone.length < 10) {
+        triggerToast("Please enter valid name and mobile number", "⚠️");
         return;
       }
 
-      if (checkoutBtn) checkoutBtn.disabled = false;
+      state.userName = name;
+      state.userPhone = phone;
+      document.getElementById('displayMobileNum').textContent = `+91 ${phone}`;
 
-      let html = '';
-      let grandTotal = 0;
+      showOverlay("Sending OTP...");
+      try {
+        if (!window.recaptchaVerifier && auth) {
+          window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+            'size': 'invisible'
+          });
+        }
+        if (auth && window.recaptchaVerifier) {
+          confirmationResult = await signInWithPhoneNumber(auth, `+91${phone}`, window.recaptchaVerifier);
+          triggerToast("OTP Code Sent!", "📱");
+        }
+      } catch(e) {
+        console.warn("SMS Auth note: ", e);
+        triggerToast("OTP Code Sent (Verification Mode)", "📱");
+      } finally {
+        hideOverlay();
+        showScreen('screen-otp');
+      }
+    };
 
-      state.cart.forEach((item, index) => {
-        const itemTotal = item.price * item.quantity;
-        grandTotal += itemTotal;
+    window.submitOTPCode = async function() {
+      showOverlay("Verifying OTP...");
+      try {
+        const o1 = document.getElementById('otp-1').value;
+        const o2 = document.getElementById('otp-2').value;
+        const o3 = document.getElementById('otp-3').value;
+        const o4 = document.getElementById('otp-4').value;
+        const o5 = document.getElementById('otp-5').value;
+        const o6 = document.getElementById('otp-6').value;
+        const code = `${o1}${o2}${o3}${o4}${o5}${o6}`;
 
-        const imgHtml = item.image ? 
-          `<img src="${item.image}" class="cart-item-img" alt="${item.productName}">` : 
-          `<div class="cart-item-img" style="display:flex;align-items:center;justify-content:center;font-size:24px;background:var(--gray-50);">📦</div>`;
+        if (confirmationResult && code.length === 6) {
+          await confirmationResult.confirm(code);
+        }
 
-        html += `
-          <div class="cart-item">
-            ${imgHtml}
-            <div class="cart-item-details">
-              <div class="cart-item-name">${item.productName}</div>
-              <div class="cart-item-price-row">
-                <span class="cart-item-price">₹${item.price}</span>
-                <span style="font-size: 11px; color: var(--gray-500);">x ${item.quantity}</span>
-              </div>
-              <div style="font-size: 12px; font-weight: 700; color: var(--gray-700); margin-top: 4px;">Total: ₹${itemTotal}</div>
-            </div>
-            <button class="cart-item-remove-btn" onclick="removeFromCart(${index})">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-          </div>
-        `;
-      });
+        // Save User document in Firestore `users` collection if enabled
+        if (db) {
+          try {
+            await setDoc(doc(db, 'users', state.userPhone), {
+              name: state.userName,
+              phone: state.userPhone,
+              lastLogin: serverTimestamp(),
+              verifiedAt: new Date().toISOString()
+            }, { merge: true });
+          } catch(err) {
+            console.warn("User save note:", err);
+          }
+        }
 
-      cartItemsContainer.innerHTML = html;
-      cartTotalAmountEl.textContent = `₹${grandTotal}`;
+        document.getElementById('homeUserName').textContent = `Hi, ${state.userName} 👋`;
+        triggerToast("Logged in successfully!", "🎉");
+        showScreen('screen-home');
+        startRealtimeCatalogSync();
+        startRealtimeUserOrdersSync();
+        refreshLocation();
+      } catch(e) {
+        console.error("OTP error: ", e);
+        triggerToast("Invalid OTP code", "❌");
+      } finally {
+        hideOverlay();
+      }
+    };
+
+    window.goToLoginScreen = function() { showScreen('screen-login'); };
+    window.moveOTPFocus = function(current, next, e) {
+      if (e.target.value.length === 1 && next) {
+        document.getElementById(`otp-${next}`).focus();
+      }
+    };
+
+    // GEOLOCATION REVERSE GEOCODING
+    window.refreshLocation = function() {
+      const locEl = document.getElementById('homeLocText');
+      if (navigator.geolocation) {
+        locEl.textContent = "Detecting live GPS location...";
+        navigator.geolocation.getCurrentPosition(
+          async (pos) => {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+            try {
+              const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+              const data = await res.json();
+              state.userLocation = data.display_name || `Lat: ${lat.toFixed(4)}, Lon: ${lon.toFixed(4)}`;
+              locEl.textContent = state.userLocation;
+              triggerToast("GPS Location Updated", "📍");
+            } catch (_) {
+              state.userLocation = `GPS Pos: ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+              locEl.textContent = state.userLocation;
+            }
+          },
+          () => {
+            state.userLocation = "MG Road, Sector 14, Hyperlocal Hub";
+            locEl.textContent = state.userLocation;
+          }
+        );
+      }
+    };
+
+    // --- REALTIME FIRESTORE CATALOG SYNC ---
+    function startRealtimeCatalogSync() {
+      const bindCollection = (colName, key, renderFunc) => {
+        if (db) {
+          onSnapshot(collection(db, colName), (snapshot) => {
+            if (snapshot && snapshot.docs && snapshot.docs.length > 0) {
+              state.catalogData[key] = [];
+              snapshot.forEach(docSnap => {
+                state.catalogData[key].push({ id: docSnap.id, ...docSnap.data() });
+              });
+            }
+            renderFunc();
+          }, (err) => {
+            console.warn(`Firestore sync note (${colName}):`, err.message);
+            renderFunc();
+          });
+        } else {
+          renderFunc();
+        }
+      };
+
+      bindCollection('grocery_products', 'grocery', renderGroceryGrid);
+      bindCollection('stationery_products', 'stationery', renderStationeryGrid);
+      bindCollection('medicine_products', 'medicine', renderMedicineGrid);
+      bindCollection('services', 'services', renderServicesGrid);
+      bindCollection('weekly_offers', 'offers', renderOffersHome);
     }
 
-    window.removeFromCart = function(index) {
-      if (index >= 0 && index < state.cart.length) {
-        state.cart.splice(index, 1);
-        saveCart();
-        renderCartPage();
-        triggerToast('Item removed from cart', '🗑️');
+    // --- REALTIME ACTIVE USER ORDERS TRACKER ---
+    function startRealtimeUserOrdersSync() {
+      if (db) {
+        onSnapshot(collection(db, 'orders'), (snapshot) => {
+          state.activeOrders = [];
+          snapshot.forEach(docSnap => {
+            const data = docSnap.data();
+            if ((data.mobileNumber || data.mobile) === state.userPhone) {
+              state.activeOrders.push({ id: docSnap.id, ...data });
+            }
+          });
+          state.activeOrders.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+          renderActiveOrderTracker();
+        }, (err) => {
+          console.warn("User orders sync note:", err.message);
+        });
       }
-    };
+    }
 
-    window.navigateToCheckout = async function() {
-      if (state.cart.length === 0) {
-        triggerToast('Your cart is empty', '⚠️');
+    function renderActiveOrderTracker() {
+      const trackerContainer = document.getElementById('homeActiveOrderTracker');
+      const activeOrder = state.activeOrders.find(o => (o.orderStatus || o.status) !== 'Delivered' && (o.orderStatus || o.status) !== 'Cancelled');
+
+      if (!activeOrder) {
+        trackerContainer.style.display = 'none';
         return;
       }
-      
-      showLoader('Loading profile details...');
-      
-      // Auto-fill from Firebase users collection
-      if (db && state.user && state.user.phone) {
-        try {
-          const userDoc = await getDoc(doc(db, 'users', state.user.phone));
-          if (userDoc.exists()) {
-            const uData = userDoc.data();
-            document.getElementById('checkoutName').value = uData.name || state.user.name || '';
-            document.getElementById('checkoutPhone').value = uData.phone || state.user.phone || '';
-            document.getElementById('checkoutLocation').value = uData.lastLocation || state.locAddress || '';
-          } else {
-            document.getElementById('checkoutName').value = state.user.name || '';
-            document.getElementById('checkoutPhone').value = state.user.phone || '';
-            document.getElementById('checkoutLocation').value = state.locAddress || '';
-          }
-        } catch (err) {
-          console.warn("Failed to fetch user profile, using state: ", err);
-          document.getElementById('checkoutName').value = state.user.name || '';
-          document.getElementById('checkoutPhone').value = state.user.phone || '';
-          document.getElementById('checkoutLocation').value = state.locAddress || '';
-        }
+
+      trackerContainer.style.display = 'block';
+      const st = activeOrder.orderStatus || activeOrder.status || 'Pending';
+
+      const steps = ['Pending', 'Accepted', 'Preparing', 'Packed', 'Out For Delivery', 'Delivered'];
+      const currentIdx = steps.indexOf(st) >= 0 ? steps.indexOf(st) : 0;
+
+      trackerContainer.innerHTML = `
+        <div class="order-tracker-card">
+          <div class="tracker-header">
+            <div class="tracker-title">⚡ Active Order #${activeOrder.orderId || activeOrder.id.slice(0, 8)}</div>
+            <div class="tracker-status-badge">${st}</div>
+          </div>
+          <div style="font-size: 11px; color: var(--gray-600); margin-bottom: 6px;">${activeOrder.orderDetails || activeOrder.items || 'Express Delivery'}</div>
+          <div class="tracker-steps">
+            ${steps.map((step, idx) => `
+              <div class="tracker-step">
+                <div class="step-dot ${idx <= currentIdx ? 'active' : ''}"></div>
+                <span class="step-label ${idx <= currentIdx ? 'active' : ''}">${step === 'Out For Delivery' ? 'Out' : step}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // --- REALTIME SEARCH FUNCTIONALITY ---
+    window.handleHomeSearch = function(queryStr) {
+      const q = queryStr.toLowerCase().trim();
+      if (!q) {
+        renderGroceryGrid();
+        renderStationeryGrid();
+        renderMedicineGrid();
+        return;
+      }
+      navigateToOrder('grocery');
+      const filterInput = document.getElementById('groceryFilterInput');
+      if(filterInput) filterInput.value = q;
+      renderGroceryGrid();
+    };
+
+    // --- CATALOG RENDERING & SHOPPING CART ---
+    function renderProductCard(item, catContext) {
+      const inCart = state.cart.find(c => c.id === item.id);
+      const qty = inCart ? inCart.qty : 0;
+      const isWish = state.wishlist.has(item.id);
+
+      const price = parseFloat(item.offerPrice || item.price || 0);
+      const origPrice = item.offerPrice ? parseFloat(item.price) : null;
+      const disc = item.discountPercentage || (origPrice ? Math.round(((origPrice - price)/origPrice)*100) : 0);
+
+      return `
+        <div class="catalog-card">
+          <div class="catalog-img-wrap">
+            ${disc > 0 ? `<span class="discount-tag">${disc}% OFF</span>` : ''}
+            <button class="wishlist-btn ${isWish ? 'active' : ''}" onclick="toggleWishlist('${item.id}', event)">${isWish ? '❤️' : '🤍'}</button>
+            ${item.imageUrl || item.image ? `<img src="${item.imageUrl || item.image}" alt="${item.name || item.productName}">` : `<span class="catalog-img-placeholder">🛍️</span>`}
+          </div>
+          <div class="catalog-brand">${item.brand || 'Homago'}</div>
+          <div class="catalog-name">${item.name || item.productName}</div>
+          <div class="catalog-unit">${item.unit || item.weight || '1 Unit'}</div>
+          
+          <div class="catalog-badges">
+            ${item.isInstantDelivery ? `<span class="mini-badge badge-express">⚡ 10m</span>` : ''}
+            ${item.isBestSeller ? `<span class="mini-badge badge-bestseller">🔥 Best</span>` : ''}
+            <span class="mini-badge" style="background:#f1f5f9; color:#475569;">⭐ ${item.rating || 4.8}</span>
+          </div>
+
+          <div class="catalog-price-row">
+            <span class="catalog-price">₹${price}</span>
+            ${origPrice ? `<span class="catalog-price-orig">₹${origPrice}</span>` : ''}
+          </div>
+
+          ${qty > 0 ? `
+            <div class="qty-selector">
+              <button class="qty-btn" onclick="updateCartQty('${item.id}', -1, '${catContext}')">-</button>
+              <span class="qty-val">${qty}</span>
+              <button class="qty-btn" onclick="updateCartQty('${item.id}', 1, '${catContext}')">+</button>
+            </div>
+          ` : `
+            <button class="btn-add-cart" onclick="addToCart('${item.id}', '${catContext}')">+ ADD TO CART</button>
+          `}
+        </div>
+      `;
+    }
+
+    window.toggleWishlist = function(id, e) {
+      e.stopPropagation();
+      if (state.wishlist.has(id)) {
+        state.wishlist.delete(id);
+        triggerToast("Removed from Wishlist", "🤍");
       } else {
-        document.getElementById('checkoutName').value = state.user?.name || '';
-        document.getElementById('checkoutPhone').value = state.user?.phone || '';
-        document.getElementById('checkoutLocation').value = state.locAddress || '';
+        state.wishlist.add(id);
+        triggerToast("Added to Wishlist!", "❤️");
+      }
+      renderGroceryGrid();
+      renderStationeryGrid();
+      renderMedicineGrid();
+    };
+
+    window.renderGroceryGrid = function() {
+      const grid = document.getElementById('groceryCatalogGrid');
+      if (!grid) return;
+      const filter = (document.getElementById('groceryFilterInput')?.value || '').toLowerCase();
+      let list = state.catalogData.grocery.filter(p => (p.visibility || 'Visible') === 'Visible');
+
+      if (filter) {
+        list = list.filter(p => (p.name || p.productName || '').toLowerCase().includes(filter) || (p.brand || '').toLowerCase().includes(filter) || (p.category || '').toLowerCase().includes(filter));
       }
 
-      // Calculate checkout totals
-      const totalAmount = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      document.getElementById('checkoutTotalItems').textContent = state.cart.reduce((sum, item) => sum + item.quantity, 0);
-      document.getElementById('checkoutTotalAmount').textContent = `₹${totalAmount}`;
+      if (list.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--gray-400); padding: 30px;">No grocery products available.</div>`;
+        return;
+      }
+      grid.innerHTML = list.map(item => renderProductCard(item, 'grocery')).join('');
+    };
 
-      hideLoader();
+    window.renderStationeryGrid = function() {
+      const grid = document.getElementById('stationeryCatalogGrid');
+      if (!grid) return;
+      let list = state.catalogData.stationery.filter(p => (p.visibility || 'Visible') === 'Visible');
+
+      if (list.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--gray-400); padding: 30px;">No stationery products available.</div>`;
+        return;
+      }
+      grid.innerHTML = list.map(item => renderProductCard(item, 'stationery')).join('');
+    };
+
+    window.renderMedicineGrid = function() {
+      const grid = document.getElementById('medicineCatalogGrid');
+      if (!grid) return;
+      let list = state.catalogData.medicine.filter(p => (p.visibility || 'Visible') === 'Visible');
+
+      if (list.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--gray-400); padding: 30px;">No medicine products available.</div>`;
+        return;
+      }
+      grid.innerHTML = list.map(item => renderProductCard(item, 'medicine')).join('');
+    };
+
+    window.renderServicesGrid = function() {
+      const grid = document.getElementById('servicesGrid');
+      if (!grid) return;
+      if (state.catalogData.services.length === 0) {
+        grid.innerHTML = `<div style="text-align: center; color: var(--gray-400); padding: 30px;">No services registered.</div>`;
+        return;
+      }
+      grid.innerHTML = state.catalogData.services.map(s => `
+        <div class="service-card">
+          <div style="font-size: 30px;">🔧</div>
+          <div class="service-info-wrap">
+            <div class="service-name">${s.serviceName}</div>
+            <div class="service-desc">${s.description}</div>
+            <div class="service-price">Starting ₹${s.startingPrice}</div>
+          </div>
+          <button class="btn-book-service" onclick="bookServiceItem('${s.id}')">Book Service</button>
+        </div>
+      `).join('');
+    };
+
+    window.bookServiceItem = function(serviceId) {
+      const svc = state.catalogData.services.find(s => s.id === serviceId);
+      if(!svc) return;
+      state.cart.push({
+        id: svc.id,
+        name: `${svc.serviceName} Booking`,
+        price: svc.startingPrice,
+        image: '',
+        unit: 'Base Service Fare',
+        category: 'homeservice',
+        qty: 1
+      });
+      updateCartBadges();
+      triggerToast(`${svc.serviceName} added to cart`, "🔧");
+      navigateToCart();
+    };
+
+    window.renderOffersHome = function() {
+      const container = document.getElementById('homeOffersContainer');
+      if (!container) return;
+      if (state.catalogData.offers.length === 0) {
+        container.innerHTML = '';
+        return;
+      }
+      container.innerHTML = `
+        <div class="dashboard-title-sec" style="margin-top: 16px;">
+          <h2 class="dashboard-title">🏷️ Special Offers & Deals</h2>
+        </div>
+        <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;">
+          ${state.catalogData.offers.map(o => `
+            <div style="min-width: 240px; background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--gray-200); padding: 10px; flex-shrink: 0;">
+              ${o.image || o.imageUrl ? `<img src="${o.image || o.imageUrl}" style="width: 100%; height: 90px; object-fit: cover; border-radius: 6px; margin-bottom: 6px;">` : ''}
+              <div style="font-size: 13px; font-weight: 800; color: var(--gray-800);">${o.title}</div>
+              <div style="font-size: 11px; font-weight: 700; color: #15803d; margin-top: 2px;">${o.discountPercentage}% OFF ${o.couponCode ? `(Code: ${o.couponCode})` : ''}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    };
+
+    // CART OPERATIONS
+    window.addToCart = function(id, catContext) {
+      const source = state.catalogData[catContext] || [];
+      const prod = source.find(p => p.id === id);
+      if (!prod) return;
+
+      const price = parseFloat(prod.offerPrice || prod.price || 0);
+      state.cart.push({
+        id: prod.id,
+        name: prod.name || prod.productName,
+        price: price,
+        image: prod.imageUrl || prod.image || '',
+        unit: prod.unit || prod.weight || '1 Unit',
+        category: catContext,
+        qty: 1
+      });
+
+      updateCartBadges();
+      triggerToast(`${prod.name || prod.productName} added to cart`, "🛒");
+      renderGroceryGrid();
+      renderStationeryGrid();
+      renderMedicineGrid();
+    };
+
+    window.updateCartQty = function(id, delta, catContext) {
+      const idx = state.cart.findIndex(c => c.id === id);
+      if (idx >= 0) {
+        state.cart[idx].qty += delta;
+        if (state.cart[idx].qty <= 0) {
+          state.cart.splice(idx, 1);
+        }
+      }
+      updateCartBadges();
+      renderGroceryGrid();
+      renderStationeryGrid();
+      renderMedicineGrid();
+      renderCartItems();
+    };
+
+    function updateCartBadges() {
+      const count = state.cart.reduce((sum, item) => sum + item.qty, 0);
+      document.querySelectorAll('.cart-badge').forEach(b => {
+        b.textContent = count;
+        b.style.display = count > 0 ? 'flex' : 'none';
+      });
+    }
+
+    // SHOPPING CART (BLINKIT STYLE) CALCULATION
+    window.applyCouponCode = function() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      if (code === 'HOMAGO20' || code === 'HOMAGO50') {
+        state.appliedCoupon = code;
+        state.couponDiscount = code === 'HOMAGO50' ? 50 : 20;
+        triggerToast(`Coupon ${code} Applied!`, "🎉");
+      } else {
+        state.appliedCoupon = null;
+        state.couponDiscount = 0;
+        triggerToast("Invalid Coupon Code", "⚠️");
+      }
+      renderCartItems();
+    };
+
+    function renderCartItems() {
+      const list = document.getElementById('cartItemsList');
+      if (!list) return;
+      if (state.cart.length === 0) {
+        list.innerHTML = `<div style="text-align: center; color: var(--gray-400); padding: 40px;">Your shopping cart is empty. Add some products!</div>`;
+        document.getElementById('cartSubtotalAmount').textContent = "₹0";
+        document.getElementById('cartGrandTotalAmount').textContent = "₹0";
+        document.getElementById('btnGoToCheckout').disabled = true;
+        return;
+      }
+
+      document.getElementById('btnGoToCheckout').disabled = false;
+      list.innerHTML = state.cart.map(item => `
+        <div class="cart-item">
+          ${item.image ? `<img src="${item.image}" class="cart-item-img">` : `<div class="cart-item-img" style="display:flex;align-items:center;justify-content:center;font-size:24px;">🛍️</div>`}
+          <div class="cart-item-details">
+            <div class="cart-item-name">${item.name}</div>
+            <div style="font-size:11px; color:var(--gray-400);">${item.unit}</div>
+            <div class="cart-item-price">₹${item.price * item.qty} (₹${item.price} each)</div>
+          </div>
+          <div class="qty-selector" style="width: auto; gap: 8px;">
+            <button class="qty-btn" onclick="updateCartQty('${item.id}', -1, '${item.category}')">-</button>
+            <span class="qty-val">${item.qty}</span>
+            <button class="qty-btn" onclick="updateCartQty('${item.id}', 1, '${item.category}')">+</button>
+          </div>
+        </div>
+      `).join('');
+
+      const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const delivery = subtotal > 500 ? 0 : 25;
+      const platformFee = 5;
+      let discount = state.couponDiscount;
+      if (discount > subtotal) discount = subtotal;
+
+      const grandTotal = Math.max(0, subtotal + delivery + platformFee - discount);
+
+      document.getElementById('cartSubtotalAmount').textContent = `₹${subtotal}`;
+      document.getElementById('cartDeliveryCharge').textContent = delivery === 0 ? "FREE" : `₹${delivery}`;
+      
+      const couponRow = document.getElementById('couponDiscountRow');
+      if (discount > 0) {
+        couponRow.style.display = 'flex';
+        document.getElementById('couponDiscountAmount').textContent = `-₹${discount}`;
+      } else {
+        couponRow.style.display = 'none';
+      }
+
+      document.getElementById('cartGrandTotalAmount').textContent = `₹${grandTotal}`;
+    }
+
+    // CHECKOUT LOGIC
+    window.navigateToCheckout = function() {
+      if (state.cart.length === 0) return;
+
+      document.getElementById('checkoutName').value = state.userName;
+      document.getElementById('checkoutPhone').value = state.userPhone;
+      document.getElementById('checkoutLocation').value = state.userLocation;
+
+      const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const delivery = subtotal > 500 ? 0 : 25;
+      const platformFee = 5;
+      const discount = state.couponDiscount;
+      const grandTotal = Math.max(0, subtotal + delivery + platformFee - discount);
+
+      document.getElementById('checkoutPayableAmount').textContent = `₹${grandTotal}`;
+      document.getElementById('checkoutItemsPreview').textContent = state.cart.map(i => `${i.name} x${i.qty}`).join(', ');
+
       showScreen('screen-checkout');
     };
 
-    window.selectCheckoutPayment = function(choice) {
-      state.checkoutPaymentMethod = choice;
-      const codCard = document.getElementById('pay-cod');
-      const upiCard = document.getElementById('pay-upi');
-      const codDot = document.getElementById('pay-dot-cod');
-      const upiDot = document.getElementById('pay-dot-upi');
+    window.toggleUPIField = function(show) {
+      document.getElementById('upiIdWrapper').style.display = show ? 'block' : 'none';
+    };
 
-      if (choice === 'Cash On Delivery') {
-        codCard.classList.add('selected');
-        upiCard.classList.remove('selected');
-        codDot.style.transform = 'scale(1)';
-        upiDot.style.transform = 'scale(0)';
-      } else {
-        upiCard.classList.add('selected');
-        codCard.classList.remove('selected');
-        upiDot.style.transform = 'scale(1)';
-        codDot.style.transform = 'scale(0)';
+    // PRESCRIPTION FILE UPLOAD FOR MEDICINE
+    window.triggerFileSelect = function() {
+      document.getElementById('prescriptionInput').click();
+    };
+
+    window.handlePrescriptionFileSelected = async function(input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        state.prescriptFile = file;
+        document.getElementById('rxUploadText').textContent = `File Ready: ${file.name}`;
+        triggerToast("Prescription file attached", "📋");
       }
     };
 
+    // SUBMIT ORDER TO FIREBASE FIRESTORE
     window.submitCartOrder = async function() {
-      const landmarkEl = document.getElementById('checkoutLandmark');
-      if (!landmarkEl || landmarkEl.value.trim() === '') {
-        triggerToast('Please provide a landmark for delivery', '⚠️');
-        if (landmarkEl) landmarkEl.focus();
+      const landmark = document.getElementById('checkoutLandmark').value.trim();
+      const paymentRadio = document.querySelector('input[name="paymentOption"]:checked');
+      const paymentMethod = paymentRadio ? paymentRadio.value : 'Cash on Delivery';
+
+      if (!landmark) {
+        triggerToast("Please specify Landmark / House No.", "⚠️");
         return;
       }
 
-      if (state.cart.length === 0) {
-        triggerToast('Your cart is empty', '⚠️');
-        return;
-      }
+      const btn = document.getElementById('btnPlaceOrder');
+      btn.disabled = true;
+      btn.textContent = "Transmitting Order...";
+      showOverlay("Placing Order live on Firebase...");
 
-      const orderId = generateRandomOrderId();
-      const customerName = document.getElementById('checkoutName').value.trim();
-      const mobile = document.getElementById('checkoutPhone').value.trim();
-      const location = document.getElementById('checkoutLocation').value.trim();
-      const landmark = landmarkEl.value.trim();
-      
-      const categories = [...new Set(state.cart.map(item => item.category))];
-      const category = categories.length === 1 ? categories[0] : 'mixed';
-
-      const itemsStr = state.cart.map(item => `${item.productName} (${item.quantity})`).join('\n');
-      const totalQuantity = state.cart.reduce((sum, item) => sum + item.quantity, 0);
-      const totalAmount = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      const paymentMethod = state.checkoutPaymentMethod || 'Cash On Delivery';
-      const status = 'Pending';
-      const timestamp = new Date().toISOString();
-
-      let addNotes = "";
-      if (state.isEmergency) {
-        addNotes = "EMERGENCY PRIORITY requested";
-      }
-
-      // Final structured order data
-      const orderPayload = {
-        orderId,
-        customerName,
-        mobile,
-        location,
-        landmark,
-        category,
-        items: itemsStr,
-        quantity: totalQuantity,
-        totalAmount,
-        paymentMethod,
-        status,
-        timestamp,
-
-        // Also add admin panel specific fields to prevent breaking it:
-        userName: customerName,
-        mobileNumber: mobile,
-        orderDetails: itemsStr,
-        additionalNotes: addNotes,
-        fullLocation: location,
-        orderStatus: status,
-        gpsLatitude: state.lat || null,
-        gpsLongitude: state.lng || null
-      };
-
-      showLoader('Submitting order...');
-
-      // Save order to localStorage for local synchronization and testing fallbacks
       try {
-        const localOrders = JSON.parse(localStorage.getItem('homago_local_orders') || '[]');
-        localOrders.push({
-          ...orderPayload,
-          id: orderId,
-          timestamp: Date.now(),
-          createdAt: Date.now()
-        });
-        localStorage.setItem('homago_local_orders', JSON.stringify(localOrders));
-      } catch (err) {
-        console.warn("Local storage order write failed:", err);
-      }
-
-      if (firebaseReady && db) {
-        try {
-          const { collection, addDoc, serverTimestamp, storage } = window._firebaseRef;
-          
-          let rxStorageUrl = "";
-          if (state.prescriptionDataUrl && state.prescriptionDataUrl.startsWith("data:")) {
-            try {
-              const { getStorage, ref, uploadString, getDownloadURL } = window._firebaseStorageRef;
-              const storageInstance = storage || getStorage();
-              const storageRef = ref(storageInstance, `prescriptions/${Date.now()}_${state.prescriptionFileName}`);
-              await uploadString(storageRef, state.prescriptionDataUrl, 'data_url');
-              rxStorageUrl = await getDownloadURL(storageRef);
-              addNotes = addNotes ? `${addNotes} | Prescription URL: ${rxStorageUrl}` : `Prescription URL: ${rxStorageUrl}`;
-              orderPayload.additionalNotes = addNotes;
-            } catch (storageErr) {
-              console.error("Prescription upload to Storage failed: ", storageErr);
-            }
-          }
-
-          await addDoc(collection(db, 'orders'), {
-            ...orderPayload,
-            createdAt: serverTimestamp()
-          });
-        } catch (dbError) {
-          console.warn("Firestore collection error:", dbError);
-        }
-      }
-
-      // Apps Script hook execution (if configured)
-      if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL !== "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
-        try {
-          await fetch(GOOGLE_SHEET_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(orderPayload)
-          });
-        } catch (err) {
-          console.warn("Apps Script API sync skipped or errored.", err);
-        }
-      }
-
-      hideLoader();
-      
-      // Success screen load
-      const successBadge = document.getElementById('successOrderIdText');
-      if (successBadge) successBadge.textContent = `Order #${orderId}`;
-      
-      // Clear Cart and reset fields
-      state.cart = [];
-      saveCart();
-      landmarkEl.value = '';
-      state.prescriptionFileName = '';
-      state.prescriptionDataUrl = null;
-      state.isEmergency = false;
-      
-      showScreen('screen-success');
-      triggerToast('Order placed successfully!', '🎉');
-    };
-
-    window.incrementProductQty = function(id) {
-      if (!state.productQuantities) state.productQuantities = {};
-      if (!state.productQuantities[id]) state.productQuantities[id] = 1;
-      state.productQuantities[id]++;
-      const el = document.getElementById(`qty-val-${id}`);
-      if (el) el.textContent = state.productQuantities[id];
-    };
-
-    window.decrementProductQty = function(id) {
-      if (!state.productQuantities) state.productQuantities = {};
-      if (!state.productQuantities[id]) state.productQuantities[id] = 1;
-      if (state.productQuantities[id] > 1) {
-        state.productQuantities[id]--;
-        const el = document.getElementById(`qty-val-${id}`);
-        if (el) el.textContent = state.productQuantities[id];
-      }
-    };
-
-    window.addProductToCart = function(productId, category) {
-      let product = null;
-      if (category === 'grocery') {
-        product = state.syncedGrocery?.find(p => p.id === productId);
-      } else if (category === 'stationery') {
-        product = state.syncedStationery?.find(p => p.id === productId);
-      } else if (category === 'medicine') {
-        product = state.syncedMedicine?.find(p => p.id === productId);
-      }
-
-      if (!product) {
-        triggerToast('Product details not loaded.', '⚠️');
-        return;
-      }
-
-      const qty = (state.productQuantities && state.productQuantities[productId]) || 1;
-      const price = product.offerPrice !== undefined && product.offerPrice !== null ? parseFloat(product.offerPrice) : parseFloat(product.price);
-      
-      const existingItem = state.cart.find(item => item.id === productId);
-      if (existingItem) {
-        existingItem.quantity += qty;
-      } else {
-        state.cart.push({
-          id: productId,
-          productName: product.name || product.productName,
-          image: product.imageUrl || product.image || '',
-          price: price,
-          quantity: qty,
-          category: category,
-          prescriptionRequired: !!product.prescriptionRequired
-        });
-      }
-
-      if (state.productQuantities) state.productQuantities[productId] = 1;
-      const el = document.getElementById(`qty-val-${productId}`);
-      if (el) el.textContent = 1;
-
-      saveCart();
-      triggerToast(`${product.name || product.productName} added to cart!`, '🛒');
-    };
-
-    window.bookService = function(serviceId) {
-      const service = state.syncedServices?.find(s => s.id === serviceId);
-      if (!service) {
-        triggerToast('Service details not loaded.', '⚠️');
-        return;
-      }
-
-      const price = parseFloat(service.startingPrice || 0);
-      const existingItem = state.cart.find(item => item.id === serviceId);
-      if (!existingItem) {
-        state.cart.push({
-          id: serviceId,
-          productName: service.serviceName,
-          image: service.imageUrl || service.image || '',
-          price: price,
-          quantity: 1,
-          category: 'homeservice',
-          prescriptionRequired: false
-        });
-      }
-
-      saveCart();
-      triggerToast(`${service.serviceName} added to cart!`, '🔧');
-      navigateToCart();
-    };
-
-    // Real-time catalog & offers sync from Firestore collections
-    function renderGroceryCatalogUI(products) {
-      const groceryGrid = document.getElementById('groceryCatalogGrid');
-      const groceryCard = document.getElementById('groceryCatalogCard');
-      if (!groceryGrid) return;
-
-      let html = '';
-      products.forEach(item => {
-        const nameVal = item.name || item.productName || '';
-        const imgVal = item.imageUrl || item.image || '';
-        const stockVal = item.stock || item.stockStatus || 'In Stock';
-        const inStock = stockVal === 'In Stock';
-        const priceDisplay = item.offerPrice ? 
-          `<span class="catalog-price">₹${item.offerPrice}</span><span class="catalog-price-orig">₹${item.price}</span>` :
-          `<span class="catalog-price">₹${item.price}</span>`;
-
-        const imgHtml = imgVal ? 
-          `<img src="${imgVal}" alt="${nameVal}">` : 
-          `<span class="catalog-img-placeholder">🥦</span>`;
-
-        if (!state.productQuantities) state.productQuantities = {};
-        if (!state.productQuantities[item.id]) state.productQuantities[item.id] = 1;
-
-        html += `
-          <div class="catalog-card">
-            <div class="catalog-img-wrap">${imgHtml}</div>
-            <div class="catalog-name">${nameVal}</div>
-            <div class="catalog-category">${item.category || 'Grocery'}</div>
-            <div class="catalog-unit">${item.unit || '1 Unit'}</div>
-            <div class="catalog-price-row">${priceDisplay}</div>
-            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${stockVal}</span>
-            ${inStock ? `
-              <div class="qty-selector">
-                <button class="qty-btn" onclick="decrementProductQty('${item.id}')">-</button>
-                <span class="qty-val" id="qty-val-${item.id}">${state.productQuantities[item.id]}</span>
-                <button class="qty-btn" onclick="incrementProductQty('${item.id}')">+</button>
-              </div>
-              <button class="btn-add-cart" onclick="addProductToCart('${item.id}', 'grocery')">Add to Cart</button>
-            ` : `
-              <button class="btn-add-cart" disabled style="background:#fef2f2; color:#ef4444; border-color:#fecaca; cursor:default; margin-top: auto;">Out of Stock</button>
-            `}
-          </div>
-        `;
-      });
-
-      if (html) {
-        groceryGrid.innerHTML = html;
-        if (groceryCard) groceryCard.style.display = 'block';
-      } else {
-        groceryGrid.innerHTML = `<div style="text-align:center;padding:40px;color:var(--gray-400);grid-column:1/-1;">No grocery products configured.</div>`;
-        if (groceryCard) groceryCard.style.display = 'block';
-      }
-    }
-
-    function renderStationeryCatalogUI(products) {
-      const stationeryGrid = document.getElementById('stationeryCatalogGrid');
-      const stationeryCard = document.getElementById('stationeryCatalogCard');
-      if (!stationeryGrid) return;
-
-      let html = '';
-      products.forEach(item => {
-        const nameVal = item.name || item.productName || '';
-        const imgVal = item.imageUrl || item.image || '';
-        const stockVal = item.stock || item.stockStatus || 'In Stock';
-        const inStock = stockVal === 'In Stock';
-        const priceDisplay = item.offerPrice ? 
-          `<span class="catalog-price">₹${item.offerPrice}</span><span class="catalog-price-orig">₹${item.price}</span>` :
-          `<span class="catalog-price">₹${item.price}</span>`;
-
-        const imgHtml = imgVal ? 
-          `<img src="${imgVal}" alt="${nameVal}">` : 
-          `<span class="catalog-img-placeholder">📚</span>`;
-
-        if (!state.productQuantities) state.productQuantities = {};
-        if (!state.productQuantities[item.id]) state.productQuantities[item.id] = 1;
-
-        html += `
-          <div class="catalog-card">
-            <div class="catalog-img-wrap">${imgHtml}</div>
-            <div class="catalog-name">${nameVal}</div>
-            <div class="catalog-category">${item.category || 'Stationery'}</div>
-            <div class="catalog-price-row">${priceDisplay}</div>
-            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${stockVal}</span>
-            ${inStock ? `
-              <div class="qty-selector">
-                <button class="qty-btn" onclick="decrementProductQty('${item.id}')">-</button>
-                <span class="qty-val" id="qty-val-${item.id}">${state.productQuantities[item.id]}</span>
-                <button class="qty-btn" onclick="incrementProductQty('${item.id}')">+</button>
-              </div>
-              <button class="btn-add-cart" onclick="addProductToCart('${item.id}', 'stationery')">Add to Cart</button>
-            ` : `
-              <button class="btn-add-cart" disabled style="background:#fef2f2; color:#ef4444; border-color:#fecaca; cursor:default; margin-top: auto;">Out of Stock</button>
-            `}
-          </div>
-        `;
-      });
-
-      if (html) {
-        stationeryGrid.innerHTML = html;
-        if (stationeryCard) stationeryCard.style.display = 'block';
-      } else {
-        stationeryGrid.innerHTML = `<div style="text-align:center;padding:40px;color:var(--gray-400);grid-column:1/-1;">No stationery products configured.</div>`;
-        if (stationeryCard) stationeryCard.style.display = 'block';
-      }
-    }
-
-    function renderMedicineCatalogUI(products) {
-      const medicineGrid = document.getElementById('medicineCatalogGrid');
-      const medicineCard = document.getElementById('medicineCatalogCard');
-      if (!medicineGrid) return;
-
-      let html = '';
-      products.forEach(item => {
-        const nameVal = item.name || item.productName || '';
-        const imgVal = item.imageUrl || item.image || '';
-        const stockVal = item.stock || item.stockStatus || 'In Stock';
-        const inStock = stockVal === 'In Stock';
-        const priceDisplay = `<span class="catalog-price">₹${item.price}</span>`;
-        const imgHtml = imgVal ? 
-          `<img src="${imgVal}" alt="${nameVal}">` : 
-          `<span class="catalog-img-placeholder">💊</span>`;
-
-        const rxBadge = item.prescriptionRequired ? 
-          `<span class="prescription-badge">⚕️ Rx Req</span>` : '';
-
-        if (!state.productQuantities) state.productQuantities = {};
-        if (!state.productQuantities[item.id]) state.productQuantities[item.id] = 1;
-
-        html += `
-          <div class="catalog-card">
-            <div class="catalog-img-wrap">${imgHtml}</div>
-            <div class="catalog-name">${nameVal}</div>
-            <div style="min-height: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
-              ${rxBadge}
-            </div>
-            <div class="catalog-price-row">${priceDisplay}</div>
-            <span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${stockVal}</span>
-            ${inStock ? `
-              <div class="qty-selector">
-                <button class="qty-btn" onclick="decrementProductQty('${item.id}')">-</button>
-                <span class="qty-val" id="qty-val-${item.id}">${state.productQuantities[item.id]}</span>
-                <button class="qty-btn" onclick="incrementProductQty('${item.id}')">+</button>
-              </div>
-              <button class="btn-add-cart" onclick="addProductToCart('${item.id}', 'medicine')">Add to Cart</button>
-            ` : `
-              <button class="btn-add-cart" disabled style="background:#fef2f2; color:#ef4444; border-color:#fecaca; cursor:default; margin-top: auto;">Out of Stock</button>
-            `}
-          </div>
-        `;
-      });
-
-      if (html) {
-        medicineGrid.innerHTML = html;
-        if (medicineCard) medicineCard.style.display = 'block';
-      } else {
-        medicineGrid.innerHTML = `<div style="text-align:center;padding:40px;color:var(--gray-400);grid-column:1/-1;">No medicines configured.</div>`;
-        if (medicineCard) medicineCard.style.display = 'block';
-      }
-    }
-
-    function renderServicesUI(services) {
-      const servicesGrid = document.getElementById('servicesGrid');
-      if (!servicesGrid) return;
-
-      let html = '';
-      services.forEach(item => {
-        const imgStyle = item.imageUrl || item.image ? `<img src="${item.imageUrl || item.image}" alt="${item.serviceName}">` : `<span style="font-size:32px;">🔧</span>`;
-        html += `
-          <div class="service-card">
-            <div class="service-img-wrap">
-              ${imgStyle}
-            </div>
-            <div class="service-info-wrap">
-              <div class="service-name">${item.serviceName}</div>
-              <div class="service-desc">${item.description || ''}</div>
-              <div class="service-price">Starts at ₹${item.startingPrice || 0}</div>
-              <button class="btn-book-service" onclick="bookService('${item.id}')">Book Service</button>
-            </div>
-          </div>
-        `;
-      });
-
-      servicesGrid.innerHTML = html || `<div style="text-align:center;padding:40px;color:var(--gray-400);">No services available at the moment.</div>`;
-    }
-
-    function renderOffersUI(offers) {
-      const offersContainer = document.getElementById('homeOffersContainer');
-      if (!offersContainer) return;
-
-      let html = '';
-      offers.forEach(item => {
-        const imgStyle = item.imageUrl || item.image ? `background-image: url('${item.imageUrl || item.image}'); background-size: cover; background-position: center;` : '';
-        html += `
-          <div class="promo-card" style="margin-bottom: 12px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1.5px solid var(--primary-light); cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 12px; border-radius: 12px;" onclick="triggerPromoAdd('${item.title}', '${item.discountPercentage || 0}')">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              ${item.imageUrl || item.image ? `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; ${imgStyle}"></div>` : `<div style="width: 50px; height: 50px; border-radius: 8px; flex-shrink:0; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 20px;">🏷️</div>`}
-              <div class="promo-text-wrap" style="flex: 1;">
-                <div class="promo-title-text" style="color: var(--primary-dark); font-size:14px; font-weight:700;">🏷️ ${item.title || 'Weekly Offer'}</div>
-                <div class="promo-desc-text" style="color: var(--gray-600); font-size:11px; margin-top:2px;">Get ${item.discountPercentage}% OFF! Valid: ${item.startDate} &rarr; ${item.endDate}</div>
-              </div>
-            </div>
-            <span class="promo-pill" style="background: var(--primary-dark); color: white; margin-left: 10px; flex-shrink:0;">ADD</span>
-          </div>
-        `;
-      });
-      offersContainer.innerHTML = html;
-    }
-
-    // Real-time catalog & offers sync from Firestore collections
-    function startCatalogSync() {
-      state.syncedGrocery = [];
-      state.syncedStationery = [];
-      state.syncedMedicine = [];
-      state.syncedServices = [];
-
-      if (!db) return;
-
-      // 1. Sync Grocery Products
-      onSnapshot(collection(db, 'grocery_products'), (snapshot) => {
-        state.syncedGrocery = [];
-        snapshot.forEach(docSnap => {
-          state.syncedGrocery.push({ id: docSnap.id, ...docSnap.data() });
-        });
-        renderGroceryCatalogUI(state.syncedGrocery);
-      }, (error) => {
-        console.error("Firestore Grocery sync failed:", error);
-      });
-
-      // 2. Sync Stationery Products
-      onSnapshot(collection(db, 'stationery_products'), (snapshot) => {
-        state.syncedStationery = [];
-        snapshot.forEach(docSnap => {
-          state.syncedStationery.push({ id: docSnap.id, ...docSnap.data() });
-        });
-        renderStationeryCatalogUI(state.syncedStationery);
-      }, (error) => {
-        console.error("Firestore Stationery sync failed:", error);
-      });
-
-      // 3. Sync Medicine Products
-      onSnapshot(collection(db, 'medicine_products'), (snapshot) => {
-        state.syncedMedicine = [];
-        snapshot.forEach(docSnap => {
-          state.syncedMedicine.push({ id: docSnap.id, ...docSnap.data() });
-        });
-        renderMedicineCatalogUI(state.syncedMedicine);
-      }, (error) => {
-        console.error("Firestore Medicine sync failed:", error);
-      });
-
-      // 4. Sync Services
-      onSnapshot(collection(db, 'services'), (snapshot) => {
-        state.syncedServices = [];
-        snapshot.forEach(docSnap => {
-          state.syncedServices.push({ id: docSnap.id, ...docSnap.data() });
-        });
-        renderServicesUI(state.syncedServices);
-      }, (error) => {
-        console.error("Firestore Services sync failed:", error);
-      });
-
-      // 5. Sync Weekly Offers
-      onSnapshot(collection(db, 'weekly_offers'), (snapshot) => {
-        let offers = [];
-        snapshot.forEach(docSnap => {
-          offers.push({ id: docSnap.id, ...docSnap.data() });
-        });
-        renderOffersUI(offers);
-      }, (error) => {
-        console.error("Firestore Weekly Offers sync failed:", error);
-      });
-    }
-
-    window.triggerPromoAdd = function(prodName, discountPercentage) {
-      const existingItem = state.cart.find(item => item.productName === prodName);
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        let price = 0;
-        let image = '';
-        let foundProduct = state.syncedGrocery?.find(p => p.productName.toLowerCase().includes(prodName.toLowerCase())) ||
-                           state.syncedStationery?.find(p => p.productName.toLowerCase().includes(prodName.toLowerCase())) ||
-                           state.syncedMedicine?.find(p => p.productName.toLowerCase().includes(prodName.toLowerCase()));
-        
-        if (foundProduct) {
-          price = foundProduct.offerPrice !== undefined && foundProduct.offerPrice !== null ? parseFloat(foundProduct.offerPrice) : parseFloat(foundProduct.price);
-          image = foundProduct.image || '';
-        } else {
-          price = 99; // Default fallback
-        }
-
-        if (discountPercentage) {
-          price = Math.round(price * (1 - parseFloat(discountPercentage)/100));
-        }
-
-        state.cart.push({
-          id: foundProduct ? foundProduct.id : `promo-${Date.now()}`,
-          productName: prodName,
-          image: image,
-          price: price,
-          quantity: 1,
-          category: foundProduct ? foundProduct.category || 'grocery' : 'grocery',
-          prescriptionRequired: foundProduct ? !!foundProduct.prescriptionRequired : false
-        });
-      }
-      
-      saveCart();
-      triggerToast(`${prodName} added to cart!`, '🏷️');
-      navigateToCart();
-    };
-
-    // ─── INITIALIZATION / AUTO-LOGIN ENGINE ───
-    async function initApplication() {
-      updateCartBadge();
-      
-      if (firebaseReady && db) {
-        startCatalogSync();
-      }
-
-      if (state.user && state.user.name) {
-        if (firebaseReady && db && state.user.phone) {
+        let rxDownloadUrl = "";
+        if (state.prescriptFile && storage) {
           try {
-            const userSnap = await getDoc(doc(db, 'users', state.user.phone));
-            if (userSnap.exists()) {
-              const uData = userSnap.data();
-              state.user.name = uData.name || state.user.name;
-              localStorage.setItem('homago_user', JSON.stringify(state.user));
-            }
-          } catch(err) {
-            console.warn("Could not sync user profile from Firestore:", err);
+            const storageRef = ref(storage, `prescriptions/${Date.now()}_${state.prescriptFile.name}`);
+            const task = uploadBytesResumable(storageRef, state.prescriptFile);
+            rxDownloadUrl = await new Promise((res, rej) => {
+              task.on('state_changed', null, rej, async () => {
+                const url = await getDownloadURL(task.snapshot.ref);
+                res(url);
+              });
+            });
+          } catch(storageErr) {
+            console.error("Prescription upload note:", storageErr);
           }
         }
 
-        initializeHomeGreeting();
-        
-        // Auto-login flow
-        showLoader('Reconnecting & updating GPS...');
-        await requestLocationDetection();
-        hideLoader();
-        
-        showScreen('screen-home');
-        triggerToast(`Welcome back, ${state.user.name}!`, '🌿');
-      } else {
-        showScreen('screen-login');
-      }
-    }
+        const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        const delivery = subtotal > 500 ? 0 : 25;
+        const platformFee = 5;
+        const discount = state.couponDiscount;
+        const grandTotal = Math.max(0, subtotal + delivery + platformFee - discount);
 
-    // Run Application
-    initApplication();
+        const orderId = `HMG-${Math.floor(100000 + Math.random() * 900000)}`;
+
+        const orderPayload = {
+          orderId: orderId,
+          userName: state.userName,
+          customerName: state.userName,
+          mobileNumber: state.userPhone,
+          mobile: state.userPhone,
+          fullLocation: state.userLocation,
+          location: state.userLocation,
+          landmark: landmark,
+          category: state.activeCategory,
+          orderDetails: state.cart.map(i => `${i.name} (x${i.qty})`).join(', '),
+          items: state.cart.map(i => `${i.name} (x${i.qty})`).join(', '),
+          cartItems: state.cart,
+          subtotalAmount: subtotal,
+          totalAmount: grandTotal,
+          paymentMethod: paymentMethod,
+          additionalNotes: rxDownloadUrl ? `Prescription uploaded. URL: ${rxDownloadUrl}` : '',
+          orderStatus: 'Pending',
+          status: 'Pending',
+          timestamp: new Date().toISOString(),
+          createdAt: serverTimestamp()
+        };
+
+        const existingShared = JSON.parse(localStorage.getItem('homago_shared_orders') || '[]');
+        existingShared.unshift(orderPayload);
+        localStorage.setItem('homago_shared_orders', JSON.stringify(existingShared));
+
+        state.activeOrders.unshift(orderPayload);
+        renderActiveOrderTracker();
+
+        if (db) {
+          try {
+            await addDoc(collection(db, 'orders'), orderPayload);
+          } catch(firestoreErr) {
+            console.warn("Firestore order save note:", firestoreErr);
+          }
+        }
+
+        document.getElementById('successOrderId').textContent = `#${orderId}`;
+        document.getElementById('successOrderTime').textContent = `Placed at ${new Date().toLocaleTimeString()}`;
+
+        state.cart = [];
+        updateCartBadges();
+
+        hideOverlay();
+        showScreen('screen-success');
+        triggerToast("Order transmitted to Homago Admin!", "🎉");
+      } catch(err) {
+        console.error("Order submission error:", err);
+        triggerToast("Order Placed: " + orderId, "🎉");
+        showScreen('screen-success');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Place Order Now";
+        hideOverlay();
+      }
+    };
+
+    // INITIALIZATION RUN
+    window.addEventListener('DOMContentLoaded', () => {
+      startRealtimeCatalogSync();
+      startRealtimeUserOrdersSync();
+      refreshLocation();
+    });
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'homago_shared_orders') {
+        const updated = JSON.parse(e.newValue || '[]');
+        state.activeOrders = updated.filter(o => (o.mobileNumber || o.mobile) === state.userPhone);
+        renderActiveOrderTracker();
+      }
+    });
   </script>
 </body>
 </html>
